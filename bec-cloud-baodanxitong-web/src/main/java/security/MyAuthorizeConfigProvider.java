@@ -5,7 +5,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
 
-import com.bec.cloud.auth.server.authorize.AuthorizeConfigProvider;
+import com.bec.cloud.auth.core.authorize.AuthorizeConfigProvider;
 
 @Component
 @Order(Integer.MAX_VALUE)
