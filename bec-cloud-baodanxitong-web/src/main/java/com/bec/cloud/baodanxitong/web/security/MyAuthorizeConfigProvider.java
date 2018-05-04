@@ -1,4 +1,4 @@
-package security;
+package com.bec.cloud.baodanxitong.web.security;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
