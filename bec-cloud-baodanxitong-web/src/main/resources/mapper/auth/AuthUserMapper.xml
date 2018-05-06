@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bec.cloud.baodanxitong.web.auth.dao.AuthUserMapper1">
+<mapper namespace="com.bec.cloud.baodanxitong.web.auth.dao.AuthUserMapper">
 	<resultMap id="BaseResultMap"
 		type="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
 		<id column="user_id" property="userId" jdbcType="BIGINT" />
@@ -25,9 +25,11 @@
 		<result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		user_id, cust_code, org_code, user_name, user_old_name, real_name,
+		user_id, cust_code, org_code, user_name, user_old_name,
+		real_name,
 		user_passwd, user_identity,
-		login_ip, login_time, user_status, del_status, record_time, entry_user_id,
+		login_ip, login_time,
+		user_status, del_status, record_time, entry_user_id,
 		operation_user_id,
 		opretion_time, user_phone
 	</sql>
@@ -39,23 +41,31 @@
 		where user_id = #{userId,jdbcType=BIGINT}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from public.auth_user
+		delete from
+		public.auth_user
 		where user_id = #{userId,jdbcType=BIGINT}
 	</delete>
 	<insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
-		insert into public.auth_user (user_id, cust_code, org_code,
+		insert into public.auth_user
+		(user_id, cust_code, org_code,
 		user_name, user_old_name, real_name,
 		user_passwd, user_identity, login_ip,
-		login_time, user_status, del_status,
+		login_time, user_status,
+		del_status,
 		record_time, entry_user_id, operation_user_id,
 		opretion_time, user_phone)
-		values (#{userId,jdbcType=BIGINT}, #{custCode,jdbcType=VARCHAR},
+		values (#{userId,jdbcType=BIGINT},
+		#{custCode,jdbcType=VARCHAR},
 		#{orgCode,jdbcType=VARCHAR},
-		#{userName,jdbcType=VARCHAR}, #{userOldName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
-		#{userPasswd,jdbcType=VARCHAR}, #{userIdentity,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR}, #{userOldName,jdbcType=VARCHAR},
+		#{realName,jdbcType=VARCHAR},
+		#{userPasswd,jdbcType=VARCHAR},
+		#{userIdentity,jdbcType=VARCHAR},
 		#{loginIp,jdbcType=VARCHAR},
-		#{loginTime,jdbcType=TIMESTAMP}, #{userStatus,jdbcType=INTEGER}, #{delStatus,jdbcType=INTEGER},
-		#{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT},
+		#{loginTime,jdbcType=TIMESTAMP}, #{userStatus,jdbcType=INTEGER},
+		#{delStatus,jdbcType=INTEGER},
+		#{recordTime,jdbcType=TIMESTAMP},
+		#{entryUserId,jdbcType=BIGINT},
 		#{operationUserId,jdbcType=BIGINT},
 		#{opretionTime,jdbcType=TIMESTAMP}, #{userPhone,jdbcType=VARCHAR})
 	</insert>
@@ -223,23 +233,39 @@
 		where user_id = #{userId,jdbcType=BIGINT}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
-		update public.auth_user
+		update
+		public.auth_user
 		set cust_code = #{custCode,jdbcType=VARCHAR},
-		org_code = #{orgCode,jdbcType=VARCHAR},
-		user_name = #{userName,jdbcType=VARCHAR},
-		user_old_name = #{userOldName,jdbcType=VARCHAR},
-		real_name = #{realName,jdbcType=VARCHAR},
-		user_passwd = #{userPasswd,jdbcType=VARCHAR},
-		user_identity = #{userIdentity,jdbcType=VARCHAR},
-		login_ip = #{loginIp,jdbcType=VARCHAR},
-		login_time = #{loginTime,jdbcType=TIMESTAMP},
-		user_status = #{userStatus,jdbcType=INTEGER},
-		del_status = #{delStatus,jdbcType=INTEGER},
-		record_time = #{recordTime,jdbcType=TIMESTAMP},
-		entry_user_id = #{entryUserId,jdbcType=BIGINT},
-		operation_user_id = #{operationUserId,jdbcType=BIGINT},
-		opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
-		user_phone = #{userPhone,jdbcType=VARCHAR}
+		org_code
+		= #{orgCode,jdbcType=VARCHAR},
+		user_name =
+		#{userName,jdbcType=VARCHAR},
+		user_old_name =
+		#{userOldName,jdbcType=VARCHAR},
+		real_name =
+		#{realName,jdbcType=VARCHAR},
+		user_passwd =
+		#{userPasswd,jdbcType=VARCHAR},
+		user_identity =
+		#{userIdentity,jdbcType=VARCHAR},
+		login_ip =
+		#{loginIp,jdbcType=VARCHAR},
+		login_time =
+		#{loginTime,jdbcType=TIMESTAMP},
+		user_status =
+		#{userStatus,jdbcType=INTEGER},
+		del_status =
+		#{delStatus,jdbcType=INTEGER},
+		record_time =
+		#{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id =
+		#{entryUserId,jdbcType=BIGINT},
+		operation_user_id =
+		#{operationUserId,jdbcType=BIGINT},
+		opretion_time =
+		#{opretionTime,jdbcType=TIMESTAMP},
+		user_phone =
+		#{userPhone,jdbcType=VARCHAR}
 		where user_id = #{userId,jdbcType=BIGINT}
 	</update>
 
@@ -290,7 +316,8 @@
 				and entry_user_id = #{entryUserId,jdbcType=BIGINT}
 			</if>
 			<if test="operationUserId != null">
-				and operation_user_id = #{operationUserId,jdbcType=BIGINT}
+				and operation_user_id =
+				#{operationUserId,jdbcType=BIGINT}
 			</if>
 			<if test="opretionTime != null">
 				and opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
@@ -301,4 +328,16 @@
 		</where>
 		order by user_id
 	</select>
+	<delete id="deleteUserRole" parameterType="java.lang.Long">
+		delete from
+		public.auth_user_role
+		where user_id = #{userId,jdbcType=BIGINT}
+	</delete>
+	<insert id="saveUserRole">
+		insert into public.auth_user_role (user_id, role_id)
+		values
+		<foreach item="roleId" collection="#{1}" separator=",">
+			(#{0},#{roleId})
+		</foreach>
+	</insert>
 </mapper>

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.bec.cloud.baodanxitong.web.auth.model.AuthUser;
 
 @Mapper
-public interface AuthUserMapper1 {
+public interface AuthUserMapper {
     int deleteByPrimaryKey(Long userId);
 
     int insert(AuthUser record);
@@ -21,4 +21,8 @@ public interface AuthUserMapper1 {
     int updateByPrimaryKey(AuthUser record);
 
 	List<AuthUser> selectAuthUser(AuthUser record);
+
+	int deleteUserRole(Long userId);
+
+	void saveUserRole(Long userId, List<Long> roleIdList);
 }

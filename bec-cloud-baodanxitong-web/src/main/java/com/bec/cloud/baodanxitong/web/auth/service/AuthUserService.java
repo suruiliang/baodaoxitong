@@ -12,4 +12,12 @@ import com.bec.cloud.baodanxitong.web.auth.model.AuthUser;
 
 public interface AuthUserService {
 	List<AuthUser> selectAuthUser(AuthUser record);
+
+	AuthUser selectByPrimaryKey(Long userId);
+
+	int deleteAuthUser(Long userId);
+
+	int saveAuthUser(AuthUser record, String roleIds);
+
+	int setPasswd(Long userId, String oldUserpasswd, String newUserpasswd);
 }
