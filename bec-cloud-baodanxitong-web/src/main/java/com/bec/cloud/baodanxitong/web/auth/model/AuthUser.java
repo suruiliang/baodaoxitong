@@ -1,11 +1,18 @@
 package com.bec.cloud.baodanxitong.web.auth.model;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
 public class AuthUser {
+	private String searchName;
+	//==================request
+	private String userStatusName;
+	private String roleNames;
+	private List<AuthRole> authRoles;
+	//==================response
     private Long userId;
 
     private String custCode;
@@ -39,5 +46,7 @@ public class AuthUser {
     private Date opretionTime;
 
     private String userPhone;
+    
+    private String userType;
 
 }

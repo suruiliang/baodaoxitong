@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.auth.dao.OrganizationMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.auth.model.Organization">
+		<id column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="org_abbr" property="orgAbbr" jdbcType="VARCHAR" />
+		<result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+		<result column="org_phone" property="orgPhone" jdbcType="VARCHAR" />
+		<result column="org_iid" property="orgIid" jdbcType="VARCHAR" />
+		<result column="p_org_code" property="pOrgCode" jdbcType="VARCHAR" />
+		<result column="legal_name" property="legalName" jdbcType="VARCHAR" />
+		<result column="legal_phone" property="legalPhone" jdbcType="VARCHAR" />
+		<result column="bus_license" property="busLicense" jdbcType="VARCHAR" />
+		<result column="bus_license_photo" property="busLicensePhoto"
+			jdbcType="VARCHAR" />
+		<result column="bus_address" property="busAddress" jdbcType="VARCHAR" />
+		<result column="registered_address" property="registeredAddress"
+			jdbcType="VARCHAR" />
+		<result column="org_status" property="orgStatus" jdbcType="INTEGER" />
+		<result column="del_status" property="delStatus" jdbcType="INTEGER" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+		<result column="opretion_time" property="opretionTime"
+			jdbcType="TIMESTAMP" />
+		<result column="org_level" property="orgLevel" jdbcType="INTEGER" />
+		<result column="org_pid" property="orgPid" jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		org_id, org_name, org_abbr, org_code, org_phone, org_iid, p_org_code,
+		legal_name,
+		legal_phone, bus_license, bus_license_photo, bus_address, registered_address,
+		org_status,
+		del_status, record_time, entry_user_id, operation_user_id, opretion_time,
+		org_level,
+		org_pid
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.organization
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from public.organization
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.Organization">
+		<selectKey resultType="java.lang.Long" keyProperty="orgId"
+			order="BEFORE">
+			select nextval('organization_id_seq')
+		</selectKey>
+		insert into public.organization (org_id, org_name, org_abbr,
+		org_code, org_phone, org_iid,
+		p_org_code, legal_name, legal_phone,
+		bus_license, bus_license_photo, bus_address,
+		registered_address, org_status, del_status,
+		record_time, entry_user_id, operation_user_id,
+		opretion_time, org_level, org_pid
+		)
+		values (#{orgId,jdbcType=BIGINT}, #{orgName,jdbcType=VARCHAR},
+		#{orgAbbr,jdbcType=VARCHAR},
+		#{orgCode,jdbcType=VARCHAR}, #{orgPhone,jdbcType=VARCHAR}, #{orgIid,jdbcType=VARCHAR},
+		#{pOrgCode,jdbcType=VARCHAR}, #{legalName,jdbcType=VARCHAR},
+		#{legalPhone,jdbcType=VARCHAR},
+		#{busLicense,jdbcType=VARCHAR}, #{busLicensePhoto,jdbcType=VARCHAR}, #{busAddress,jdbcType=VARCHAR},
+		#{registeredAddress,jdbcType=VARCHAR}, #{orgStatus,jdbcType=INTEGER},
+		#{delStatus,jdbcType=INTEGER},
+		#{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT},
+		#{opretionTime,jdbcType=TIMESTAMP}, #{orgLevel,jdbcType=INTEGER},
+		#{orgPid,jdbcType=BIGINT}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.Organization">
+		<selectKey resultType="java.lang.Long" keyProperty="orgId"
+			order="BEFORE">
+			select nextval('organization_id_seq')
+		</selectKey>
+		insert into public.organization
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			org_id,
+			<if test="orgName != null">
+				org_name,
+			</if>
+			<if test="orgAbbr != null">
+				org_abbr,
+			</if>
+			<if test="orgCode != null">
+				org_code,
+			</if>
+			<if test="orgPhone != null">
+				org_phone,
+			</if>
+			<if test="orgIid != null">
+				org_iid,
+			</if>
+			<if test="pOrgCode != null">
+				p_org_code,
+			</if>
+			<if test="legalName != null">
+				legal_name,
+			</if>
+			<if test="legalPhone != null">
+				legal_phone,
+			</if>
+			<if test="busLicense != null">
+				bus_license,
+			</if>
+			<if test="busLicensePhoto != null">
+				bus_license_photo,
+			</if>
+			<if test="busAddress != null">
+				bus_address,
+			</if>
+			<if test="registeredAddress != null">
+				registered_address,
+			</if>
+			<if test="orgStatus != null">
+				org_status,
+			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+			<if test="opretionTime != null">
+				opretion_time,
+			</if>
+			<if test="orgLevel != null">
+				org_level,
+			</if>
+			<if test="orgPid != null">
+				org_pid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{orgId,jdbcType=BIGINT},
+			<if test="orgName != null">
+				#{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgAbbr != null">
+				#{orgAbbr,jdbcType=VARCHAR},
+			</if>
+			<if test="orgCode != null">
+				#{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="orgPhone != null">
+				#{orgPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="orgIid != null">
+				#{orgIid,jdbcType=VARCHAR},
+			</if>
+			<if test="pOrgCode != null">
+				#{pOrgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="legalName != null">
+				#{legalName,jdbcType=VARCHAR},
+			</if>
+			<if test="legalPhone != null">
+				#{legalPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="busLicense != null">
+				#{busLicense,jdbcType=VARCHAR},
+			</if>
+			<if test="busLicensePhoto != null">
+				#{busLicensePhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="busAddress != null">
+				#{busAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="registeredAddress != null">
+				#{registeredAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="orgStatus != null">
+				#{orgStatus,jdbcType=INTEGER},
+			</if>
+			<if test="delStatus != null">
+				#{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="opretionTime != null">
+				#{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orgLevel != null">
+				#{orgLevel,jdbcType=INTEGER},
+			</if>
+			<if test="orgPid != null">
+				#{orgPid,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.Organization">
+		update public.organization
+		<set>
+			<if test="orgName != null">
+				org_name = #{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgAbbr != null">
+				org_abbr = #{orgAbbr,jdbcType=VARCHAR},
+			</if>
+			<if test="orgCode != null">
+				org_code = #{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="orgPhone != null">
+				org_phone = #{orgPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="orgIid != null">
+				org_iid = #{orgIid,jdbcType=VARCHAR},
+			</if>
+			<if test="pOrgCode != null">
+				p_org_code = #{pOrgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="legalName != null">
+				legal_name = #{legalName,jdbcType=VARCHAR},
+			</if>
+			<if test="legalPhone != null">
+				legal_phone = #{legalPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="busLicense != null">
+				bus_license = #{busLicense,jdbcType=VARCHAR},
+			</if>
+			<if test="busLicensePhoto != null">
+				bus_license_photo = #{busLicensePhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="busAddress != null">
+				bus_address = #{busAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="registeredAddress != null">
+				registered_address = #{registeredAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="orgStatus != null">
+				org_status = #{orgStatus,jdbcType=INTEGER},
+			</if>
+			<if test="delStatus != null">
+				del_status = #{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="opretionTime != null">
+				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orgLevel != null">
+				org_level = #{orgLevel,jdbcType=INTEGER},
+			</if>
+			<if test="orgPid != null">
+				org_pid = #{orgPid,jdbcType=BIGINT},
+			</if>
+		</set>
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.Organization">
+		update public.organization
+		set org_name = #{orgName,jdbcType=VARCHAR},
+		org_abbr = #{orgAbbr,jdbcType=VARCHAR},
+		org_code = #{orgCode,jdbcType=VARCHAR},
+		org_phone = #{orgPhone,jdbcType=VARCHAR},
+		org_iid = #{orgIid,jdbcType=VARCHAR},
+		p_org_code = #{pOrgCode,jdbcType=VARCHAR},
+		legal_name = #{legalName,jdbcType=VARCHAR},
+		legal_phone = #{legalPhone,jdbcType=VARCHAR},
+		bus_license = #{busLicense,jdbcType=VARCHAR},
+		bus_license_photo = #{busLicensePhoto,jdbcType=VARCHAR},
+		bus_address = #{busAddress,jdbcType=VARCHAR},
+		registered_address = #{registeredAddress,jdbcType=VARCHAR},
+		org_status = #{orgStatus,jdbcType=INTEGER},
+		del_status = #{delStatus,jdbcType=INTEGER},
+		record_time = #{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id = #{entryUserId,jdbcType=BIGINT},
+		operation_user_id = #{operationUserId,jdbcType=BIGINT},
+		opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+		org_level = #{orgLevel,jdbcType=INTEGER},
+		org_pid = #{orgPid,jdbcType=BIGINT}
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectOrganization" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.Organization">
+		select
+		<include refid="Base_Column_List" />
+		from public.organization
+		<where>
+			del_status=0
+			<if test="orgName != null">
+				and org_name like '%'||#{orgName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="orgStatus != null">
+				and org_status = #{orgStatus,jdbcType=INTEGER}
+			</if>
+		</where>
+		order by org_id
+	</select>
+</mapper>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.auth.dao.AuthLogMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
+		<id column="log_id" property="logId" jdbcType="BIGINT" />
+		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+		<result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="cust_code" property="custCode" jdbcType="VARCHAR" />
+		<result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="mac" property="mac" jdbcType="VARCHAR" />
+		<result column="soft_type" property="softType" jdbcType="INTEGER" />
+		<result column="visit_module" property="visitModule" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="cust_name" property="custName" jdbcType="VARCHAR" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="opretion_time" property="opretionTime"
+			jdbcType="TIMESTAMP" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		log_id, login_ip, login_time, user_id, cust_code, org_code,
+		version, mac,
+		soft_type,
+		visit_module, user_name, cust_name, org_name,
+		record_time, opretion_time,real_name
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.auth_log
+		where log_id = #{logId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		public.auth_log
+		where log_id = #{logId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
+		<selectKey resultType="java.lang.Long" keyProperty="logId"
+			order="BEFORE">
+			select nextval('auth_log_id_seq')
+		</selectKey>
+		insert into public.auth_log (log_id, login_ip, login_time,
+		user_id,
+		cust_code, org_code,
+		version, mac, soft_type,
+		visit_module, user_name,
+		cust_name,
+		org_name, record_time, opretion_time,real_name
+		)
+		values
+		(#{logId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR},
+		#{loginTime,jdbcType=TIMESTAMP},
+		#{userId,jdbcType=BIGINT},
+		#{custCode,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR},
+		#{version,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR},
+		#{softType,jdbcType=INTEGER},
+		#{visitModule,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR},
+		#{orgName,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP},
+		#{opretionTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
+		<selectKey resultType="java.lang.Long" keyProperty="logId"
+			order="BEFORE">
+			select nextval('auth_log_id_seq')
+		</selectKey>
+		insert into public.auth_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			log_id,
+			<if test="loginIp != null">
+				login_ip,
+			</if>
+			<if test="loginTime != null">
+				login_time,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="custCode != null">
+				cust_code,
+			</if>
+			<if test="orgCode != null">
+				org_code,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="mac != null">
+				mac,
+			</if>
+			<if test="softType != null">
+				soft_type,
+			</if>
+			<if test="visitModule != null">
+				visit_module,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="custName != null">
+				cust_name,
+			</if>
+			<if test="orgName != null">
+				org_name,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="opretionTime != null">
+				opretion_time,
+			</if>
+			<if test="realName != null">
+				real_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{logId,jdbcType=BIGINT},
+			<if test="loginIp != null">
+				#{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTime != null">
+				#{loginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="custCode != null">
+				#{custCode,jdbcType=VARCHAR},
+			</if>
+			<if test="orgCode != null">
+				#{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				#{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="softType != null">
+				#{softType,jdbcType=INTEGER},
+			</if>
+			<if test="visitModule != null">
+				#{visitModule,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				#{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgName != null">
+				#{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="opretionTime != null">
+				#{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
+		update public.auth_log
+		<set>
+			<if test="loginIp != null">
+				login_ip = #{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTime != null">
+				login_time = #{loginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="custCode != null">
+				cust_code = #{custCode,jdbcType=VARCHAR},
+			</if>
+			<if test="orgCode != null">
+				org_code = #{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				version = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				mac = #{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="softType != null">
+				soft_type = #{softType,jdbcType=INTEGER},
+			</if>
+			<if test="visitModule != null">
+				visit_module = #{visitModule,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				cust_name = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgName != null">
+				org_name = #{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="opretionTime != null">
+				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realName != null">
+				real_name = #{realName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where log_id = #{logId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
+		update
+		public.auth_log
+		set login_ip = #{loginIp,jdbcType=VARCHAR},
+		login_time =
+		#{loginTime,jdbcType=TIMESTAMP},
+		user_id = #{userId,jdbcType=BIGINT},
+		cust_code = #{custCode,jdbcType=VARCHAR},
+		org_code =
+		#{orgCode,jdbcType=VARCHAR},
+		version = #{version,jdbcType=VARCHAR},
+		mac
+		= #{mac,jdbcType=VARCHAR},
+		soft_type = #{softType,jdbcType=INTEGER},
+		visit_module = #{visitModule,jdbcType=VARCHAR},
+		user_name =
+		#{userName,jdbcType=VARCHAR},
+		cust_name = #{custName,jdbcType=VARCHAR},
+		org_name = #{orgName,jdbcType=VARCHAR},
+		record_time =
+		#{recordTime,jdbcType=TIMESTAMP},
+		opretion_time =
+		#{opretionTime,jdbcType=TIMESTAMP},
+		real_name =
+		#{realName,jdbcType=VARCHAR}
+		where log_id = #{logId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectAuthLog" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
+		select
+		<include refid="Base_Column_List" />
+		from public.auth_log
+		<where>
+			<if test="startTime != null">
+				and record_time <![CDATA[>=]]>
+				to_timestamp(#{startTime}/1000)
+			</if>
+			<if test="endTime != null">
+				and record_time <![CDATA[<=]]>
+				to_timestamp(#{endTime}/1000)
+			</if>
+			<if test="visitModule != null">
+				and visit_module = #{visitModule,jdbcType=VARCHAR}
+			</if>
+			<if test="searchName != null">
+				and user_name||real_name||org_name like
+				'%'||#{searchName,jdbcType=VARCHAR}||'%'
+			</if>
+
+			<if test="logId != null">
+				and log_id = #{logId,jdbcType=BIGINT}
+			</if>
+			<if test="loginIp != null">
+				and login_ip = #{loginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="loginTime != null">
+				and login_time = #{loginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=BIGINT}
+			</if>
+			<if test="custCode != null">
+				and cust_code = #{custCode,jdbcType=VARCHAR}
+			</if>
+			<if test="orgCode != null">
+				and org_code = #{orgCode,jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				and version = #{version,jdbcType=VARCHAR}
+			</if>
+			<if test="mac != null">
+				and mac = #{mac,jdbcType=VARCHAR}
+			</if>
+			<if test="softType != null">
+				and soft_type = #{softType,jdbcType=INTEGER}
+			</if>
+			<if test="userName != null">
+				and user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				and real_name = #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="custName != null">
+				and cust_name = #{custName,jdbcType=VARCHAR}
+			</if>
+			<if test="orgName != null">
+				and org_name = #{orgName,jdbcType=VARCHAR}
+			</if>
+			<if test="recordTime != null">
+				and record_time = #{recordTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="opretionTime != null">
+				and opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by log_id desc
+	</select>
+</mapper>

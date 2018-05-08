@@ -17,7 +17,17 @@ public interface AuthUserService {
 
 	int deleteAuthUser(Long userId);
 
-	int saveAuthUser(AuthUser record, String roleIds);
+	AuthUser saveAuthUser(AuthUser record, String roleIds);
 
 	int setPasswd(Long userId, String oldUserpasswd, String newUserpasswd);
+
+	int deleteAuthUser(String userIds);
+
+	int forbiddenAuthUser(Long userId);
+	
+	int forbiddenAuthUser(String userIds);
+
+	int restoreAuthUser(Long userId);
+	
+	int restoreAuthUser(String userIds);
 }

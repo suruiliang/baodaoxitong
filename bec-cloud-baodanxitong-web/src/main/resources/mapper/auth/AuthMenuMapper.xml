@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bec.cloud.baodanxitong.web.auth.dao.AuthMenuMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu">
+		<id column="menu_id" jdbcType="INTEGER" property="menuId" />
+		<result column="menu_type" jdbcType="INTEGER" property="menuType" />
+		<result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+		<result column="menu_up" jdbcType="INTEGER" property="menuUp" />
+		<result column="menu_pid" jdbcType="INTEGER" property="menuPid" />
+		<result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+		<result column="echo_path" jdbcType="VARCHAR" property="echoPath" />
+		<result column="menu_status" jdbcType="INTEGER" property="menuStatus" />
+		<result column="del_status" jdbcType="INTEGER" property="delStatus" />
+		<result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+		<result column="entry_user_id" jdbcType="BIGINT" property="entryUserId" />
+		<result column="operation_user_id" jdbcType="BIGINT" property="operationUserId" />
+		<result column="opretion_time" jdbcType="TIMESTAMP" property="opretionTime" />
+		<result column="req_method" jdbcType="VARCHAR" property="reqMethod" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		menu_id, menu_type, menu_name, menu_up, menu_pid, menu_url, echo_path,
+		menu_status,
+		del_status, record_time, entry_user_id, operation_user_id, opretion_time,
+		req_method
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from public.auth_menu
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from public.auth_menu
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu">
+		<selectKey keyProperty="menuId" order="BEFORE" resultType="java.lang.Integer">
+			select nextval('auth_menu_id_seq')
+		</selectKey>
+		insert into public.auth_menu (menu_id, menu_type, menu_name,
+		menu_up, menu_pid, menu_url,
+		echo_path, menu_status, del_status,
+		record_time, entry_user_id, operation_user_id,
+		opretion_time, req_method)
+		values (#{menuId,jdbcType=INTEGER}, #{menuType,jdbcType=INTEGER},
+		#{menuName,jdbcType=VARCHAR},
+		#{menuUp,jdbcType=INTEGER}, #{menuPid,jdbcType=INTEGER}, #{menuUrl,jdbcType=VARCHAR},
+		#{echoPath,jdbcType=VARCHAR}, #{menuStatus,jdbcType=INTEGER},
+		#{delStatus,jdbcType=INTEGER},
+		#{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT},
+		#{opretionTime,jdbcType=TIMESTAMP}, #{reqMethod,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu">
+		<selectKey keyProperty="menuId" order="BEFORE" resultType="java.lang.Integer">
+			select nextval('auth_menu_id_seq')
+		</selectKey>
+		insert into public.auth_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			menu_id,
+			<if test="menuType != null">
+				menu_type,
+			</if>
+			<if test="menuName != null">
+				menu_name,
+			</if>
+			<if test="menuUp != null">
+				menu_up,
+			</if>
+			<if test="menuPid != null">
+				menu_pid,
+			</if>
+			<if test="menuUrl != null">
+				menu_url,
+			</if>
+			<if test="echoPath != null">
+				echo_path,
+			</if>
+			<if test="menuStatus != null">
+				menu_status,
+			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+			<if test="opretionTime != null">
+				opretion_time,
+			</if>
+			<if test="reqMethod != null">
+				req_method,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{menuId,jdbcType=INTEGER},
+			<if test="menuType != null">
+				#{menuType,jdbcType=INTEGER},
+			</if>
+			<if test="menuName != null">
+				#{menuName,jdbcType=VARCHAR},
+			</if>
+			<if test="menuUp != null">
+				#{menuUp,jdbcType=INTEGER},
+			</if>
+			<if test="menuPid != null">
+				#{menuPid,jdbcType=INTEGER},
+			</if>
+			<if test="menuUrl != null">
+				#{menuUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="echoPath != null">
+				#{echoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="menuStatus != null">
+				#{menuStatus,jdbcType=INTEGER},
+			</if>
+			<if test="delStatus != null">
+				#{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="opretionTime != null">
+				#{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reqMethod != null">
+				#{reqMethod,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu">
+		update public.auth_menu
+		<set>
+			<if test="menuType != null">
+				menu_type = #{menuType,jdbcType=INTEGER},
+			</if>
+			<if test="menuName != null">
+				menu_name = #{menuName,jdbcType=VARCHAR},
+			</if>
+			<if test="menuUp != null">
+				menu_up = #{menuUp,jdbcType=INTEGER},
+			</if>
+			<if test="menuPid != null">
+				menu_pid = #{menuPid,jdbcType=INTEGER},
+			</if>
+			<if test="menuUrl != null">
+				menu_url = #{menuUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="echoPath != null">
+				echo_path = #{echoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="menuStatus != null">
+				menu_status = #{menuStatus,jdbcType=INTEGER},
+			</if>
+			<if test="delStatus != null">
+				del_status = #{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="opretionTime != null">
+				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reqMethod != null">
+				req_method = #{reqMethod,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu">
+		update public.auth_menu
+		set menu_type = #{menuType,jdbcType=INTEGER},
+		menu_name = #{menuName,jdbcType=VARCHAR},
+		menu_up = #{menuUp,jdbcType=INTEGER},
+		menu_pid = #{menuPid,jdbcType=INTEGER},
+		menu_url = #{menuUrl,jdbcType=VARCHAR},
+		echo_path = #{echoPath,jdbcType=VARCHAR},
+		menu_status = #{menuStatus,jdbcType=INTEGER},
+		del_status = #{delStatus,jdbcType=INTEGER},
+		record_time = #{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id = #{entryUserId,jdbcType=BIGINT},
+		operation_user_id = #{operationUserId,jdbcType=BIGINT},
+		opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+		req_method = #{reqMethod,jdbcType=VARCHAR}
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</update>
+	
+	<select id="selectAuthMenu" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu"
+		resultMap="BaseResultMap">
+		select
+		m.menu_id, m.menu_type, m.menu_name, m.menu_up,
+		m.menu_pid,
+		m.menu_url,
+		m.echo_path,
+		m.menu_status,
+		m.del_status,
+		m.record_time,
+		m.entry_user_id,
+		m.operation_user_id, m.opretion_time,
+		m.req_method
+		from
+		public.auth_menu m
+		<where>
+			m.del_status =0
+			<if test="menuId != null">
+				and m.menu_id = #{menuId,jdbcType=INTEGER}
+			</if>
+			<if test="menuType != null">
+				and m.menu_type = #{menuType,jdbcType=INTEGER}
+			</if>
+			<if test="menuName != null">
+				and m.menu_name = #{menuName,jdbcType=VARCHAR}
+			</if>
+			<if test="menuUp != null">
+				and m.menu_up = #{menuUp,jdbcType=INTEGER}
+			</if>
+			<if test="menuPid != null">
+				and m.menu_pid = #{menuPid,jdbcType=INTEGER}
+			</if>
+			<if test="menuUrl != null">
+				and m.menu_url = #{menuUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="echoPath != null">
+				and m.echo_path = #{echoPath,jdbcType=VARCHAR}
+			</if>
+			<if test="menuStatus != null">
+				and m.menu_status = #{menuStatus,jdbcType=INTEGER}
+			</if>
+			<if test="recordTime != null">
+				and m.record_time = #{recordTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="entryUserId != null">
+				and m.entry_user_id = #{entryUserId,jdbcType=BIGINT}
+			</if>
+			<if test="operationUserId != null">
+				and m.operation_user_id =
+				#{operationUserId,jdbcType=BIGINT}
+			</if>
+			<if test="opretionTime != null">
+				and m.opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="reqMethod != null">
+				and m.req_method = #{reqMethod,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by m.menu_id
+	</select>
+</mapper>

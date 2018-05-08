@@ -1,6 +1,7 @@
 package com.bec.cloud.baodanxitong.web.auth.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,5 +25,6 @@ public interface AuthUserMapper {
 
 	int deleteUserRole(Long userId);
 
-	void saveUserRole(Long userId, List<Long> roleIdList);
+	void saveUserRole(Map<String, Object> data);
+
 }

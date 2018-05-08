@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.bec.cloud.baodanxitong.web.auth.dao.ServiceManagementMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement">
+		<id column="service_id" property="serviceId" jdbcType="BIGINT" />
+		<result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+		<result column="service_desc" property="serviceDesc" jdbcType="VARCHAR" />
+		<result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+		<result column="service_access_addr" property="serviceAccessAddr"
+			jdbcType="VARCHAR" />
+		<result column="service_deploy_addr" property="serviceDeployAddr"
+			jdbcType="VARCHAR" />
+		<result column="service_status" property="serviceStatus"
+			jdbcType="INTEGER" />
+		<result column="del_status" property="delStatus" jdbcType="INTEGER" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+		<result column="opretion_time" property="opretionTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		service_id, service_name, service_desc, service_code,
+		service_access_addr,
+		service_deploy_addr,
+		service_status, del_status,
+		record_time, entry_user_id, operation_user_id,
+		opretion_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.service_management
+		where service_id =
+		#{serviceId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		public.service_management
+		where service_id =
+		#{serviceId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement">
+		<selectKey resultType="java.lang.Long" keyProperty="serviceId"
+			order="BEFORE">
+			select nextval('service_management_id_seq')
+		</selectKey>
+		insert into public.service_management (service_id, service_name,
+		service_desc,
+		service_code, service_access_addr, service_deploy_addr,
+		service_status, del_status, record_time,
+		entry_user_id,
+		operation_user_id, opretion_time
+		)
+		values (#{serviceId,jdbcType=BIGINT},
+		#{serviceName,jdbcType=VARCHAR},
+		#{serviceDesc,jdbcType=VARCHAR},
+		#{serviceCode,jdbcType=VARCHAR},
+		#{serviceAccessAddr,jdbcType=VARCHAR},
+		#{serviceDeployAddr,jdbcType=VARCHAR},
+		#{serviceStatus,jdbcType=INTEGER}, #{delStatus,jdbcType=INTEGER},
+		#{recordTime,jdbcType=TIMESTAMP},
+		#{entryUserId,jdbcType=BIGINT},
+		#{operationUserId,jdbcType=BIGINT},
+		#{opretionTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement">
+		<selectKey resultType="java.lang.Long" keyProperty="serviceId"
+			order="BEFORE">
+			select nextval('service_management_id_seq')
+		</selectKey>
+		insert into public.service_management
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			service_id,
+			<if test="serviceName != null">
+				service_name,
+			</if>
+			<if test="serviceDesc != null">
+				service_desc,
+			</if>
+			<if test="serviceCode != null">
+				service_code,
+			</if>
+			<if test="serviceAccessAddr != null">
+				service_access_addr,
+			</if>
+			<if test="serviceDeployAddr != null">
+				service_deploy_addr,
+			</if>
+			<if test="serviceStatus != null">
+				service_status,
+			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+			<if test="opretionTime != null">
+				opretion_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{serviceId,jdbcType=BIGINT},
+			<if test="serviceName != null">
+				#{serviceName,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceDesc != null">
+				#{serviceDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceCode != null">
+				#{serviceCode,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceAccessAddr != null">
+				#{serviceAccessAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceDeployAddr != null">
+				#{serviceDeployAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceStatus != null">
+				#{serviceStatus,jdbcType=INTEGER},
+			</if>
+			<if test="delStatus != null">
+				#{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="opretionTime != null">
+				#{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement">
+		update public.service_management
+		<set>
+			<if test="serviceName != null">
+				service_name = #{serviceName,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceDesc != null">
+				service_desc = #{serviceDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceCode != null">
+				service_code = #{serviceCode,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceAccessAddr != null">
+				service_access_addr =
+				#{serviceAccessAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceDeployAddr != null">
+				service_deploy_addr =
+				#{serviceDeployAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceStatus != null">
+				service_status = #{serviceStatus,jdbcType=INTEGER},
+			</if>
+			<if test="delStatus != null">
+				del_status = #{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="opretionTime != null">
+				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where service_id = #{serviceId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement">
+		update public.service_management
+		set service_name =
+		#{serviceName,jdbcType=VARCHAR},
+		service_desc =
+		#{serviceDesc,jdbcType=VARCHAR},
+		service_code =
+		#{serviceCode,jdbcType=VARCHAR},
+		service_access_addr =
+		#{serviceAccessAddr,jdbcType=VARCHAR},
+		service_deploy_addr =
+		#{serviceDeployAddr,jdbcType=VARCHAR},
+		service_status =
+		#{serviceStatus,jdbcType=INTEGER},
+		del_status =
+		#{delStatus,jdbcType=INTEGER},
+		record_time =
+		#{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id =
+		#{entryUserId,jdbcType=BIGINT},
+		operation_user_id =
+		#{operationUserId,jdbcType=BIGINT},
+		opretion_time =
+		#{opretionTime,jdbcType=TIMESTAMP}
+		where service_id =
+		#{serviceId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectServiceManagement" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement">
+		select
+		<include refid="Base_Column_List" />
+		from public.service_management
+		<where>
+			del_status = 0
+			<if test="serviceName != null">
+				and service_name like
+				'%'||#{serviceName,jdbcType=VARCHAR}||'%'
+			</if>
+
+			<if test="entryUserId != null">
+				and service_id = #{serviceId,jdbcType=BIGINT}
+			</if>
+			<if test="serviceDesc != null">
+				and service_desc = #{serviceDesc,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceCode != null">
+				and service_code = #{serviceCode,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceAccessAddr != null">
+				and service_access_addr =
+				#{serviceAccessAddr,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceDeployAddr != null">
+				and service_deploy_addr =
+				#{serviceDeployAddr,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceStatus != null">
+				and service_status = #{serviceStatus,jdbcType=INTEGER}
+			</if>
+			<if test="recordTime != null">
+				and record_time = #{recordTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="entryUserId != null">
+				and entry_user_id = #{entryUserId,jdbcType=BIGINT}
+			</if>
+			<if test="operationUserId != null">
+				and operation_user_id =
+				#{operationUserId,jdbcType=BIGINT}
+			</if>
+			<if test="opretionTime != null">
+				and opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by service_id
+	</select>
+</mapper>

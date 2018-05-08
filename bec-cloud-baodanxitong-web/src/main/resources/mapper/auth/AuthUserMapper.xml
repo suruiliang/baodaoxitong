@@ -23,6 +23,36 @@
 		<result column="opretion_time" property="opretionTime"
 			jdbcType="TIMESTAMP" />
 		<result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="DetailResultMap"
+		type="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
+		<id column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="cust_code" property="custCode" jdbcType="VARCHAR" />
+		<result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="user_old_name" property="userOldName" jdbcType="VARCHAR" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="user_passwd" property="userPasswd" jdbcType="VARCHAR" />
+		<result column="user_identity" property="userIdentity"
+			jdbcType="VARCHAR" />
+		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+		<result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+		<result column="user_status" property="userStatus" jdbcType="INTEGER" />
+		<result column="del_status" property="delStatus" jdbcType="INTEGER" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+		<result column="opretion_time" property="opretionTime"
+			jdbcType="TIMESTAMP" />
+		<result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="INTEGER" />
+		<!-- add2response -->
+		<result column="userStatusName" property="userStatusName"
+			jdbcType="VARCHAR" />
+		<result column="roleNames" property="roleNames" jdbcType="VARCHAR" />
+		<result column="searchName" property="searchName" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		user_id, cust_code, org_code, user_name, user_old_name,
@@ -31,7 +61,7 @@
 		login_ip, login_time,
 		user_status, del_status, record_time, entry_user_id,
 		operation_user_id,
-		opretion_time, user_phone
+		opretion_time, user_phone, user_type
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
@@ -46,30 +76,42 @@
 		where user_id = #{userId,jdbcType=BIGINT}
 	</delete>
 	<insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
+		<selectKey keyProperty="userId" order="BEFORE" resultType="java.lang.Long">
+			select nextval('auth_user_id_seq')
+		</selectKey>
 		insert into public.auth_user
 		(user_id, cust_code, org_code,
-		user_name, user_old_name, real_name,
+		user_name,
+		user_old_name, real_name,
 		user_passwd, user_identity, login_ip,
 		login_time, user_status,
 		del_status,
-		record_time, entry_user_id, operation_user_id,
-		opretion_time, user_phone)
-		values (#{userId,jdbcType=BIGINT},
+		record_time, entry_user_id,
+		operation_user_id,
+		opretion_time, user_phone, user_type)
+		values
+		(#{userId,jdbcType=BIGINT},
 		#{custCode,jdbcType=VARCHAR},
 		#{orgCode,jdbcType=VARCHAR},
-		#{userName,jdbcType=VARCHAR}, #{userOldName,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{userOldName,jdbcType=VARCHAR},
 		#{realName,jdbcType=VARCHAR},
 		#{userPasswd,jdbcType=VARCHAR},
 		#{userIdentity,jdbcType=VARCHAR},
 		#{loginIp,jdbcType=VARCHAR},
-		#{loginTime,jdbcType=TIMESTAMP}, #{userStatus,jdbcType=INTEGER},
+		#{loginTime,jdbcType=TIMESTAMP},
+		#{userStatus,jdbcType=INTEGER},
 		#{delStatus,jdbcType=INTEGER},
 		#{recordTime,jdbcType=TIMESTAMP},
 		#{entryUserId,jdbcType=BIGINT},
 		#{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{userPhone,jdbcType=VARCHAR})
+		#{opretionTime,jdbcType=TIMESTAMP}, #{userPhone,jdbcType=VARCHAR},
+		#{userType,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
+		<selectKey keyProperty="userId" order="BEFORE" resultType="java.lang.Long">
+			select nextval('auth_user_id_seq')
+		</selectKey>
 		insert into public.auth_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userId != null">
@@ -122,6 +164,9 @@
 			</if>
 			<if test="userPhone != null">
 				user_phone,
+			</if>
+			<if test="userType != null">
+				user_type,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -176,6 +221,9 @@
 			<if test="userPhone != null">
 				#{userPhone,jdbcType=VARCHAR},
 			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
@@ -229,6 +277,9 @@
 			<if test="userPhone != null">
 				user_phone = #{userPhone,jdbcType=VARCHAR},
 			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=INTEGER},
+			</if>
 		</set>
 		where user_id = #{userId,jdbcType=BIGINT}
 	</update>
@@ -265,67 +316,112 @@
 		opretion_time =
 		#{opretionTime,jdbcType=TIMESTAMP},
 		user_phone =
-		#{userPhone,jdbcType=VARCHAR}
+		#{userPhone,jdbcType=VARCHAR},
+		user_type = #{userType,jdbcType=INTEGER}
 		where user_id = #{userId,jdbcType=BIGINT}
 	</update>
 
-	<select id="selectAuthUser" resultMap="BaseResultMap"
+	<!-- 查询用户列表 -->
+	<select id="selectAuthUser" resultMap="DetailResultMap"
 		parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
 		select
-		<include refid="Base_Column_List" />
-		from public.auth_user
+		u.user_id, u.cust_code, u.org_code, u.user_name,
+		u.user_old_name,
+		u.real_name,
+		u.user_passwd, u.user_identity,
+		u.login_ip, u.login_time,
+		u.user_status, u.del_status, u.record_time,
+		u.entry_user_id,
+		u.operation_user_id,
+		u.opretion_time,
+		u.user_phone,u.user_type,
+		case u.user_status when 0 then '正常' when 1
+		then '禁用' else '' end
+		userStatusName,
+		array_to_string(group_concat(r.role_name),',')
+		roleNames
+		<if test="searchName != null and searchName !='' ">
+			,#{searchName} searchName
+		</if>
+		from public.auth_user u
+		left join
+		public.auth_user_role ur on
+		u.user_id=ur.user_id and ur.del_status=0
+		and ur.status=0
+		left join
+		public.auth_role r on ur.role_id=r.role_id and
+		r.del_status=0 and
+		r.role_status=0
 		<where>
-			del_status =0
+			u.del_status =0
+			<if test="userStatus != null">
+				and u.user_status = #{userStatus,jdbcType=INTEGER}
+			</if>
+			<if test="searchName != null and searchName !='' ">
+				and (u.user_name||u.real_name like
+				'%'||#{searchName,jdbcType=VARCHAR}||'%')
+			</if>
+
 			<if test="userId != null">
-				and user_id = #{userId,jdbcType=BIGINT}
+				and u.user_id = #{userId,jdbcType=BIGINT}
 			</if>
 			<if test="custCode != null">
-				and cust_code = #{custCode,jdbcType=VARCHAR}
+				and u.cust_code = #{custCode,jdbcType=VARCHAR}
 			</if>
 			<if test="orgCode != null">
-				and org_code = #{orgCode,jdbcType=VARCHAR}
+				and u.org_code = #{orgCode,jdbcType=VARCHAR}
 			</if>
 			<if test="userName != null">
-				and user_name = #{userName,jdbcType=VARCHAR}
+				and u.user_name = #{userName,jdbcType=VARCHAR}
 			</if>
 			<if test="userOldName != null">
-				and user_old_name = #{userOldName,jdbcType=VARCHAR}
+				and u.user_old_name = #{userOldName,jdbcType=VARCHAR}
 			</if>
 			<if test="realName != null">
-				and real_name = #{realName,jdbcType=VARCHAR}
+				and u.real_name = #{realName,jdbcType=VARCHAR}
 			</if>
 			<if test="userPasswd != null">
-				and user_passwd = #{userPasswd,jdbcType=VARCHAR}
+				and u.user_passwd = #{userPasswd,jdbcType=VARCHAR}
 			</if>
 			<if test="userIdentity != null">
-				and user_identity = #{userIdentity,jdbcType=VARCHAR}
+				and u.user_identity = #{userIdentity,jdbcType=VARCHAR}
 			</if>
 			<if test="loginIp != null">
-				and login_ip = #{loginIp,jdbcType=VARCHAR}
+				and u.login_ip = #{loginIp,jdbcType=VARCHAR}
 			</if>
 			<if test="loginTime != null">
-				and login_time = #{loginTime,jdbcType=TIMESTAMP}
-			</if>
-			<if test="userStatus != null">
-				and user_status = #{userStatus,jdbcType=INTEGER}
+				and u.login_time = #{loginTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="recordTime != null">
-				and record_time = #{recordTime,jdbcType=TIMESTAMP}
+				and u.record_time = #{recordTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="entryUserId != null">
-				and entry_user_id = #{entryUserId,jdbcType=BIGINT}
+				and u.entry_user_id = #{entryUserId,jdbcType=BIGINT}
 			</if>
 			<if test="operationUserId != null">
-				and operation_user_id =
+				and u.operation_user_id =
 				#{operationUserId,jdbcType=BIGINT}
 			</if>
 			<if test="opretionTime != null">
-				and opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+				and u.opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="userPhone != null">
-				and user_phone = #{userPhone,jdbcType=VARCHAR}
+				and u.user_phone = #{userPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="userType != null">
+				and user_type = #{userType,jdbcType=INTEGER}
 			</if>
 		</where>
+		group by u.user_id, u.cust_code, u.org_code, u.user_name,
+		u.user_old_name,
+		u.real_name,
+		u.user_passwd, u.user_identity,
+		u.login_ip, u.login_time,
+		u.user_status, u.del_status, u.record_time,
+		u.entry_user_id,
+		u.operation_user_id,
+		u.opretion_time,
+		u.user_phone,u.user_type
 		order by user_id
 	</select>
 	<delete id="deleteUserRole" parameterType="java.lang.Long">
@@ -333,11 +429,12 @@
 		public.auth_user_role
 		where user_id = #{userId,jdbcType=BIGINT}
 	</delete>
-	<insert id="saveUserRole">
+	<insert id="saveUserRole" parameterType="map">
 		insert into public.auth_user_role (user_id, role_id)
 		values
-		<foreach item="roleId" collection="#{1}" separator=",">
-			(#{0},#{roleId})
+		<foreach item="roleId" collection="roleIdList" index="index"
+			separator=",">
+			(#{userId},#{roleId})
 		</foreach>
 	</insert>
 </mapper>
