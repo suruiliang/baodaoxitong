@@ -15,13 +15,13 @@
 		<result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
 		<result column="entry_user_id" jdbcType="BIGINT" property="entryUserId" />
 		<result column="operation_user_id" jdbcType="BIGINT" property="operationUserId" />
-		<result column="opretion_time" jdbcType="TIMESTAMP" property="opretionTime" />
+		<result column="operation_time" jdbcType="TIMESTAMP" property="operationTime" />
 		<result column="req_method" jdbcType="VARCHAR" property="reqMethod" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		menu_id, menu_type, menu_name, menu_up, menu_pid, menu_url, echo_path,
 		menu_status,
-		del_status, record_time, entry_user_id, operation_user_id, opretion_time,
+		del_status, record_time, entry_user_id, operation_user_id, operation_time,
 		req_method
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
@@ -43,14 +43,14 @@
 		menu_up, menu_pid, menu_url,
 		echo_path, menu_status, del_status,
 		record_time, entry_user_id, operation_user_id,
-		opretion_time, req_method)
+		operation_time, req_method)
 		values (#{menuId,jdbcType=INTEGER}, #{menuType,jdbcType=INTEGER},
 		#{menuName,jdbcType=VARCHAR},
 		#{menuUp,jdbcType=INTEGER}, #{menuPid,jdbcType=INTEGER}, #{menuUrl,jdbcType=VARCHAR},
 		#{echoPath,jdbcType=VARCHAR}, #{menuStatus,jdbcType=INTEGER},
 		#{delStatus,jdbcType=INTEGER},
 		#{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{reqMethod,jdbcType=VARCHAR})
+		#{operationTime,jdbcType=TIMESTAMP}, #{reqMethod,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthMenu">
 		<selectKey keyProperty="menuId" order="BEFORE" resultType="java.lang.Integer">
@@ -92,8 +92,8 @@
 			<if test="operationUserId != null">
 				operation_user_id,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 			<if test="reqMethod != null">
 				req_method,
@@ -134,8 +134,8 @@
 			<if test="operationUserId != null">
 				#{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="reqMethod != null">
 				#{reqMethod,jdbcType=VARCHAR},
@@ -178,8 +178,8 @@
 			<if test="operationUserId != null">
 				operation_user_id = #{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="reqMethod != null">
 				req_method = #{reqMethod,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
 		record_time = #{recordTime,jdbcType=TIMESTAMP},
 		entry_user_id = #{entryUserId,jdbcType=BIGINT},
 		operation_user_id = #{operationUserId,jdbcType=BIGINT},
-		opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+		operation_time = #{operationTime,jdbcType=TIMESTAMP},
 		req_method = #{reqMethod,jdbcType=VARCHAR}
 		where menu_id = #{menuId,jdbcType=INTEGER}
 	</update>
@@ -216,7 +216,7 @@
 		m.del_status,
 		m.record_time,
 		m.entry_user_id,
-		m.operation_user_id, m.opretion_time,
+		m.operation_user_id, m.operation_time,
 		m.req_method
 		from
 		public.auth_menu m
@@ -256,8 +256,8 @@
 				and m.operation_user_id =
 				#{operationUserId,jdbcType=BIGINT}
 			</if>
-			<if test="opretionTime != null">
-				and m.opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			<if test="operationTime != null">
+				and m.operation_time = #{operationTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="reqMethod != null">
 				and m.req_method = #{reqMethod,jdbcType=VARCHAR}

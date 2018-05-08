@@ -14,7 +14,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="req_method" property="reqMethod" jdbcType="VARCHAR" />
 	</resultMap>
@@ -23,7 +23,7 @@
 		del_status,
 		record_time,
 		entry_user_id, operation_user_id,
-		opretion_time, req_method
+		operation_time, req_method
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -47,7 +47,7 @@
 		btn_name,
 		btn_url, btn_status,
 		del_status, record_time, entry_user_id,
-		operation_user_id, opretion_time, req_method
+		operation_user_id, operation_time, req_method
 		)
 		values
 		(#{btnId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER},
@@ -57,7 +57,7 @@
 		#{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP},
 		#{entryUserId,jdbcType=BIGINT},
 		#{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{reqMethod,jdbcType=VARCHAR}
+		#{operationTime,jdbcType=TIMESTAMP}, #{reqMethod,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective"
@@ -96,8 +96,8 @@
 			<if test="operationUserId != null">
 				operation_user_id,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 			<if test="reqMethod != null">
 				req_method,
@@ -132,8 +132,8 @@
 			<if test="operationUserId != null">
 				#{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="reqMethod != null">
 				#{reqMethod,jdbcType=VARCHAR},
@@ -171,8 +171,8 @@
 			<if test="operationUserId != null">
 				operation_user_id = #{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="reqMethod != null">
 				req_method = #{reqMethod,jdbcType=VARCHAR},
@@ -197,8 +197,8 @@
 		#{entryUserId,jdbcType=BIGINT},
 		operation_user_id =
 		#{operationUserId,jdbcType=BIGINT},
-		opretion_time =
-		#{opretionTime,jdbcType=TIMESTAMP},
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP},
 		req_method =
 		#{reqMethod,jdbcType=VARCHAR}
 		where btn_id = #{btnId,jdbcType=INTEGER}

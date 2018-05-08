@@ -45,7 +45,7 @@ public class ServiceManagementServiceImpl implements ServiceManagementService {
 		record.setServiceId(serviceId);
 		record.setDelStatus(Constant.DelStatus.DELETED);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return serviceManagementMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -57,11 +57,11 @@ public class ServiceManagementServiceImpl implements ServiceManagementService {
 			record.setEntryUserId(userInfo.getUserId());
 			record.setOperationUserId(userInfo.getUserId());
 			record.setRecordTime(new Date());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			serviceManagementMapper.insertSelective(record);
 		}else {//update
 			record.setOperationUserId(userInfo.getUserId());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			serviceManagementMapper.updateByPrimaryKeySelective(record);
 		}
 		return serviceManagementMapper.selectByPrimaryKey(record.getServiceId());

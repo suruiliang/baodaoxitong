@@ -77,7 +77,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 		record.setUserId(userId);
 		record.setDelStatus(Constant.DelStatus.DELETED);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return authUserMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -104,12 +104,12 @@ public class AuthUserServiceImpl implements AuthUserService {
 			record.setEntryUserId(userInfo.getUserId());
 			record.setOperationUserId(userInfo.getUserId());
 			record.setRecordTime(new Date());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			authUserMapper.insertSelective(record);
 			saveUserRole(record, roleIds);
 		}else{//update
 			record.setOperationUserId(userInfo.getUserId());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			authUserMapper.updateByPrimaryKeySelective(record);
 			saveUserRole(record, roleIds);
 		}
@@ -149,7 +149,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 		record.setUserId(userId);
 		record.setUserPasswd(encoder.encode(newUserpasswd));
 		record.setOperationUserId(userInfo.getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return authUserMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -160,7 +160,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 		record.setUserId(userId);
 		record.setUserStatus(Constant.OnOffStatus.OFF);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return authUserMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -182,7 +182,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 		record.setUserId(userId);
 		record.setUserStatus(Constant.OnOffStatus.ON);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return authUserMapper.updateByPrimaryKeySelective(record);
 	}
 

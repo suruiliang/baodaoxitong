@@ -38,7 +38,7 @@ public class AuthRole {
 
     private Long operationUserId;
 
-    private Date opretionTime;
+    private Date operationTime;
 
     private Integer roleType;
 }

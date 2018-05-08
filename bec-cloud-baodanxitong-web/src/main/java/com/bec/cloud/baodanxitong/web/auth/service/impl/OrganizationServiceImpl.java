@@ -48,7 +48,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		record.setOrgId(orgId);
 		record.setDelStatus(Constant.DelStatus.DELETED);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return organizationMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -73,11 +73,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 			record.setEntryUserId(userInfo.getUserId());
 			record.setOperationUserId(userInfo.getUserId());
 			record.setRecordTime(new Date());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			organizationMapper.insertSelective(record);
 		}else {//update
 			record.setOperationUserId(userInfo.getUserId());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			organizationMapper.updateByPrimaryKeySelective(record);
 		}
 		return organizationMapper.selectByPrimaryKey(record.getOrgId());

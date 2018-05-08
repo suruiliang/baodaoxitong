@@ -19,7 +19,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
@@ -28,7 +28,7 @@
 		service_deploy_addr,
 		service_status, del_status,
 		record_time, entry_user_id, operation_user_id,
-		opretion_time
+		operation_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
@@ -55,7 +55,7 @@
 		service_code, service_access_addr, service_deploy_addr,
 		service_status, del_status, record_time,
 		entry_user_id,
-		operation_user_id, opretion_time
+		operation_user_id, operation_time
 		)
 		values (#{serviceId,jdbcType=BIGINT},
 		#{serviceName,jdbcType=VARCHAR},
@@ -67,7 +67,7 @@
 		#{recordTime,jdbcType=TIMESTAMP},
 		#{entryUserId,jdbcType=BIGINT},
 		#{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}
+		#{operationTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<insert id="insertSelective"
@@ -109,8 +109,8 @@
 			<if test="operationUserId != null">
 				operation_user_id,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -145,8 +145,8 @@
 			<if test="operationUserId != null">
 				#{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 		</trim>
 	</insert>
@@ -186,8 +186,8 @@
 			<if test="operationUserId != null">
 				operation_user_id = #{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 		</set>
 		where service_id = #{serviceId,jdbcType=BIGINT}
@@ -215,8 +215,8 @@
 		#{entryUserId,jdbcType=BIGINT},
 		operation_user_id =
 		#{operationUserId,jdbcType=BIGINT},
-		opretion_time =
-		#{opretionTime,jdbcType=TIMESTAMP}
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP}
 		where service_id =
 		#{serviceId,jdbcType=BIGINT}
 	</update>
@@ -263,8 +263,8 @@
 				and operation_user_id =
 				#{operationUserId,jdbcType=BIGINT}
 			</if>
-			<if test="opretionTime != null">
-				and opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			<if test="operationTime != null">
+				and operation_time = #{operationTime,jdbcType=TIMESTAMP}
 			</if>
 		</where>
 		order by service_id

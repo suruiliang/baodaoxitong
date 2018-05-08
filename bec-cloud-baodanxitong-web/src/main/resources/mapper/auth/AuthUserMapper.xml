@@ -20,7 +20,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
 		<result column="user_type" property="userType" jdbcType="INTEGER" />
@@ -44,7 +44,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
 		<result column="user_type" property="userType" jdbcType="INTEGER" />
@@ -61,7 +61,7 @@
 		login_ip, login_time,
 		user_status, del_status, record_time, entry_user_id,
 		operation_user_id,
-		opretion_time, user_phone, user_type
+		operation_time, user_phone, user_type
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
@@ -88,7 +88,7 @@
 		del_status,
 		record_time, entry_user_id,
 		operation_user_id,
-		opretion_time, user_phone, user_type)
+		operation_time, user_phone, user_type)
 		values
 		(#{userId,jdbcType=BIGINT},
 		#{custCode,jdbcType=VARCHAR},
@@ -105,7 +105,7 @@
 		#{recordTime,jdbcType=TIMESTAMP},
 		#{entryUserId,jdbcType=BIGINT},
 		#{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{userPhone,jdbcType=VARCHAR},
+		#{operationTime,jdbcType=TIMESTAMP}, #{userPhone,jdbcType=VARCHAR},
 		#{userType,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthUser">
@@ -159,8 +159,8 @@
 			<if test="operationUserId != null">
 				operation_user_id,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 			<if test="userPhone != null">
 				user_phone,
@@ -215,8 +215,8 @@
 			<if test="operationUserId != null">
 				#{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="userPhone != null">
 				#{userPhone,jdbcType=VARCHAR},
@@ -271,8 +271,8 @@
 			<if test="operationUserId != null">
 				operation_user_id = #{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="userPhone != null">
 				user_phone = #{userPhone,jdbcType=VARCHAR},
@@ -313,8 +313,8 @@
 		#{entryUserId,jdbcType=BIGINT},
 		operation_user_id =
 		#{operationUserId,jdbcType=BIGINT},
-		opretion_time =
-		#{opretionTime,jdbcType=TIMESTAMP},
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP},
 		user_phone =
 		#{userPhone,jdbcType=VARCHAR},
 		user_type = #{userType,jdbcType=INTEGER}
@@ -333,7 +333,7 @@
 		u.user_status, u.del_status, u.record_time,
 		u.entry_user_id,
 		u.operation_user_id,
-		u.opretion_time,
+		u.operation_time,
 		u.user_phone,u.user_type,
 		case u.user_status when 0 then '正常' when 1
 		then '禁用' else '' end
@@ -402,8 +402,8 @@
 				and u.operation_user_id =
 				#{operationUserId,jdbcType=BIGINT}
 			</if>
-			<if test="opretionTime != null">
-				and u.opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			<if test="operationTime != null">
+				and u.operation_time = #{operationTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="userPhone != null">
 				and u.user_phone = #{userPhone,jdbcType=VARCHAR}
@@ -420,7 +420,7 @@
 		u.user_status, u.del_status, u.record_time,
 		u.entry_user_id,
 		u.operation_user_id,
-		u.opretion_time,
+		u.operation_time,
 		u.user_phone,u.user_type
 		order by user_id
 	</select>

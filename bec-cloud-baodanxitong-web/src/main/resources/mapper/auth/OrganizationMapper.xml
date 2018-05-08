@@ -24,7 +24,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="org_level" property="orgLevel" jdbcType="INTEGER" />
 		<result column="org_pid" property="orgPid" jdbcType="BIGINT" />
@@ -34,7 +34,7 @@
 		legal_name,
 		legal_phone, bus_license, bus_license_photo, bus_address, registered_address,
 		org_status,
-		del_status, record_time, entry_user_id, operation_user_id, opretion_time,
+		del_status, record_time, entry_user_id, operation_user_id, operation_time,
 		org_level,
 		org_pid
 	</sql>
@@ -61,7 +61,7 @@
 		bus_license, bus_license_photo, bus_address,
 		registered_address, org_status, del_status,
 		record_time, entry_user_id, operation_user_id,
-		opretion_time, org_level, org_pid
+		operation_time, org_level, org_pid
 		)
 		values (#{orgId,jdbcType=BIGINT}, #{orgName,jdbcType=VARCHAR},
 		#{orgAbbr,jdbcType=VARCHAR},
@@ -72,7 +72,7 @@
 		#{registeredAddress,jdbcType=VARCHAR}, #{orgStatus,jdbcType=INTEGER},
 		#{delStatus,jdbcType=INTEGER},
 		#{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{orgLevel,jdbcType=INTEGER},
+		#{operationTime,jdbcType=TIMESTAMP}, #{orgLevel,jdbcType=INTEGER},
 		#{orgPid,jdbcType=BIGINT}
 		)
 	</insert>
@@ -136,8 +136,8 @@
 			<if test="operationUserId != null">
 				operation_user_id,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 			<if test="orgLevel != null">
 				org_level,
@@ -199,8 +199,8 @@
 			<if test="operationUserId != null">
 				#{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="orgLevel != null">
 				#{orgLevel,jdbcType=INTEGER},
@@ -265,8 +265,8 @@
 			<if test="operationUserId != null">
 				operation_user_id = #{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="orgLevel != null">
 				org_level = #{orgLevel,jdbcType=INTEGER},
@@ -297,7 +297,7 @@
 		record_time = #{recordTime,jdbcType=TIMESTAMP},
 		entry_user_id = #{entryUserId,jdbcType=BIGINT},
 		operation_user_id = #{operationUserId,jdbcType=BIGINT},
-		opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+		operation_time = #{operationTime,jdbcType=TIMESTAMP},
 		org_level = #{orgLevel,jdbcType=INTEGER},
 		org_pid = #{orgPid,jdbcType=BIGINT}
 		where org_id = #{orgId,jdbcType=BIGINT}

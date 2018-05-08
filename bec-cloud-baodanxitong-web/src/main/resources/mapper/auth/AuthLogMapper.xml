@@ -17,7 +17,7 @@
 		<result column="cust_name" property="custName" jdbcType="VARCHAR" />
 		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
 		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="real_name" property="realName" jdbcType="VARCHAR" />
 	</resultMap>
@@ -26,7 +26,7 @@
 		version, mac,
 		soft_type,
 		visit_module, user_name, cust_name, org_name,
-		record_time, opretion_time,real_name
+		record_time, operation_time,real_name
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
@@ -51,7 +51,7 @@
 		version, mac, soft_type,
 		visit_module, user_name,
 		cust_name,
-		org_name, record_time, opretion_time,real_name
+		org_name, record_time, operation_time,real_name
 		)
 		values
 		(#{logId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
 		#{visitModule,jdbcType=VARCHAR},
 		#{userName,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR},
 		#{orgName,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}
+		#{operationTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
@@ -113,8 +113,8 @@
 			<if test="recordTime != null">
 				record_time,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 			<if test="realName != null">
 				real_name,
@@ -161,8 +161,8 @@
 			<if test="recordTime != null">
 				#{recordTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="realName != null">
 				#{realName,jdbcType=VARCHAR},
@@ -211,8 +211,8 @@
 			<if test="recordTime != null">
 				record_time = #{recordTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="realName != null">
 				real_name = #{realName,jdbcType=VARCHAR},
@@ -241,8 +241,8 @@
 		org_name = #{orgName,jdbcType=VARCHAR},
 		record_time =
 		#{recordTime,jdbcType=TIMESTAMP},
-		opretion_time =
-		#{opretionTime,jdbcType=TIMESTAMP},
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP},
 		real_name =
 		#{realName,jdbcType=VARCHAR}
 		where log_id = #{logId,jdbcType=BIGINT}
@@ -312,8 +312,8 @@
 			<if test="recordTime != null">
 				and record_time = #{recordTime,jdbcType=TIMESTAMP}
 			</if>
-			<if test="opretionTime != null">
-				and opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			<if test="operationTime != null">
+				and operation_time = #{operationTime,jdbcType=TIMESTAMP}
 			</if>
 		</where>
 		order by log_id desc

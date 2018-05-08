@@ -30,7 +30,7 @@ public class AuthMenu {
 
     private Long operationUserId;
 
-    private Date opretionTime;
+    private Date operationTime;
 
     private String reqMethod;
 

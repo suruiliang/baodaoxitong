@@ -125,7 +125,7 @@ public class AuthRoleServiceImpl implements AuthRoleService {
 		record.setRoleId(roleId);
 		record.setDelStatus(Constant.DelStatus.DELETED);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
-		record.setOpretionTime(new Date());
+		record.setOperationTime(new Date());
 		return authRoleMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -164,12 +164,12 @@ public class AuthRoleServiceImpl implements AuthRoleService {
 			record.setEntryUserId(userInfo.getUserId());
 			record.setOperationUserId(userInfo.getUserId());
 			record.setRecordTime(new Date());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			authRoleMapper.insertSelective(record);
 			saveRoleMenuBtn(record, authString);
 		}else {//update
 			record.setOperationUserId(userInfo.getUserId());
-			record.setOpretionTime(new Date());
+			record.setOperationTime(new Date());
 			authRoleMapper.updateByPrimaryKeySelective(record);
 			saveRoleMenuBtn(record, authString);
 		}

@@ -14,7 +14,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="role_type" property="roleType" jdbcType="INTEGER" />
 		<result column="cust_code" property="custCode" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
 		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
 		<result column="operation_user_id" property="operationUserId"
 			jdbcType="BIGINT" />
-		<result column="opretion_time" property="opretionTime"
+		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="role_type" property="roleType" jdbcType="INTEGER" />
 		<result column="cust_code" property="custCode" jdbcType="VARCHAR" />
@@ -46,7 +46,7 @@
 		role_status, del_status,
 		record_time,
 		entry_user_id, operation_user_id,
-		opretion_time, role_type, cust_code
+		operation_time, role_type, cust_code
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -69,7 +69,7 @@
 		role_name,
 		role_code, role_status,
 		del_status, record_time, entry_user_id,
-		operation_user_id, opretion_time, role_type,
+		operation_user_id, operation_time, role_type,
 		cust_code
 		)
 		values
@@ -80,7 +80,7 @@
 		#{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP},
 		#{entryUserId,jdbcType=BIGINT},
 		#{operationUserId,jdbcType=BIGINT},
-		#{opretionTime,jdbcType=TIMESTAMP}, #{roleType,jdbcType=INTEGER},
+		#{operationTime,jdbcType=TIMESTAMP}, #{roleType,jdbcType=INTEGER},
 		#{custCode,jdbcType=VARCHAR}
 		)
 	</insert>
@@ -119,8 +119,8 @@
 			<if test="operationUserId != null">
 				operation_user_id,
 			</if>
-			<if test="opretionTime != null">
-				opretion_time,
+			<if test="operationTime != null">
+				operation_time,
 			</if>
 			<if test="roleType != null">
 				role_type,
@@ -158,8 +158,8 @@
 			<if test="operationUserId != null">
 				#{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				#{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="roleType != null">
 				#{roleType,jdbcType=INTEGER},
@@ -199,8 +199,8 @@
 			<if test="operationUserId != null">
 				operation_user_id = #{operationUserId,jdbcType=BIGINT},
 			</if>
-			<if test="opretionTime != null">
-				opretion_time = #{opretionTime,jdbcType=TIMESTAMP},
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="roleType != null">
 				role_type = #{roleType,jdbcType=INTEGER},
@@ -229,8 +229,8 @@
 		#{entryUserId,jdbcType=BIGINT},
 		operation_user_id =
 		#{operationUserId,jdbcType=BIGINT},
-		opretion_time =
-		#{opretionTime,jdbcType=TIMESTAMP},
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP},
 		role_type =
 		#{roleType,jdbcType=INTEGER},
 		cust_code = #{custCode,jdbcType=VARCHAR}
@@ -298,8 +298,8 @@
 				and r.operation_user_id =
 				#{operationUserId,jdbcType=BIGINT}
 			</if>
-			<if test="opretionTime != null">
-				and r.opretion_time = #{opretionTime,jdbcType=TIMESTAMP}
+			<if test="operationTime != null">
+				and r.operation_time = #{operationTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="roleType != null">
 				and r.role_type = #{roleType,jdbcType=INTEGER}
