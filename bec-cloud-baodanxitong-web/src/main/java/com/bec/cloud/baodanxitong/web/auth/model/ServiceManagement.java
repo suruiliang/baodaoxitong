@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class ServiceManagement {
+	private String searchName;
+	//====================request
     private Long serviceId;
 
     private String serviceName;
