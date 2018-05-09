@@ -13,6 +13,7 @@ import com.bec.cloud.auth.core.support.Result;
 import com.bec.cloud.baodanxitong.web.auth.model.ServiceManagement;
 import com.bec.cloud.baodanxitong.web.auth.service.ServiceManagementService;
 import com.bec.cloud.baodanxitong.web.util.PageUtil;
+import com.bec.cloud.service.example.utils.CheckParamUtil;
 
 
 /**
@@ -40,6 +41,7 @@ public class ServiceManagementController {
 	
 	@PostMapping(value="/save")
 	public Result<ServiceManagement> save(ServiceManagement record) {
+		CheckParamUtil.checkParam(record, "serviceName","serviceCode","serviceAccessAddr","serviceDeployAddr");
 		return Result.success(serviceManagementService.saveServiceManagement(record));
 	}
 	

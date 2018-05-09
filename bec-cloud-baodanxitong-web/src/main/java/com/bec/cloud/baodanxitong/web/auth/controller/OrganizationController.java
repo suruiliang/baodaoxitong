@@ -13,6 +13,7 @@ import com.bec.cloud.auth.core.support.Result;
 import com.bec.cloud.baodanxitong.web.auth.model.Organization;
 import com.bec.cloud.baodanxitong.web.auth.service.OrganizationService;
 import com.bec.cloud.baodanxitong.web.util.PageUtil;
+import com.bec.cloud.service.example.utils.CheckParamUtil;
 
 
 /**
@@ -40,6 +41,7 @@ public class OrganizationController {
 	
 	@PostMapping(value="/save")
 	public Result<Organization> save(Organization record) {
+		CheckParamUtil.checkParam(record, "orgName","orgPhone","legalName","legalPhone","busAddress");
 		return Result.success(organizationService.saveOrganization(record));
 	}
 	

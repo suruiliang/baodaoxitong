@@ -13,6 +13,7 @@ import com.bec.cloud.auth.core.support.Result;
 import com.bec.cloud.baodanxitong.web.auth.model.AuthUser;
 import com.bec.cloud.baodanxitong.web.auth.service.AuthUserService;
 import com.bec.cloud.baodanxitong.web.util.PageUtil;
+import com.bec.cloud.service.example.utils.CheckParamUtil;
 
 
 /**
@@ -40,6 +41,7 @@ public class AuthUserController {
 	
 	@PostMapping(value="/save")
 	public Result<AuthUser> save(AuthUser record,String roleIds) {
+		CheckParamUtil.checkParam(record, "orgCode","userName","realName","userPasswd","userIdentity","userType");
 		return Result.success(authUserService.saveAuthUser(record,roleIds));
 	}
 	
