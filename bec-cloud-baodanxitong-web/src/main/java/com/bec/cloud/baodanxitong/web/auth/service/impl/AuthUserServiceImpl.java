@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.auth.service.impl;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bec.cloud.auth.core.exception.BecException;
 import com.bec.cloud.auth.core.exception.BecExceptionEnum;
 import com.bec.cloud.auth.core.support.Constant;
@@ -21,6 +24,7 @@ import com.bec.cloud.baodanxitong.web.auth.dao.AuthUserMapper;
 import com.bec.cloud.baodanxitong.web.auth.model.AuthRole;
 import com.bec.cloud.baodanxitong.web.auth.model.AuthUser;
 import com.bec.cloud.baodanxitong.web.auth.service.AuthUserService;
+import com.bec.cloud.baodanxitong.web.task.service.TaskBaseService;
 import com.bec.cloud.service.example.model.UserInfo;
 import com.bec.cloud.service.example.utils.UserInfoUtil;
 
@@ -31,13 +35,73 @@ import com.bec.cloud.service.example.utils.UserInfoUtil;
  * @Description 类描述
  */
 @Service
-public class AuthUserServiceImpl implements AuthUserService {
+public class AuthUserServiceImpl implements AuthUserService,TaskBaseService<AuthUser> {
 	@Autowired
 	private AuthUserMapper authUserMapper;
 	@Autowired
 	private AuthRoleMapper authRoleMapper;
 	@Autowired
 	private UserInfoUtil userInfoUtil;
+
+	//viewTask
+	@Override
+	public AuthUser viewTask(Long userId) {
+		return selectByPrimaryKey(userId);
+	}
+	
+	//updateTask
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public AuthUser updateTask(JSONObject json) {
+		AuthUser record=json.toJavaObject(AuthUser.class);
+		if (record.getUserId()==null) {
+			record.setUserId(json.getLong("launchId"));
+		}
+		String roleIds=json.getString("roleIds");
+		return saveAuthUser(record,roleIds);
+	}
+	
+	//deleteTask
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public int deleteTask(Long userId) {
+		AuthUser record=new AuthUser();
+		record.setUserId(userId);
+		record.setDelStatus(Constant.DelStatus.DELETED);
+		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
+		record.setOperationTime(new Date());
+		return authUserMapper.updateByPrimaryKeySelective(record);
+	}
+	
+	//viewTaskCompare
+	@Override
+	public Map<String, AuthUser> viewTaskCompare(Long launchId) {
+		AuthUser newRecord=selectByPrimaryKey(launchId);
+		// TODO 
+		AuthUser oldRecord=null;
+		Map<String, AuthUser> map=new HashMap<>();
+		map.put("newRecord", newRecord);
+		map.put("oldRecord", oldRecord);
+		return map;
+	}
+
+	//acceptTask
+	@Override
+	public AuthUser acceptTask(JSONObject json) {
+		AuthUser record=json.toJavaObject(AuthUser.class);
+		if (record.getUserId()==null) {
+			record.setUserId(json.getLong("launchId"));
+		}
+		return selectByPrimaryKey(record.getUserId());
+	}
+
+	//rejectTask
+	@Override
+	public int rejectTask(Long launchId, String rejectReason) {
+		System.out.println("launchId="+launchId);
+		System.out.println("rejectReason="+rejectReason);
+		return 0;
+	}
 
 	@Override
 	public List<AuthUser> selectAuthUser(AuthUser record) {
@@ -120,11 +184,14 @@ public class AuthUserServiceImpl implements AuthUserService {
 		authUserMapper.deleteUserRole(record.getUserId());
 		String roleIdArr[]=StringUtils.split(roleIds, ",");
 		List<Long> roleIdList=new ArrayList<>();
-		for (String r : roleIdArr) {
-			if (StringUtils.isNotEmpty(r)) {
-				roleIdList.add(Long.valueOf(r));
+		if (roleIdArr!=null&&roleIdArr.length>0) {
+			for (String r : roleIdArr) {
+				if (StringUtils.isNotEmpty(r)) {
+					roleIdList.add(Long.valueOf(r));
+				}
 			}
 		}
+		
 		if (CollectionUtils.isNotEmpty(roleIdList)) {
 			Map<String, Object> data=new HashMap<String, Object>();
 			data.put("roleIdList", roleIdList);

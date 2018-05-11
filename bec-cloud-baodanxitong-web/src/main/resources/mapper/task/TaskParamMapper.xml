@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.task.dao.TaskParamMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.task.model.TaskParam">
+		<id column="param_id" property="paramId" jdbcType="BIGINT" />
+		<result column="param_type" property="paramType" jdbcType="VARCHAR" />
+		<result column="param_type_name" property="paramTypeName"
+			jdbcType="VARCHAR" />
+		<result column="param_value" property="paramValue" jdbcType="VARCHAR" />
+		<result column="param_value_name" property="paramValueName"
+			jdbcType="VARCHAR" />
+		<result column="param_value_desc" property="paramValueDesc"
+			jdbcType="VARCHAR" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="operation_time" property="operationTime"
+			jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		param_id, param_type, param_type_name, param_value, param_value_name,
+		param_value_desc,
+		record_time, operation_time, entry_user_id, operation_user_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.task_param
+		where param_id = #{paramId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from public.task_param
+		where param_id = #{paramId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.task.model.TaskParam">
+		<selectKey resultType="java.lang.Long" keyProperty="paramId"
+			order="BEFORE">
+			select nextval('task_param_id_seq')
+		</selectKey>
+		insert into public.task_param (param_id, param_type, param_type_name,
+		param_value, param_value_name, param_value_desc,
+		record_time, operation_time, entry_user_id,
+		operation_user_id)
+		values (#{paramId,jdbcType=BIGINT}, #{paramType,jdbcType=VARCHAR},
+		#{paramTypeName,jdbcType=VARCHAR},
+		#{paramValue,jdbcType=VARCHAR}, #{paramValueName,jdbcType=VARCHAR},
+		#{paramValueDesc,jdbcType=VARCHAR},
+		#{recordTime,jdbcType=TIMESTAMP}, #{operationTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT},
+		#{operationUserId,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.task.model.TaskParam">
+		<selectKey resultType="java.lang.Long" keyProperty="paramId"
+			order="BEFORE">
+			select nextval('task_param_id_seq')
+		</selectKey>
+		insert into public.task_param
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			param_id,
+			<if test="paramType != null">
+				param_type,
+			</if>
+			<if test="paramTypeName != null">
+				param_type_name,
+			</if>
+			<if test="paramValue != null">
+				param_value,
+			</if>
+			<if test="paramValueName != null">
+				param_value_name,
+			</if>
+			<if test="paramValueDesc != null">
+				param_value_desc,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="operationTime != null">
+				operation_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{paramId,jdbcType=BIGINT},
+			<if test="paramType != null">
+				#{paramType,jdbcType=VARCHAR},
+			</if>
+			<if test="paramTypeName != null">
+				#{paramTypeName,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValue != null">
+				#{paramValue,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValueName != null">
+				#{paramValueName,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValueDesc != null">
+				#{paramValueDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.task.model.TaskParam">
+		update public.task_param
+		<set>
+			<if test="paramType != null">
+				param_type = #{paramType,jdbcType=VARCHAR},
+			</if>
+			<if test="paramTypeName != null">
+				param_type_name = #{paramTypeName,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValue != null">
+				param_value = #{paramValue,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValueName != null">
+				param_value_name = #{paramValueName,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValueDesc != null">
+				param_value_desc = #{paramValueDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where param_id = #{paramId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.task.model.TaskParam">
+		update public.task_param
+		set param_type = #{paramType,jdbcType=VARCHAR},
+		param_type_name = #{paramTypeName,jdbcType=VARCHAR},
+		param_value = #{paramValue,jdbcType=VARCHAR},
+		param_value_name = #{paramValueName,jdbcType=VARCHAR},
+		param_value_desc = #{paramValueDesc,jdbcType=VARCHAR},
+		record_time = #{recordTime,jdbcType=TIMESTAMP},
+		operation_time = #{operationTime,jdbcType=TIMESTAMP},
+		entry_user_id = #{entryUserId,jdbcType=BIGINT},
+		operation_user_id = #{operationUserId,jdbcType=BIGINT}
+		where param_id = #{paramId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectTaskParam" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.task.model.TaskParam">
+		select
+		<include refid="Base_Column_List" />
+		from public.task_param
+		<where>
+			<if test="paramId != null">
+				and param_id = #{paramId,jdbcType=BIGINT}
+			</if>
+			<if test="paramType != null">
+				and param_type = #{paramType,jdbcType=VARCHAR}
+			</if>
+			<if test="paramTypeName != null">
+				and param_type_name = #{paramTypeName,jdbcType=VARCHAR}
+			</if>
+			<if test="paramValue != null">
+				and param_value = #{paramValue,jdbcType=VARCHAR}
+			</if>
+			<if test="paramValueName != null">
+				and param_value_name = #{paramValueName,jdbcType=VARCHAR}
+			</if>
+			<if test="paramValueDesc != null">
+				and param_value_desc = #{paramValueDesc,jdbcType=VARCHAR}
+			</if>
+			<if test="recordTime != null">
+				and record_time = #{recordTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="operationTime != null">
+				and operation_time = #{operationTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="entryUserId != null">
+				and entry_user_id = #{entryUserId,jdbcType=BIGINT}
+			</if>
+			<if test="operationUserId != null">
+				and operation_user_id = #{operationUserId,jdbcType=BIGINT}
+			</if>
+		</where>
+		order by operation_time desc
+	</select>
+</mapper>

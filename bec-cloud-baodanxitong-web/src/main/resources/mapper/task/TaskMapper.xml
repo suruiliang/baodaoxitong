@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.task.dao.TaskMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.task.model.Task" >
+    <id column="task_id" property="taskId" jdbcType="BIGINT" />
+    <result column="launch_id" property="launchId" jdbcType="BIGINT" />
+    <result column="launch_module" property="launchModule" jdbcType="VARCHAR" />
+    <result column="legal_phone" property="legalPhone" jdbcType="VARCHAR" />
+    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+    <result column="cust_code" property="custCode" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="task_name" property="taskName" jdbcType="VARCHAR" />
+    <result column="task_type" property="taskType" jdbcType="VARCHAR" />
+    <result column="task_sub_type" property="taskSubType" jdbcType="VARCHAR" />
+    <result column="reject_reason" property="rejectReason" jdbcType="VARCHAR" />
+    <result column="finish_status" property="finishStatus" jdbcType="INTEGER" />
+    <result column="task_status" property="taskStatus" jdbcType="INTEGER" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="full_class_name" property="fullClassName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    task_id, launch_id, launch_module, legal_phone, cust_name, cust_code, org_code, task_name, 
+    task_type, task_sub_type, reject_reason, finish_status, task_status, del_status, 
+    record_time, entry_user_id, operation_user_id, operation_time, full_class_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.task.model.Task" >
+    <selectKey resultType="java.lang.Long" keyProperty="taskId" order="BEFORE" >
+      select nextval('task_id_seq')
+    </selectKey>
+    insert into public.task (task_id, launch_id, launch_module, 
+      legal_phone, cust_name, cust_code, 
+      org_code, task_name, task_type, 
+      task_sub_type, reject_reason, finish_status, 
+      task_status, del_status, record_time, 
+      entry_user_id, operation_user_id, operation_time, 
+      full_class_name)
+    values (#{taskId,jdbcType=BIGINT}, #{launchId,jdbcType=BIGINT}, #{launchModule,jdbcType=VARCHAR}, 
+      #{legalPhone,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{custCode,jdbcType=VARCHAR}, 
+      #{orgCode,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, #{taskType,jdbcType=VARCHAR}, 
+      #{taskSubType,jdbcType=VARCHAR}, #{rejectReason,jdbcType=VARCHAR}, #{finishStatus,jdbcType=INTEGER}, 
+      #{taskStatus,jdbcType=INTEGER}, #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}, 
+      #{fullClassName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.task.model.Task" >
+    <selectKey resultType="java.lang.Long" keyProperty="taskId" order="BEFORE" >
+      select nextval('task_id_seq')
+    </selectKey>
+    insert into public.task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      task_id,
+      <if test="launchId != null" >
+        launch_id,
+      </if>
+      <if test="launchModule != null" >
+        launch_module,
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="custCode != null" >
+        cust_code,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="taskName != null" >
+        task_name,
+      </if>
+      <if test="taskType != null" >
+        task_type,
+      </if>
+      <if test="taskSubType != null" >
+        task_sub_type,
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason,
+      </if>
+      <if test="finishStatus != null" >
+        finish_status,
+      </if>
+      <if test="taskStatus != null" >
+        task_status,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="fullClassName != null" >
+        full_class_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{taskId,jdbcType=BIGINT},
+      <if test="launchId != null" >
+        #{launchId,jdbcType=BIGINT},
+      </if>
+      <if test="launchModule != null" >
+        #{launchModule,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custCode != null" >
+        #{custCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="taskSubType != null" >
+        #{taskSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectReason != null" >
+        #{rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="finishStatus != null" >
+        #{finishStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taskStatus != null" >
+        #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fullClassName != null" >
+        #{fullClassName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.task.model.Task" >
+    update public.task
+    <set >
+      <if test="launchId != null" >
+        launch_id = #{launchId,jdbcType=BIGINT},
+      </if>
+      <if test="launchModule != null" >
+        launch_module = #{launchModule,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custCode != null" >
+        cust_code = #{custCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        task_type = #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="taskSubType != null" >
+        task_sub_type = #{taskSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason = #{rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="finishStatus != null" >
+        finish_status = #{finishStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taskStatus != null" >
+        task_status = #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fullClassName != null" >
+        full_class_name = #{fullClassName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.task.model.Task" >
+    update public.task
+    set launch_id = #{launchId,jdbcType=BIGINT},
+      launch_module = #{launchModule,jdbcType=VARCHAR},
+      legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      cust_code = #{custCode,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=VARCHAR},
+      task_sub_type = #{taskSubType,jdbcType=VARCHAR},
+      reject_reason = #{rejectReason,jdbcType=VARCHAR},
+      finish_status = #{finishStatus,jdbcType=INTEGER},
+      task_status = #{taskStatus,jdbcType=INTEGER},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      full_class_name = #{fullClassName,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selecTask" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.task.model.Task">
+		select
+		<include refid="Base_Column_List" />
+		from public.task
+		<where>
+			del_status = 0
+			<if test="taskName != null">
+				and task_name = #{taskName,jdbcType=VARCHAR}
+			</if>
+			<if test="taskStatus != null">
+				and task_status = #{taskStatus,jdbcType=INTEGER}
+			</if>
+			<if test="startTime != null">
+				and record_time <![CDATA[>=]]>
+				to_timestamp(#{startTime}/1000)
+			</if>
+			<if test="endTime != null">
+				and record_time <![CDATA[<=]]>
+				to_timestamp(#{endTime}/1000)
+			</if>
+			<if test="userId != null">
+				and (entry_user_id=#{userId,jdbcType=BIGINT} or operation_user_id=#{userId,jdbcType=BIGINT})
+			</if>
+			
+			
+			<if test="taskId != null">
+				and task_id = #{taskId,jdbcType=BIGINT}
+			</if>
+			<if test="launchId != null">
+				and launch_id = #{launchId,jdbcType=BIGINT}
+			</if>
+			<if test="launchModule != null">
+				and launch_module = #{launchModule,jdbcType=VARCHAR}
+			</if>
+			<if test="legalPhone != null">
+				and legal_phone = #{legalPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="custName != null">
+				and cust_name = #{custName,jdbcType=VARCHAR}
+			</if>
+			<if test="custCode != null">
+				and cust_code = #{custCode,jdbcType=VARCHAR}
+			</if>
+			<if test="orgCode != null">
+				and org_code = #{orgCode,jdbcType=VARCHAR}
+			</if>
+			<if test="taskType != null">
+				and task_type = #{taskType,jdbcType=VARCHAR}
+			</if>
+			<if test="taskSubType != null">
+				and task_sub_type = #{taskSubType,jdbcType=VARCHAR}
+			</if>
+			<if test="rejectReason != null">
+				and reject_reason = #{rejectReason,jdbcType=VARCHAR}
+			</if>
+			<if test="finishStatus != null">
+				and finish_status = #{finishStatus,jdbcType=INTEGER}
+			</if>
+			<if test="recordTime != null">
+				and record_time = #{recordTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="entryUserId != null">
+				and entry_user_id = #{entryUserId,jdbcType=BIGINT}
+			</if>
+			<if test="operationUserId != null">
+				and operation_user_id =
+				#{operationUserId,jdbcType=BIGINT}
+			</if>
+			<if test="operationTime != null">
+				and operation_time = #{operationTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="fullClassName != null">
+				and full_class_name = #{fullClassName,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by task_id desc
+	</select>
+</mapper>
