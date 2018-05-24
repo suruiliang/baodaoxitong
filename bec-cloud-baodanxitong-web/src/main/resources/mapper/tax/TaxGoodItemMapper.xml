@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxGoodItemMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxGoodItem" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="piece_id" property="pieceId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="SMALLINT" />
+    <result column="chapter_id" property="chapterId" jdbcType="SMALLINT" />
+    <result column="section_id" property="sectionId" jdbcType="SMALLINT" />
+    <result column="strip_id" property="stripId" jdbcType="SMALLINT" />
+    <result column="paragraph_id" property="paragraphId" jdbcType="SMALLINT" />
+    <result column="term_id" property="termId" jdbcType="SMALLINT" />
+    <result column="order_id" property="orderId" jdbcType="SMALLINT" />
+    <result column="subheading_id" property="subheadingId" jdbcType="SMALLINT" />
+    <result column="detail_id" property="detailId" jdbcType="SMALLINT" />
+    <result column="merge_coding" property="mergeCoding" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="explain" property="explain" jdbcType="VARCHAR" />
+    <result column="tax_rate" property="taxRate" jdbcType="VARCHAR" />
+    <result column="tax_special_manage" property="taxSpecialManage" jdbcType="VARCHAR" />
+    <result column="tax_policy" property="taxPolicy" jdbcType="VARCHAR" />
+    <result column="tax_special_code" property="taxSpecialCode" jdbcType="VARCHAR" />
+    <result column="tax_con_admin" property="taxConAdmin" jdbcType="VARCHAR" />
+    <result column="tax_con_policy" property="taxConPolicy" jdbcType="VARCHAR" />
+    <result column="tax_con_code" property="taxConCode" jdbcType="VARCHAR" />
+    <result column="key_word" property="keyWord" jdbcType="VARCHAR" />
+    <result column="sum_item" property="sumItem" jdbcType="VARCHAR" />
+    <result column="statistics_code" property="statisticsCode" jdbcType="VARCHAR" />
+    <result column="imp_exp" property="impExp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, piece_id, class_id, chapter_id, section_id, strip_id, paragraph_id, term_id, 
+    order_id, subheading_id, detail_id, merge_coding, goods_name, explain, tax_rate, 
+    tax_special_manage, tax_policy, tax_special_code, tax_con_admin, tax_con_policy, 
+    tax_con_code, key_word, sum_item, statistics_code, imp_exp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_goods_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from public.tax_goods_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxGoodItem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select nextval('goods_id_seq')
+    </selectKey>
+    insert into public.tax_goods_item (id, piece_id, class_id, 
+      chapter_id, section_id, strip_id, 
+      paragraph_id, term_id, order_id, 
+      subheading_id, detail_id, merge_coding, 
+      goods_name, explain, tax_rate, 
+      tax_special_manage, tax_policy, tax_special_code, 
+      tax_con_admin, tax_con_policy, tax_con_code, 
+      key_word, sum_item, statistics_code, 
+      imp_exp)
+    values (#{id,jdbcType=INTEGER}, #{pieceId,jdbcType=INTEGER}, #{classId,jdbcType=SMALLINT}, 
+      #{chapterId,jdbcType=SMALLINT}, #{sectionId,jdbcType=SMALLINT}, #{stripId,jdbcType=SMALLINT}, 
+      #{paragraphId,jdbcType=SMALLINT}, #{termId,jdbcType=SMALLINT}, #{orderId,jdbcType=SMALLINT}, 
+      #{subheadingId,jdbcType=SMALLINT}, #{detailId,jdbcType=SMALLINT}, #{mergeCoding,jdbcType=BIGINT}, 
+      #{goodsName,jdbcType=VARCHAR}, #{explain,jdbcType=VARCHAR}, #{taxRate,jdbcType=VARCHAR}, 
+      #{taxSpecialManage,jdbcType=VARCHAR}, #{taxPolicy,jdbcType=VARCHAR}, #{taxSpecialCode,jdbcType=VARCHAR}, 
+      #{taxConAdmin,jdbcType=VARCHAR}, #{taxConPolicy,jdbcType=VARCHAR}, #{taxConCode,jdbcType=VARCHAR}, 
+      #{keyWord,jdbcType=VARCHAR}, #{sumItem,jdbcType=VARCHAR}, #{statisticsCode,jdbcType=VARCHAR}, 
+      #{impExp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxGoodItem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select nextval('goods_id_seq')
+    </selectKey>
+    insert into public.tax_goods_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="pieceId != null" >
+        piece_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="chapterId != null" >
+        chapter_id,
+      </if>
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="stripId != null" >
+        strip_id,
+      </if>
+      <if test="paragraphId != null" >
+        paragraph_id,
+      </if>
+      <if test="termId != null" >
+        term_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="subheadingId != null" >
+        subheading_id,
+      </if>
+      <if test="detailId != null" >
+        detail_id,
+      </if>
+      <if test="mergeCoding != null" >
+        merge_coding,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="explain != null" >
+        explain,
+      </if>
+      <if test="taxRate != null" >
+        tax_rate,
+      </if>
+      <if test="taxSpecialManage != null" >
+        tax_special_manage,
+      </if>
+      <if test="taxPolicy != null" >
+        tax_policy,
+      </if>
+      <if test="taxSpecialCode != null" >
+        tax_special_code,
+      </if>
+      <if test="taxConAdmin != null" >
+        tax_con_admin,
+      </if>
+      <if test="taxConPolicy != null" >
+        tax_con_policy,
+      </if>
+      <if test="taxConCode != null" >
+        tax_con_code,
+      </if>
+      <if test="keyWord != null" >
+        key_word,
+      </if>
+      <if test="sumItem != null" >
+        sum_item,
+      </if>
+      <if test="statisticsCode != null" >
+        statistics_code,
+      </if>
+      <if test="impExp != null" >
+        imp_exp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="pieceId != null" >
+        #{pieceId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=SMALLINT},
+      </if>
+      <if test="chapterId != null" >
+        #{chapterId,jdbcType=SMALLINT},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=SMALLINT},
+      </if>
+      <if test="stripId != null" >
+        #{stripId,jdbcType=SMALLINT},
+      </if>
+      <if test="paragraphId != null" >
+        #{paragraphId,jdbcType=SMALLINT},
+      </if>
+      <if test="termId != null" >
+        #{termId,jdbcType=SMALLINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=SMALLINT},
+      </if>
+      <if test="subheadingId != null" >
+        #{subheadingId,jdbcType=SMALLINT},
+      </if>
+      <if test="detailId != null" >
+        #{detailId,jdbcType=SMALLINT},
+      </if>
+      <if test="mergeCoding != null" >
+        #{mergeCoding,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="taxSpecialManage != null" >
+        #{taxSpecialManage,jdbcType=VARCHAR},
+      </if>
+      <if test="taxPolicy != null" >
+        #{taxPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="taxSpecialCode != null" >
+        #{taxSpecialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxConAdmin != null" >
+        #{taxConAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="taxConPolicy != null" >
+        #{taxConPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="taxConCode != null" >
+        #{taxConCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWord != null" >
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="sumItem != null" >
+        #{sumItem,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticsCode != null" >
+        #{statisticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="impExp != null" >
+        #{impExp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxGoodItem" >
+    update public.tax_goods_item
+    <set >
+      <if test="pieceId != null" >
+        piece_id = #{pieceId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=SMALLINT},
+      </if>
+      <if test="chapterId != null" >
+        chapter_id = #{chapterId,jdbcType=SMALLINT},
+      </if>
+      <if test="sectionId != null" >
+        section_id = #{sectionId,jdbcType=SMALLINT},
+      </if>
+      <if test="stripId != null" >
+        strip_id = #{stripId,jdbcType=SMALLINT},
+      </if>
+      <if test="paragraphId != null" >
+        paragraph_id = #{paragraphId,jdbcType=SMALLINT},
+      </if>
+      <if test="termId != null" >
+        term_id = #{termId,jdbcType=SMALLINT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=SMALLINT},
+      </if>
+      <if test="subheadingId != null" >
+        subheading_id = #{subheadingId,jdbcType=SMALLINT},
+      </if>
+      <if test="detailId != null" >
+        detail_id = #{detailId,jdbcType=SMALLINT},
+      </if>
+      <if test="mergeCoding != null" >
+        merge_coding = #{mergeCoding,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null" >
+        explain = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null" >
+        tax_rate = #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="taxSpecialManage != null" >
+        tax_special_manage = #{taxSpecialManage,jdbcType=VARCHAR},
+      </if>
+      <if test="taxPolicy != null" >
+        tax_policy = #{taxPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="taxSpecialCode != null" >
+        tax_special_code = #{taxSpecialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxConAdmin != null" >
+        tax_con_admin = #{taxConAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="taxConPolicy != null" >
+        tax_con_policy = #{taxConPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="taxConCode != null" >
+        tax_con_code = #{taxConCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWord != null" >
+        key_word = #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="sumItem != null" >
+        sum_item = #{sumItem,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticsCode != null" >
+        statistics_code = #{statisticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="impExp != null" >
+        imp_exp = #{impExp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxGoodItem" >
+    update public.tax_goods_item
+    set piece_id = #{pieceId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=SMALLINT},
+      chapter_id = #{chapterId,jdbcType=SMALLINT},
+      section_id = #{sectionId,jdbcType=SMALLINT},
+      strip_id = #{stripId,jdbcType=SMALLINT},
+      paragraph_id = #{paragraphId,jdbcType=SMALLINT},
+      term_id = #{termId,jdbcType=SMALLINT},
+      order_id = #{orderId,jdbcType=SMALLINT},
+      subheading_id = #{subheadingId,jdbcType=SMALLINT},
+      detail_id = #{detailId,jdbcType=SMALLINT},
+      merge_coding = #{mergeCoding,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      explain = #{explain,jdbcType=VARCHAR},
+      tax_rate = #{taxRate,jdbcType=VARCHAR},
+      tax_special_manage = #{taxSpecialManage,jdbcType=VARCHAR},
+      tax_policy = #{taxPolicy,jdbcType=VARCHAR},
+      tax_special_code = #{taxSpecialCode,jdbcType=VARCHAR},
+      tax_con_admin = #{taxConAdmin,jdbcType=VARCHAR},
+      tax_con_policy = #{taxConPolicy,jdbcType=VARCHAR},
+      tax_con_code = #{taxConCode,jdbcType=VARCHAR},
+      key_word = #{keyWord,jdbcType=VARCHAR},
+      sum_item = #{sumItem,jdbcType=VARCHAR},
+      statistics_code = #{statisticsCode,jdbcType=VARCHAR},
+      imp_exp = #{impExp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

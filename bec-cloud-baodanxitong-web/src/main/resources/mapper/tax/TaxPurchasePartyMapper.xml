@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxPurchasePartyMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxPurchaseParty" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="tax_reg_no" property="taxRegNo" jdbcType="VARCHAR" />
+    <result column="invoice_title" property="invoiceTitle" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="bank_info" property="bankInfo" jdbcType="VARCHAR" />
+    <result column="default_code" property="defaultCode" jdbcType="CHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="fast_tax_url" property="fastTaxUrl" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_id" property="operationId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mobile, email, tax_reg_no, invoice_title, address, bank_info, default_code, open_id, 
+    fast_tax_url, del_status, record_time, entry_user_id, operation_id, operation_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_purchase_party
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from public.tax_purchase_party
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPurchaseParty" >
+    insert into public.tax_purchase_party (id, mobile, email, 
+      tax_reg_no, invoice_title, address, 
+      bank_info, default_code, open_id, 
+      fast_tax_url, del_status, record_time, 
+      entry_user_id, operation_id, operation_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{taxRegNo,jdbcType=VARCHAR}, #{invoiceTitle,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{bankInfo,jdbcType=VARCHAR}, #{defaultCode,jdbcType=CHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{fastTaxUrl,jdbcType=VARCHAR}, #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{entryUserId,jdbcType=BIGINT}, #{operationId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPurchaseParty" >
+    insert into public.tax_purchase_party
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="taxRegNo != null" >
+        tax_reg_no,
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="bankInfo != null" >
+        bank_info,
+      </if>
+      <if test="defaultCode != null" >
+        default_code,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="fastTaxUrl != null" >
+        fast_tax_url,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegNo != null" >
+        #{taxRegNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTitle != null" >
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bankInfo != null" >
+        #{bankInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultCode != null" >
+        #{defaultCode,jdbcType=CHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="fastTaxUrl != null" >
+        #{fastTaxUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPurchaseParty" >
+    update public.tax_purchase_party
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegNo != null" >
+        tax_reg_no = #{taxRegNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bankInfo != null" >
+        bank_info = #{bankInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultCode != null" >
+        default_code = #{defaultCode,jdbcType=CHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="fastTaxUrl != null" >
+        fast_tax_url = #{fastTaxUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPurchaseParty" >
+    update public.tax_purchase_party
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tax_reg_no = #{taxRegNo,jdbcType=VARCHAR},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      bank_info = #{bankInfo,jdbcType=VARCHAR},
+      default_code = #{defaultCode,jdbcType=CHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      fast_tax_url = #{fastTaxUrl,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

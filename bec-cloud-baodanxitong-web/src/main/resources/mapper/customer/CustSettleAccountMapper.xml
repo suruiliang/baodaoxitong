@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustSettleAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount" >
+    <id column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="cust_code" property="custCode" jdbcType="BIGINT" />
+    <result column="account_type" property="accountType" jdbcType="INTEGER" />
+    <result column="g_openbank_id" property="gOpenbankId" jdbcType="VARCHAR" />
+    <result column="g_account_name" property="gAccountName" jdbcType="VARCHAR" />
+    <result column="g_account_no" property="gAccountNo" jdbcType="VARCHAR" />
+    <result column="account_open_permit_path" property="accountOpenPermitPath" jdbcType="VARCHAR" />
+    <result column="s_openbank_id" property="sOpenbankId" jdbcType="VARCHAR" />
+    <result column="s_account_name" property="sAccountName" jdbcType="VARCHAR" />
+    <result column="s_account_no" property="sAccountNo" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="change_status" property="changeStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="DATE" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="DATE" />
+    <result column="bank_card_face_path" property="bankCardFacePath" jdbcType="VARCHAR" />
+    <result column="bank_card_back_path" property="bankCardBackPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_id, cust_code, account_type, g_openbank_id, g_account_name, g_account_no, 
+    account_open_permit_path, s_openbank_id, s_account_name, s_account_no, audit_status, 
+    remark, del_status, change_status, record_time, entry_user_id, operation_user_id, 
+    operation_time, bank_card_face_path, bank_card_back_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.cust_settle_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.cust_settle_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount" >
+    <selectKey resultType="java.lang.Long" keyProperty="accountId" order="BEFORE" >
+      select nextval('cust_settle_account_account_id_seq')
+    </selectKey>
+    insert into public.cust_settle_account (account_id, cust_code, account_type, 
+      g_openbank_id, g_account_name, g_account_no, 
+      account_open_permit_path, s_openbank_id, s_account_name, 
+      s_account_no, audit_status, remark, 
+      del_status, change_status, record_time, 
+      entry_user_id, operation_user_id, operation_time, 
+      bank_card_face_path, bank_card_back_path)
+    values (#{accountId,jdbcType=BIGINT}, #{custCode,jdbcType=BIGINT}, #{accountType,jdbcType=INTEGER}, 
+      #{gOpenbankId,jdbcType=VARCHAR}, #{gAccountName,jdbcType=VARCHAR}, #{gAccountNo,jdbcType=VARCHAR}, 
+      #{accountOpenPermitPath,jdbcType=VARCHAR}, #{sOpenbankId,jdbcType=VARCHAR}, #{sAccountName,jdbcType=VARCHAR}, 
+      #{sAccountNo,jdbcType=VARCHAR}, #{auditStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{delStatus,jdbcType=INTEGER}, #{changeStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=DATE}, 
+      #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=DATE}, 
+      #{bankCardFacePath,jdbcType=VARCHAR}, #{bankCardBackPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount" >
+    <selectKey resultType="java.lang.Long" keyProperty="accountId" order="BEFORE" >
+      select nextval('cust_settle_account_account_id_seq')
+    </selectKey>
+    insert into public.cust_settle_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      account_id,
+      <if test="custCode != null" >
+        cust_code,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="gOpenbankId != null" >
+        g_openbank_id,
+      </if>
+      <if test="gAccountName != null" >
+        g_account_name,
+      </if>
+      <if test="gAccountNo != null" >
+        g_account_no,
+      </if>
+      <if test="accountOpenPermitPath != null" >
+        account_open_permit_path,
+      </if>
+      <if test="sOpenbankId != null" >
+        s_openbank_id,
+      </if>
+      <if test="sAccountName != null" >
+        s_account_name,
+      </if>
+      <if test="sAccountNo != null" >
+        s_account_no,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="changeStatus != null" >
+        change_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="bankCardFacePath != null" >
+        bank_card_face_path,
+      </if>
+      <if test="bankCardBackPath != null" >
+        bank_card_back_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{accountId,jdbcType=BIGINT},
+      <if test="custCode != null" >
+        #{custCode,jdbcType=BIGINT},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="gOpenbankId != null" >
+        #{gOpenbankId,jdbcType=VARCHAR},
+      </if>
+      <if test="gAccountName != null" >
+        #{gAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="gAccountNo != null" >
+        #{gAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOpenPermitPath != null" >
+        #{accountOpenPermitPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sOpenbankId != null" >
+        #{sOpenbankId,jdbcType=VARCHAR},
+      </if>
+      <if test="sAccountName != null" >
+        #{sAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="sAccountNo != null" >
+        #{sAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="changeStatus != null" >
+        #{changeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=DATE},
+      </if>
+      <if test="bankCardFacePath != null" >
+        #{bankCardFacePath,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardBackPath != null" >
+        #{bankCardBackPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount" >
+    update public.cust_settle_account
+    <set >
+      <if test="custCode != null" >
+        cust_code = #{custCode,jdbcType=BIGINT},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="gOpenbankId != null" >
+        g_openbank_id = #{gOpenbankId,jdbcType=VARCHAR},
+      </if>
+      <if test="gAccountName != null" >
+        g_account_name = #{gAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="gAccountNo != null" >
+        g_account_no = #{gAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOpenPermitPath != null" >
+        account_open_permit_path = #{accountOpenPermitPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sOpenbankId != null" >
+        s_openbank_id = #{sOpenbankId,jdbcType=VARCHAR},
+      </if>
+      <if test="sAccountName != null" >
+        s_account_name = #{sAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="sAccountNo != null" >
+        s_account_no = #{sAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="changeStatus != null" >
+        change_status = #{changeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=DATE},
+      </if>
+      <if test="bankCardFacePath != null" >
+        bank_card_face_path = #{bankCardFacePath,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardBackPath != null" >
+        bank_card_back_path = #{bankCardBackPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount" >
+    update public.cust_settle_account
+    set cust_code = #{custCode,jdbcType=BIGINT},
+      account_type = #{accountType,jdbcType=INTEGER},
+      g_openbank_id = #{gOpenbankId,jdbcType=VARCHAR},
+      g_account_name = #{gAccountName,jdbcType=VARCHAR},
+      g_account_no = #{gAccountNo,jdbcType=VARCHAR},
+      account_open_permit_path = #{accountOpenPermitPath,jdbcType=VARCHAR},
+      s_openbank_id = #{sOpenbankId,jdbcType=VARCHAR},
+      s_account_name = #{sAccountName,jdbcType=VARCHAR},
+      s_account_no = #{sAccountNo,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      change_status = #{changeStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=DATE},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=DATE},
+      bank_card_face_path = #{bankCardFacePath,jdbcType=VARCHAR},
+      bank_card_back_path = #{bankCardBackPath,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.dict.dao.BecMccCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.dict.model.BecMccCategory" >
+    <id column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    category_id, category_name, remarks, del_status, record_time, entry_user_id, operation_time, 
+    operation_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.bec_mcc_category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from public.bec_mcc_category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.dict.model.BecMccCategory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="categoryId" order="BEFORE" >
+      select nextval('bec_mcc_category_id_seq')
+    </selectKey>
+    insert into public.bec_mcc_category (category_id, category_name, remarks, 
+      del_status, record_time, entry_user_id, 
+      operation_time, operation_user_id)
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationTime,jdbcType=TIMESTAMP}, #{operationUserId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.dict.model.BecMccCategory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="categoryId" order="BEFORE" >
+      select nextval('bec_mcc_category_id_seq')
+    </selectKey>
+    insert into public.bec_mcc_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      category_id,
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{categoryId,jdbcType=INTEGER},
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.dict.model.BecMccCategory" >
+    update public.bec_mcc_category
+    <set >
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.dict.model.BecMccCategory" >
+    update public.bec_mcc_category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      operation_user_id = #{operationUserId,jdbcType=BIGINT}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

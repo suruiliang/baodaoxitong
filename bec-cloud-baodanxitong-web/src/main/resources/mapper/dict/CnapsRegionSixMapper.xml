@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.dict.dao.CnapsRegionSixMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionSix" >
+    <id column="cnaps_region" property="cnapsRegion" jdbcType="VARCHAR" />
+    <result column="region_type" property="regionType" jdbcType="INTEGER" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+    <result column="region_full_name" property="regionFullName" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cnaps_region, region_type, parent_code, region_name, region_full_name, remarks, del_status, 
+    record_time, entry_user_id, operation_time, operation_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.cnaps_region_six
+    where cnaps_region = #{cnapsRegion,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from public.cnaps_region_six
+    where cnaps_region = #{cnapsRegion,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionSix" >
+    insert into public.cnaps_region_six (cnaps_region, region_type, parent_code, 
+      region_name, region_full_name, remarks, 
+      del_status, record_time, entry_user_id, 
+      operation_time, operation_user_id)
+    values (#{cnapsRegion,jdbcType=VARCHAR}, #{regionType,jdbcType=INTEGER}, #{parentCode,jdbcType=VARCHAR}, 
+      #{regionName,jdbcType=VARCHAR}, #{regionFullName,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationTime,jdbcType=TIMESTAMP}, #{operationUserId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionSix" >
+    insert into public.cnaps_region_six
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cnapsRegion != null" >
+        cnaps_region,
+      </if>
+      <if test="regionType != null" >
+        region_type,
+      </if>
+      <if test="parentCode != null" >
+        parent_code,
+      </if>
+      <if test="regionName != null" >
+        region_name,
+      </if>
+      <if test="regionFullName != null" >
+        region_full_name,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cnapsRegion != null" >
+        #{cnapsRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="regionType != null" >
+        #{regionType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionFullName != null" >
+        #{regionFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionSix" >
+    update public.cnaps_region_six
+    <set >
+      <if test="regionType != null" >
+        region_type = #{regionType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCode != null" >
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        region_name = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionFullName != null" >
+        region_full_name = #{regionFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where cnaps_region = #{cnapsRegion,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionSix" >
+    update public.cnaps_region_six
+    set region_type = #{regionType,jdbcType=INTEGER},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      region_name = #{regionName,jdbcType=VARCHAR},
+      region_full_name = #{regionFullName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      operation_user_id = #{operationUserId,jdbcType=BIGINT}
+    where cnaps_region = #{cnapsRegion,jdbcType=VARCHAR}
+  </update>
+</mapper>

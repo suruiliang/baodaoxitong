@@ -50,9 +50,9 @@
 			<!-- 生成的SQL中的表名是否包含schema和catalog前缀。 -->
 			<property name="ignoreQualifiersAtRuntime" value="false" />
 			<property name="runtimeSchema" value="${schema}" />
-			<generatedKey column="${ID}"
+			<!-- <generatedKey column="${ID}"
 				sqlStatement="select nextval('${sequence}')" identity="false"
-				type="pre" />
+				type="pre" /> -->
 		</table>
 
 	</context>

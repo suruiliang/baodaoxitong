@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxPayDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxPayDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cust_id" property="custId" jdbcType="BIGINT" />
+    <result column="post_pay_type" property="postPayType" jdbcType="CHAR" />
+    <result column="template_id" property="templateId" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="NUMERIC" />
+    <result column="tax_count" property="taxCount" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="pay_platform" property="payPlatform" jdbcType="VARCHAR" />
+    <result column="error_code" property="errorCode" jdbcType="VARCHAR" />
+    <result column="back_info" property="backInfo" jdbcType="VARCHAR" />
+    <result column="trade_status" property="tradeStatus" jdbcType="CHAR" />
+    <result column="qr_code_url" property="qrCodeUrl" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="send_pay_date" property="sendPayDate" jdbcType="TIMESTAMP" />
+    <result column="pay_state" property="payState" jdbcType="CHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_id" property="operationId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cust_id, post_pay_type, template_id, price, tax_count, order_id, pay_platform, 
+    error_code, back_info, trade_status, qr_code_url, trade_no, send_pay_date, pay_state, 
+    del_status, record_time, entry_user_id, operation_id, operation_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_pay_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from public.tax_pay_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPayDetail" >
+    insert into public.tax_pay_detail (id, cust_id, post_pay_type, 
+      template_id, price, tax_count, 
+      order_id, pay_platform, error_code, 
+      back_info, trade_status, qr_code_url, 
+      trade_no, send_pay_date, pay_state, 
+      del_status, record_time, entry_user_id, 
+      operation_id, operation_time)
+    values (#{id,jdbcType=VARCHAR}, #{custId,jdbcType=BIGINT}, #{postPayType,jdbcType=CHAR}, 
+      #{templateId,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{taxCount,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{payPlatform,jdbcType=VARCHAR}, #{errorCode,jdbcType=VARCHAR}, 
+      #{backInfo,jdbcType=VARCHAR}, #{tradeStatus,jdbcType=CHAR}, #{qrCodeUrl,jdbcType=VARCHAR}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{sendPayDate,jdbcType=TIMESTAMP}, #{payState,jdbcType=CHAR}, 
+      #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPayDetail" >
+    insert into public.tax_pay_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="custId != null" >
+        cust_id,
+      </if>
+      <if test="postPayType != null" >
+        post_pay_type,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="taxCount != null" >
+        tax_count,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="payPlatform != null" >
+        pay_platform,
+      </if>
+      <if test="errorCode != null" >
+        error_code,
+      </if>
+      <if test="backInfo != null" >
+        back_info,
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status,
+      </if>
+      <if test="qrCodeUrl != null" >
+        qr_code_url,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="sendPayDate != null" >
+        send_pay_date,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="postPayType != null" >
+        #{postPayType,jdbcType=CHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="taxCount != null" >
+        #{taxCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPlatform != null" >
+        #{payPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="backInfo != null" >
+        #{backInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=CHAR},
+      </if>
+      <if test="qrCodeUrl != null" >
+        #{qrCodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPayDate != null" >
+        #{sendPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=CHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPayDetail" >
+    update public.tax_pay_detail
+    <set >
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="postPayType != null" >
+        post_pay_type = #{postPayType,jdbcType=CHAR},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="taxCount != null" >
+        tax_count = #{taxCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPlatform != null" >
+        pay_platform = #{payPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        error_code = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="backInfo != null" >
+        back_info = #{backInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=CHAR},
+      </if>
+      <if test="qrCodeUrl != null" >
+        qr_code_url = #{qrCodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPayDate != null" >
+        send_pay_date = #{sendPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payState != null" >
+        pay_state = #{payState,jdbcType=CHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxPayDetail" >
+    update public.tax_pay_detail
+    set cust_id = #{custId,jdbcType=BIGINT},
+      post_pay_type = #{postPayType,jdbcType=CHAR},
+      template_id = #{templateId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=NUMERIC},
+      tax_count = #{taxCount,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      pay_platform = #{payPlatform,jdbcType=VARCHAR},
+      error_code = #{errorCode,jdbcType=VARCHAR},
+      back_info = #{backInfo,jdbcType=VARCHAR},
+      trade_status = #{tradeStatus,jdbcType=CHAR},
+      qr_code_url = #{qrCodeUrl,jdbcType=VARCHAR},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      send_pay_date = #{sendPayDate,jdbcType=TIMESTAMP},
+      pay_state = #{payState,jdbcType=CHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

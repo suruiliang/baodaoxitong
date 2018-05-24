@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustContractModifyMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
+    <id column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="cust_code" property="custCode" jdbcType="BIGINT" />
+    <result column="cont_name" property="contName" jdbcType="VARCHAR" />
+    <result column="cont_code" property="contCode" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="VARCHAR" />
+    <result column="change_status" property="changeStatus" jdbcType="INTEGER" />
+    <result column="cont_photo1" property="contPhoto1" jdbcType="VARCHAR" />
+    <result column="cont_photo2" property="contPhoto2" jdbcType="VARCHAR" />
+    <result column="cont_photo3" property="contPhoto3" jdbcType="VARCHAR" />
+    <result column="cont_photo4" property="contPhoto4" jdbcType="VARCHAR" />
+    <result column="cont_photo5" property="contPhoto5" jdbcType="VARCHAR" />
+    <result column="record_time" property="recordTime" jdbcType="DATE" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cont_id, cust_code, cont_name, cont_code, audit_status, remark, del_status, change_status, 
+    cont_photo1, cont_photo2, cont_photo3, cont_photo4, cont_photo5, record_time, entry_user_id, 
+    operation_user_id, operation_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.cust_contract_modify
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.cust_contract_modify
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
+    insert into public.cust_contract_modify (cont_id, cust_code, cont_name, 
+      cont_code, audit_status, remark, 
+      del_status, change_status, cont_photo1, 
+      cont_photo2, cont_photo3, cont_photo4, 
+      cont_photo5, record_time, entry_user_id, 
+      operation_user_id, operation_time)
+    values (#{contId,jdbcType=BIGINT}, #{custCode,jdbcType=BIGINT}, #{contName,jdbcType=VARCHAR}, 
+      #{contCode,jdbcType=VARCHAR}, #{auditStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{delStatus,jdbcType=VARCHAR}, #{changeStatus,jdbcType=INTEGER}, #{contPhoto1,jdbcType=VARCHAR}, 
+      #{contPhoto2,jdbcType=VARCHAR}, #{contPhoto3,jdbcType=VARCHAR}, #{contPhoto4,jdbcType=VARCHAR}, 
+      #{contPhoto5,jdbcType=VARCHAR}, #{recordTime,jdbcType=DATE}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
+    insert into public.cust_contract_modify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="custCode != null" >
+        cust_code,
+      </if>
+      <if test="contName != null" >
+        cont_name,
+      </if>
+      <if test="contCode != null" >
+        cont_code,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="changeStatus != null" >
+        change_status,
+      </if>
+      <if test="contPhoto1 != null" >
+        cont_photo1,
+      </if>
+      <if test="contPhoto2 != null" >
+        cont_photo2,
+      </if>
+      <if test="contPhoto3 != null" >
+        cont_photo3,
+      </if>
+      <if test="contPhoto4 != null" >
+        cont_photo4,
+      </if>
+      <if test="contPhoto5 != null" >
+        cont_photo5,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="custCode != null" >
+        #{custCode,jdbcType=BIGINT},
+      </if>
+      <if test="contName != null" >
+        #{contName,jdbcType=VARCHAR},
+      </if>
+      <if test="contCode != null" >
+        #{contCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="changeStatus != null" >
+        #{changeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contPhoto1 != null" >
+        #{contPhoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto2 != null" >
+        #{contPhoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto3 != null" >
+        #{contPhoto3,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto4 != null" >
+        #{contPhoto4,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto5 != null" >
+        #{contPhoto5,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
+    update public.cust_contract_modify
+    <set >
+      <if test="custCode != null" >
+        cust_code = #{custCode,jdbcType=BIGINT},
+      </if>
+      <if test="contName != null" >
+        cont_name = #{contName,jdbcType=VARCHAR},
+      </if>
+      <if test="contCode != null" >
+        cont_code = #{contCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="changeStatus != null" >
+        change_status = #{changeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contPhoto1 != null" >
+        cont_photo1 = #{contPhoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto2 != null" >
+        cont_photo2 = #{contPhoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto3 != null" >
+        cont_photo3 = #{contPhoto3,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto4 != null" >
+        cont_photo4 = #{contPhoto4,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhoto5 != null" >
+        cont_photo5 = #{contPhoto5,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=DATE},
+      </if>
+    </set>
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
+    update public.cust_contract_modify
+    set cust_code = #{custCode,jdbcType=BIGINT},
+      cont_name = #{contName,jdbcType=VARCHAR},
+      cont_code = #{contCode,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=VARCHAR},
+      change_status = #{changeStatus,jdbcType=INTEGER},
+      cont_photo1 = #{contPhoto1,jdbcType=VARCHAR},
+      cont_photo2 = #{contPhoto2,jdbcType=VARCHAR},
+      cont_photo3 = #{contPhoto3,jdbcType=VARCHAR},
+      cont_photo4 = #{contPhoto4,jdbcType=VARCHAR},
+      cont_photo5 = #{contPhoto5,jdbcType=VARCHAR},
+      record_time = #{recordTime,jdbcType=DATE},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=DATE}
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </update>
+</mapper>

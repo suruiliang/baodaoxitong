@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.channel.dao.ChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.channel.model.Channel" >
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="channel_url" property="channelUrl" jdbcType="VARCHAR" />
+    <result column="channel_remark" property="channelRemark" jdbcType="VARCHAR" />
+    <result column="channel_status" property="channelStatus" jdbcType="INTEGER" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.channel.model.Channel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="channelId" order="BEFORE" >
+      select nextval('channel_channel_id_seq')
+    </selectKey>
+    insert into public.channel (channel_id, channel_code, channel_name, 
+      channel_url, channel_remark, channel_status, 
+      del_status, record_time, entry_user_id, 
+      operation_time, operation_user_id)
+    values (#{channelId,jdbcType=INTEGER}, #{channelCode,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, 
+      #{channelUrl,jdbcType=VARCHAR}, #{channelRemark,jdbcType=VARCHAR}, #{channelStatus,jdbcType=INTEGER}, 
+      #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationTime,jdbcType=TIMESTAMP}, #{operationUserId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.channel.model.Channel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="channelId" order="BEFORE" >
+      select nextval('channel_channel_id_seq')
+    </selectKey>
+    insert into public.channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      channel_id,
+      <if test="channelCode != null" >
+        channel_code,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="channelUrl != null" >
+        channel_url,
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark,
+      </if>
+      <if test="channelStatus != null" >
+        channel_status,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{channelId,jdbcType=INTEGER},
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null" >
+        #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRemark != null" >
+        #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="channelStatus != null" >
+        #{channelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

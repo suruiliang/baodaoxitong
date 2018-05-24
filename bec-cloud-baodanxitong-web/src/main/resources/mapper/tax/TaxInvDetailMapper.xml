@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxInvDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxInvDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="inv_order_id" property="invOrderId" jdbcType="VARCHAR" />
+    <result column="detail_line_num" property="detailLineNum" jdbcType="INTEGER" />
+    <result column="line_type" property="lineType" jdbcType="CHAR" />
+    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_tax_type" property="goodsTaxType" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+    <result column="goods_unit" property="goodsUnit" jdbcType="VARCHAR" />
+    <result column="goods_number" property="goodsNumber" jdbcType="NUMERIC" />
+    <result column="goods_price" property="goodsPrice" jdbcType="NUMERIC" />
+    <result column="goods_amount" property="goodsAmount" jdbcType="NUMERIC" />
+    <result column="tax_amount" property="taxAmount" jdbcType="NUMERIC" />
+    <result column="tax_rate" property="taxRate" jdbcType="NUMERIC" />
+    <result column="lf_line_num" property="lfLineNum" jdbcType="INTEGER" />
+    <result column="include_tax_flag" property="includeTaxFlag" jdbcType="CHAR" />
+    <result column="added_tax_manage" property="addedTaxManage" jdbcType="VARCHAR" />
+    <result column="preferential_policy" property="preferentialPolicy" jdbcType="CHAR" />
+    <result column="duty_free_type" property="dutyFreeType" jdbcType="CHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_id" property="operationId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, inv_order_id, detail_line_num, line_type, goods_code, goods_name, goods_tax_type, 
+    goods_type, goods_unit, goods_number, goods_price, goods_amount, tax_amount, tax_rate, 
+    lf_line_num, include_tax_flag, added_tax_manage, preferential_policy, duty_free_type, 
+    del_status, record_time, entry_user_id, operation_id, operation_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_inv_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from public.tax_inv_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvDetail" >
+    insert into public.tax_inv_detail (id, inv_order_id, detail_line_num, 
+      line_type, goods_code, goods_name, 
+      goods_tax_type, goods_type, goods_unit, 
+      goods_number, goods_price, goods_amount, 
+      tax_amount, tax_rate, lf_line_num, 
+      include_tax_flag, added_tax_manage, preferential_policy, 
+      duty_free_type, del_status, record_time, 
+      entry_user_id, operation_id, operation_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{invOrderId,jdbcType=VARCHAR}, #{detailLineNum,jdbcType=INTEGER}, 
+      #{lineType,jdbcType=CHAR}, #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsTaxType,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, #{goodsUnit,jdbcType=VARCHAR}, 
+      #{goodsNumber,jdbcType=NUMERIC}, #{goodsPrice,jdbcType=NUMERIC}, #{goodsAmount,jdbcType=NUMERIC}, 
+      #{taxAmount,jdbcType=NUMERIC}, #{taxRate,jdbcType=NUMERIC}, #{lfLineNum,jdbcType=INTEGER}, 
+      #{includeTaxFlag,jdbcType=CHAR}, #{addedTaxManage,jdbcType=VARCHAR}, #{preferentialPolicy,jdbcType=CHAR}, 
+      #{dutyFreeType,jdbcType=CHAR}, #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{entryUserId,jdbcType=BIGINT}, #{operationId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvDetail" >
+    insert into public.tax_inv_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="invOrderId != null" >
+        inv_order_id,
+      </if>
+      <if test="detailLineNum != null" >
+        detail_line_num,
+      </if>
+      <if test="lineType != null" >
+        line_type,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsTaxType != null" >
+        goods_tax_type,
+      </if>
+      <if test="goodsType != null" >
+        goods_type,
+      </if>
+      <if test="goodsUnit != null" >
+        goods_unit,
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount,
+      </if>
+      <if test="taxAmount != null" >
+        tax_amount,
+      </if>
+      <if test="taxRate != null" >
+        tax_rate,
+      </if>
+      <if test="lfLineNum != null" >
+        lf_line_num,
+      </if>
+      <if test="includeTaxFlag != null" >
+        include_tax_flag,
+      </if>
+      <if test="addedTaxManage != null" >
+        added_tax_manage,
+      </if>
+      <if test="preferentialPolicy != null" >
+        preferential_policy,
+      </if>
+      <if test="dutyFreeType != null" >
+        duty_free_type,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="invOrderId != null" >
+        #{invOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailLineNum != null" >
+        #{detailLineNum,jdbcType=INTEGER},
+      </if>
+      <if test="lineType != null" >
+        #{lineType,jdbcType=CHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTaxType != null" >
+        #{goodsTaxType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUnit != null" >
+        #{goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        #{goodsNumber,jdbcType=NUMERIC},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="goodsAmount != null" >
+        #{goodsAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="taxAmount != null" >
+        #{taxAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=NUMERIC},
+      </if>
+      <if test="lfLineNum != null" >
+        #{lfLineNum,jdbcType=INTEGER},
+      </if>
+      <if test="includeTaxFlag != null" >
+        #{includeTaxFlag,jdbcType=CHAR},
+      </if>
+      <if test="addedTaxManage != null" >
+        #{addedTaxManage,jdbcType=VARCHAR},
+      </if>
+      <if test="preferentialPolicy != null" >
+        #{preferentialPolicy,jdbcType=CHAR},
+      </if>
+      <if test="dutyFreeType != null" >
+        #{dutyFreeType,jdbcType=CHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvDetail" >
+    update public.tax_inv_detail
+    <set >
+      <if test="invOrderId != null" >
+        inv_order_id = #{invOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailLineNum != null" >
+        detail_line_num = #{detailLineNum,jdbcType=INTEGER},
+      </if>
+      <if test="lineType != null" >
+        line_type = #{lineType,jdbcType=CHAR},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTaxType != null" >
+        goods_tax_type = #{goodsTaxType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUnit != null" >
+        goods_unit = #{goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number = #{goodsNumber,jdbcType=NUMERIC},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount = #{goodsAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="taxAmount != null" >
+        tax_amount = #{taxAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="taxRate != null" >
+        tax_rate = #{taxRate,jdbcType=NUMERIC},
+      </if>
+      <if test="lfLineNum != null" >
+        lf_line_num = #{lfLineNum,jdbcType=INTEGER},
+      </if>
+      <if test="includeTaxFlag != null" >
+        include_tax_flag = #{includeTaxFlag,jdbcType=CHAR},
+      </if>
+      <if test="addedTaxManage != null" >
+        added_tax_manage = #{addedTaxManage,jdbcType=VARCHAR},
+      </if>
+      <if test="preferentialPolicy != null" >
+        preferential_policy = #{preferentialPolicy,jdbcType=CHAR},
+      </if>
+      <if test="dutyFreeType != null" >
+        duty_free_type = #{dutyFreeType,jdbcType=CHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvDetail" >
+    update public.tax_inv_detail
+    set inv_order_id = #{invOrderId,jdbcType=VARCHAR},
+      detail_line_num = #{detailLineNum,jdbcType=INTEGER},
+      line_type = #{lineType,jdbcType=CHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_tax_type = #{goodsTaxType,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      goods_unit = #{goodsUnit,jdbcType=VARCHAR},
+      goods_number = #{goodsNumber,jdbcType=NUMERIC},
+      goods_price = #{goodsPrice,jdbcType=NUMERIC},
+      goods_amount = #{goodsAmount,jdbcType=NUMERIC},
+      tax_amount = #{taxAmount,jdbcType=NUMERIC},
+      tax_rate = #{taxRate,jdbcType=NUMERIC},
+      lf_line_num = #{lfLineNum,jdbcType=INTEGER},
+      include_tax_flag = #{includeTaxFlag,jdbcType=CHAR},
+      added_tax_manage = #{addedTaxManage,jdbcType=VARCHAR},
+      preferential_policy = #{preferentialPolicy,jdbcType=CHAR},
+      duty_free_type = #{dutyFreeType,jdbcType=CHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

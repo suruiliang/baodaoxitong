@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxDzfRegistMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfRegist" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="tax_payer_num" property="taxPayerNum" jdbcType="VARCHAR" />
+    <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="enterprise_address" property="enterpriseAddress" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate" property="taxRegistrationCertificate" jdbcType="VARCHAR" />
+    <result column="is_permit_paper_invoice" property="isPermitPaperInvoice" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+    <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+    <result column="plat_form_code" property="platFormCode" jdbcType="VARCHAR" />
+    <result column="registration_code" property="registrationCode" jdbcType="VARCHAR" />
+    <result column="authorization_code" property="authorizationCode" jdbcType="VARCHAR" />
+    <result column="audit_code" property="auditCode" jdbcType="VARCHAR" />
+    <result column="audit_msg" property="auditMsg" jdbcType="VARCHAR" />
+    <result column="cust_id" property="custId" jdbcType="BIGINT" />
+    <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+    <result column="legal_person_name" property="legalPersonName" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contacts_email" property="contactsEmail" jdbcType="VARCHAR" />
+    <result column="contacts_phone" property="contactsPhone" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_id" property="operationId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tax_payer_num, region_code, city_name, enterprise_address, tax_registration_certificate, 
+    is_permit_paper_invoice, code, msg, serial_no, plat_form_code, registration_code, 
+    authorization_code, audit_code, audit_msg, cust_id, enterprise_name, legal_person_name, 
+    contact_name, contacts_email, contacts_phone, del_status, record_time, entry_user_id, 
+    operation_id, operation_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_dzf_regist
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from public.tax_dzf_regist
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfRegist" >
+    insert into public.tax_dzf_regist (id, tax_payer_num, region_code, 
+      city_name, enterprise_address, tax_registration_certificate, 
+      is_permit_paper_invoice, code, msg, 
+      serial_no, plat_form_code, registration_code, 
+      authorization_code, audit_code, audit_msg, 
+      cust_id, enterprise_name, legal_person_name, 
+      contact_name, contacts_email, contacts_phone, 
+      del_status, record_time, entry_user_id, 
+      operation_id, operation_time)
+    values (#{id,jdbcType=VARCHAR}, #{taxPayerNum,jdbcType=VARCHAR}, #{regionCode,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{enterpriseAddress,jdbcType=VARCHAR}, #{taxRegistrationCertificate,jdbcType=VARCHAR}, 
+      #{isPermitPaperInvoice,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, 
+      #{serialNo,jdbcType=VARCHAR}, #{platFormCode,jdbcType=VARCHAR}, #{registrationCode,jdbcType=VARCHAR}, 
+      #{authorizationCode,jdbcType=VARCHAR}, #{auditCode,jdbcType=VARCHAR}, #{auditMsg,jdbcType=VARCHAR}, 
+      #{custId,jdbcType=BIGINT}, #{enterpriseName,jdbcType=VARCHAR}, #{legalPersonName,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactsEmail,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, 
+      #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfRegist" >
+    insert into public.tax_dzf_regist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="taxPayerNum != null" >
+        tax_payer_num,
+      </if>
+      <if test="regionCode != null" >
+        region_code,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="enterpriseAddress != null" >
+        enterprise_address,
+      </if>
+      <if test="taxRegistrationCertificate != null" >
+        tax_registration_certificate,
+      </if>
+      <if test="isPermitPaperInvoice != null" >
+        is_permit_paper_invoice,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="platFormCode != null" >
+        plat_form_code,
+      </if>
+      <if test="registrationCode != null" >
+        registration_code,
+      </if>
+      <if test="authorizationCode != null" >
+        authorization_code,
+      </if>
+      <if test="auditCode != null" >
+        audit_code,
+      </if>
+      <if test="auditMsg != null" >
+        audit_msg,
+      </if>
+      <if test="custId != null" >
+        cust_id,
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name,
+      </if>
+      <if test="legalPersonName != null" >
+        legal_person_name,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactsEmail != null" >
+        contacts_email,
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="taxPayerNum != null" >
+        #{taxPayerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCode != null" >
+        #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseAddress != null" >
+        #{enterpriseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificate != null" >
+        #{taxRegistrationCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="isPermitPaperInvoice != null" >
+        #{isPermitPaperInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="platFormCode != null" >
+        #{platFormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationCode != null" >
+        #{registrationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizationCode != null" >
+        #{authorizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditCode != null" >
+        #{auditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditMsg != null" >
+        #{auditMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseName != null" >
+        #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsEmail != null" >
+        #{contactsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfRegist" >
+    update public.tax_dzf_regist
+    <set >
+      <if test="taxPayerNum != null" >
+        tax_payer_num = #{taxPayerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCode != null" >
+        region_code = #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseAddress != null" >
+        enterprise_address = #{enterpriseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificate != null" >
+        tax_registration_certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="isPermitPaperInvoice != null" >
+        is_permit_paper_invoice = #{isPermitPaperInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null" >
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="platFormCode != null" >
+        plat_form_code = #{platFormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationCode != null" >
+        registration_code = #{registrationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizationCode != null" >
+        authorization_code = #{authorizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditCode != null" >
+        audit_code = #{auditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditMsg != null" >
+        audit_msg = #{auditMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        legal_person_name = #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsEmail != null" >
+        contacts_email = #{contactsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfRegist" >
+    update public.tax_dzf_regist
+    set tax_payer_num = #{taxPayerNum,jdbcType=VARCHAR},
+      region_code = #{regionCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      enterprise_address = #{enterpriseAddress,jdbcType=VARCHAR},
+      tax_registration_certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
+      is_permit_paper_invoice = #{isPermitPaperInvoice,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      msg = #{msg,jdbcType=VARCHAR},
+      serial_no = #{serialNo,jdbcType=VARCHAR},
+      plat_form_code = #{platFormCode,jdbcType=VARCHAR},
+      registration_code = #{registrationCode,jdbcType=VARCHAR},
+      authorization_code = #{authorizationCode,jdbcType=VARCHAR},
+      audit_code = #{auditCode,jdbcType=VARCHAR},
+      audit_msg = #{auditMsg,jdbcType=VARCHAR},
+      cust_id = #{custId,jdbcType=BIGINT},
+      enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      legal_person_name = #{legalPersonName,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contacts_email = #{contactsEmail,jdbcType=VARCHAR},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

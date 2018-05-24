@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.customer.model.Customer" >
+    <id column="cust_id" property="custId" jdbcType="BIGINT" />
+    <result column="cust_pid" property="custPid" jdbcType="BIGINT" />
+    <result column="cust_iid" property="custIid" jdbcType="VARCHAR" />
+    <result column="cust_code" property="custCode" jdbcType="VARCHAR" />
+    <result column="p_cust_code" property="pCustCode" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="cust_mcc" property="custMcc" jdbcType="VARCHAR" />
+    <result column="cust_level" property="custLevel" jdbcType="INTEGER" />
+    <result column="cust_attr" property="custAttr" jdbcType="INTEGER" />
+    <result column="cust_phone" property="custPhone" jdbcType="VARCHAR" />
+    <result column="cust_old_phone" property="custOldPhone" jdbcType="VARCHAR" />
+    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+    <result column="cust_abbr" property="custAbbr" jdbcType="VARCHAR" />
+    <result column="cust_company_name" property="custCompanyName" jdbcType="VARCHAR" />
+    <result column="cust_address" property="custAddress" jdbcType="VARCHAR" />
+    <result column="county_code" property="countyCode" jdbcType="INTEGER" />
+    <result column="cust_email" property="custEmail" jdbcType="VARCHAR" />
+    <result column="legal_name" property="legalName" jdbcType="VARCHAR" />
+    <result column="legal_identity" property="legalIdentity" jdbcType="VARCHAR" />
+    <result column="legal_identity_date" property="legalIdentityDate" jdbcType="VARCHAR" />
+    <result column="cust_status" property="custStatus" jdbcType="INTEGER" />
+    <result column="modify_status" property="modifyStatus" jdbcType="INTEGER" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="cust_scale" property="custScale" jdbcType="INTEGER" />
+    <result column="trading_area" property="tradingArea" jdbcType="INTEGER" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="emergency_contact" property="emergencyContact" jdbcType="VARCHAR" />
+    <result column="emergency_contact_phone" property="emergencyContactPhone" jdbcType="VARCHAR" />
+    <result column="affiliation_to_customer" property="affiliationToCustomer" jdbcType="VARCHAR" />
+    <result column="Identity_face_path" property="identityFacePath" jdbcType="VARCHAR" />
+    <result column="Identity_back_path" property="identityBackPath" jdbcType="VARCHAR" />
+    <result column="register_county_code" property="registerCountyCode" jdbcType="INTEGER" />
+    <result column="register_detail_addr" property="registerDetailAddr" jdbcType="VARCHAR" />
+    <result column="oper_county_code" property="operCountyCode" jdbcType="INTEGER" />
+    <result column="oper_detail_addr" property="operDetailAddr" jdbcType="VARCHAR" />
+    <result column="oper_addr_type" property="operAddrType" jdbcType="VARCHAR" />
+    <result column="cust_lname" property="custLname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cust_id, cust_pid, cust_iid, cust_code, p_cust_code, org_code, cust_mcc, cust_level, 
+    cust_attr, cust_phone, cust_old_phone, cust_name, cust_abbr, cust_company_name, cust_address, 
+    county_code, cust_email, legal_name, legal_identity, legal_identity_date, cust_status, 
+    modify_status, del_status, record_time, entry_user_id, operation_user_id, operation_time, 
+    cust_scale, trading_area, sale_num, remark, emergency_contact, emergency_contact_phone, 
+    affiliation_to_customer, Identity_face_path, Identity_back_path, register_county_code, 
+    register_detail_addr, oper_county_code, oper_detail_addr, oper_addr_type, cust_lname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.customer
+    where cust_id = #{custId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.customer
+    where cust_id = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.customer.model.Customer" >
+    <selectKey resultType="java.lang.Long" keyProperty="custId" order="BEFORE" >
+      select nextval('customer_id_seq')
+    </selectKey>
+    insert into public.customer (cust_id, cust_pid, cust_iid, 
+      cust_code, p_cust_code, org_code, 
+      cust_mcc, cust_level, cust_attr, 
+      cust_phone, cust_old_phone, cust_name, 
+      cust_abbr, cust_company_name, cust_address, 
+      county_code, cust_email, legal_name, 
+      legal_identity, legal_identity_date, cust_status, 
+      modify_status, del_status, record_time, 
+      entry_user_id, operation_user_id, operation_time, 
+      cust_scale, trading_area, sale_num, 
+      remark, emergency_contact, emergency_contact_phone, 
+      affiliation_to_customer, Identity_face_path, 
+      Identity_back_path, register_county_code, register_detail_addr, 
+      oper_county_code, oper_detail_addr, oper_addr_type, 
+      cust_lname)
+    values (#{custId,jdbcType=BIGINT}, #{custPid,jdbcType=BIGINT}, #{custIid,jdbcType=VARCHAR}, 
+      #{custCode,jdbcType=VARCHAR}, #{pCustCode,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
+      #{custMcc,jdbcType=VARCHAR}, #{custLevel,jdbcType=INTEGER}, #{custAttr,jdbcType=INTEGER}, 
+      #{custPhone,jdbcType=VARCHAR}, #{custOldPhone,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, 
+      #{custAbbr,jdbcType=VARCHAR}, #{custCompanyName,jdbcType=VARCHAR}, #{custAddress,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=INTEGER}, #{custEmail,jdbcType=VARCHAR}, #{legalName,jdbcType=VARCHAR}, 
+      #{legalIdentity,jdbcType=VARCHAR}, #{legalIdentityDate,jdbcType=VARCHAR}, #{custStatus,jdbcType=INTEGER}, 
+      #{modifyStatus,jdbcType=INTEGER}, #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}, 
+      #{custScale,jdbcType=INTEGER}, #{tradingArea,jdbcType=INTEGER}, #{saleNum,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{emergencyContact,jdbcType=VARCHAR}, #{emergencyContactPhone,jdbcType=VARCHAR}, 
+      #{affiliationToCustomer,jdbcType=VARCHAR}, #{identityFacePath,jdbcType=VARCHAR}, 
+      #{identityBackPath,jdbcType=VARCHAR}, #{registerCountyCode,jdbcType=INTEGER}, #{registerDetailAddr,jdbcType=VARCHAR}, 
+      #{operCountyCode,jdbcType=INTEGER}, #{operDetailAddr,jdbcType=VARCHAR}, #{operAddrType,jdbcType=VARCHAR}, 
+      #{custLname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.Customer" >
+    <selectKey resultType="java.lang.Long" keyProperty="custId" order="BEFORE" >
+      select nextval('customer_id_seq')
+    </selectKey>
+    insert into public.customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      cust_id,
+      <if test="custPid != null" >
+        cust_pid,
+      </if>
+      <if test="custIid != null" >
+        cust_iid,
+      </if>
+      <if test="custCode != null" >
+        cust_code,
+      </if>
+      <if test="pCustCode != null" >
+        p_cust_code,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="custMcc != null" >
+        cust_mcc,
+      </if>
+      <if test="custLevel != null" >
+        cust_level,
+      </if>
+      <if test="custAttr != null" >
+        cust_attr,
+      </if>
+      <if test="custPhone != null" >
+        cust_phone,
+      </if>
+      <if test="custOldPhone != null" >
+        cust_old_phone,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="custAbbr != null" >
+        cust_abbr,
+      </if>
+      <if test="custCompanyName != null" >
+        cust_company_name,
+      </if>
+      <if test="custAddress != null" >
+        cust_address,
+      </if>
+      <if test="countyCode != null" >
+        county_code,
+      </if>
+      <if test="custEmail != null" >
+        cust_email,
+      </if>
+      <if test="legalName != null" >
+        legal_name,
+      </if>
+      <if test="legalIdentity != null" >
+        legal_identity,
+      </if>
+      <if test="legalIdentityDate != null" >
+        legal_identity_date,
+      </if>
+      <if test="custStatus != null" >
+        cust_status,
+      </if>
+      <if test="modifyStatus != null" >
+        modify_status,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="custScale != null" >
+        cust_scale,
+      </if>
+      <if test="tradingArea != null" >
+        trading_area,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="emergencyContact != null" >
+        emergency_contact,
+      </if>
+      <if test="emergencyContactPhone != null" >
+        emergency_contact_phone,
+      </if>
+      <if test="affiliationToCustomer != null" >
+        affiliation_to_customer,
+      </if>
+      <if test="identityFacePath != null" >
+        Identity_face_path,
+      </if>
+      <if test="identityBackPath != null" >
+        Identity_back_path,
+      </if>
+      <if test="registerCountyCode != null" >
+        register_county_code,
+      </if>
+      <if test="registerDetailAddr != null" >
+        register_detail_addr,
+      </if>
+      <if test="operCountyCode != null" >
+        oper_county_code,
+      </if>
+      <if test="operDetailAddr != null" >
+        oper_detail_addr,
+      </if>
+      <if test="operAddrType != null" >
+        oper_addr_type,
+      </if>
+      <if test="custLname != null" >
+        cust_lname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{custId,jdbcType=BIGINT},
+      <if test="custPid != null" >
+        #{custPid,jdbcType=BIGINT},
+      </if>
+      <if test="custIid != null" >
+        #{custIid,jdbcType=VARCHAR},
+      </if>
+      <if test="custCode != null" >
+        #{custCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pCustCode != null" >
+        #{pCustCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custMcc != null" >
+        #{custMcc,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevel != null" >
+        #{custLevel,jdbcType=INTEGER},
+      </if>
+      <if test="custAttr != null" >
+        #{custAttr,jdbcType=INTEGER},
+      </if>
+      <if test="custPhone != null" >
+        #{custPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custOldPhone != null" >
+        #{custOldPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAbbr != null" >
+        #{custAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="custCompanyName != null" >
+        #{custCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAddress != null" >
+        #{custAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=INTEGER},
+      </if>
+      <if test="custEmail != null" >
+        #{custEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null" >
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdentity != null" >
+        #{legalIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdentityDate != null" >
+        #{legalIdentityDate,jdbcType=VARCHAR},
+      </if>
+      <if test="custStatus != null" >
+        #{custStatus,jdbcType=INTEGER},
+      </if>
+      <if test="modifyStatus != null" >
+        #{modifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custScale != null" >
+        #{custScale,jdbcType=INTEGER},
+      </if>
+      <if test="tradingArea != null" >
+        #{tradingArea,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContact != null" >
+        #{emergencyContact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactPhone != null" >
+        #{emergencyContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="affiliationToCustomer != null" >
+        #{affiliationToCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="identityFacePath != null" >
+        #{identityFacePath,jdbcType=VARCHAR},
+      </if>
+      <if test="identityBackPath != null" >
+        #{identityBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCountyCode != null" >
+        #{registerCountyCode,jdbcType=INTEGER},
+      </if>
+      <if test="registerDetailAddr != null" >
+        #{registerDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="operCountyCode != null" >
+        #{operCountyCode,jdbcType=INTEGER},
+      </if>
+      <if test="operDetailAddr != null" >
+        #{operDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="operAddrType != null" >
+        #{operAddrType,jdbcType=VARCHAR},
+      </if>
+      <if test="custLname != null" >
+        #{custLname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.Customer" >
+    update public.customer
+    <set >
+      <if test="custPid != null" >
+        cust_pid = #{custPid,jdbcType=BIGINT},
+      </if>
+      <if test="custIid != null" >
+        cust_iid = #{custIid,jdbcType=VARCHAR},
+      </if>
+      <if test="custCode != null" >
+        cust_code = #{custCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pCustCode != null" >
+        p_cust_code = #{pCustCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custMcc != null" >
+        cust_mcc = #{custMcc,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevel != null" >
+        cust_level = #{custLevel,jdbcType=INTEGER},
+      </if>
+      <if test="custAttr != null" >
+        cust_attr = #{custAttr,jdbcType=INTEGER},
+      </if>
+      <if test="custPhone != null" >
+        cust_phone = #{custPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custOldPhone != null" >
+        cust_old_phone = #{custOldPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAbbr != null" >
+        cust_abbr = #{custAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="custCompanyName != null" >
+        cust_company_name = #{custCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAddress != null" >
+        cust_address = #{custAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        county_code = #{countyCode,jdbcType=INTEGER},
+      </if>
+      <if test="custEmail != null" >
+        cust_email = #{custEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null" >
+        legal_name = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdentity != null" >
+        legal_identity = #{legalIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdentityDate != null" >
+        legal_identity_date = #{legalIdentityDate,jdbcType=VARCHAR},
+      </if>
+      <if test="custStatus != null" >
+        cust_status = #{custStatus,jdbcType=INTEGER},
+      </if>
+      <if test="modifyStatus != null" >
+        modify_status = #{modifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custScale != null" >
+        cust_scale = #{custScale,jdbcType=INTEGER},
+      </if>
+      <if test="tradingArea != null" >
+        trading_area = #{tradingArea,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContact != null" >
+        emergency_contact = #{emergencyContact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactPhone != null" >
+        emergency_contact_phone = #{emergencyContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="affiliationToCustomer != null" >
+        affiliation_to_customer = #{affiliationToCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="identityFacePath != null" >
+        Identity_face_path = #{identityFacePath,jdbcType=VARCHAR},
+      </if>
+      <if test="identityBackPath != null" >
+        Identity_back_path = #{identityBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCountyCode != null" >
+        register_county_code = #{registerCountyCode,jdbcType=INTEGER},
+      </if>
+      <if test="registerDetailAddr != null" >
+        register_detail_addr = #{registerDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="operCountyCode != null" >
+        oper_county_code = #{operCountyCode,jdbcType=INTEGER},
+      </if>
+      <if test="operDetailAddr != null" >
+        oper_detail_addr = #{operDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="operAddrType != null" >
+        oper_addr_type = #{operAddrType,jdbcType=VARCHAR},
+      </if>
+      <if test="custLname != null" >
+        cust_lname = #{custLname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cust_id = #{custId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.customer.model.Customer" >
+    update public.customer
+    set cust_pid = #{custPid,jdbcType=BIGINT},
+      cust_iid = #{custIid,jdbcType=VARCHAR},
+      cust_code = #{custCode,jdbcType=VARCHAR},
+      p_cust_code = #{pCustCode,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      cust_mcc = #{custMcc,jdbcType=VARCHAR},
+      cust_level = #{custLevel,jdbcType=INTEGER},
+      cust_attr = #{custAttr,jdbcType=INTEGER},
+      cust_phone = #{custPhone,jdbcType=VARCHAR},
+      cust_old_phone = #{custOldPhone,jdbcType=VARCHAR},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      cust_abbr = #{custAbbr,jdbcType=VARCHAR},
+      cust_company_name = #{custCompanyName,jdbcType=VARCHAR},
+      cust_address = #{custAddress,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=INTEGER},
+      cust_email = #{custEmail,jdbcType=VARCHAR},
+      legal_name = #{legalName,jdbcType=VARCHAR},
+      legal_identity = #{legalIdentity,jdbcType=VARCHAR},
+      legal_identity_date = #{legalIdentityDate,jdbcType=VARCHAR},
+      cust_status = #{custStatus,jdbcType=INTEGER},
+      modify_status = #{modifyStatus,jdbcType=INTEGER},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      cust_scale = #{custScale,jdbcType=INTEGER},
+      trading_area = #{tradingArea,jdbcType=INTEGER},
+      sale_num = #{saleNum,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      emergency_contact = #{emergencyContact,jdbcType=VARCHAR},
+      emergency_contact_phone = #{emergencyContactPhone,jdbcType=VARCHAR},
+      affiliation_to_customer = #{affiliationToCustomer,jdbcType=VARCHAR},
+      Identity_face_path = #{identityFacePath,jdbcType=VARCHAR},
+      Identity_back_path = #{identityBackPath,jdbcType=VARCHAR},
+      register_county_code = #{registerCountyCode,jdbcType=INTEGER},
+      register_detail_addr = #{registerDetailAddr,jdbcType=VARCHAR},
+      oper_county_code = #{operCountyCode,jdbcType=INTEGER},
+      oper_detail_addr = #{operDetailAddr,jdbcType=VARCHAR},
+      oper_addr_type = #{operAddrType,jdbcType=VARCHAR},
+      cust_lname = #{custLname,jdbcType=VARCHAR}
+    where cust_id = #{custId,jdbcType=BIGINT}
+  </update>
+</mapper>

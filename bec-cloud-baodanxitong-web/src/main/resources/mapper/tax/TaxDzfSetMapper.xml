@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxDzfSetMapper" >
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfSet" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="plat_form_code" property="platFormCode" jdbcType="VARCHAR" />
+    <result column="sign_type" property="signType" jdbcType="VARCHAR" />
+    <result column="format" property="format" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="serial_no_prefix" property="serialNoPrefix" jdbcType="VARCHAR" />
+    <result column="rsa_pub_key_dzf" property="rsaPubKeyDzf" jdbcType="VARCHAR" />
+    <result column="rsa_pub_key_bec" property="rsaPubKeyBec" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+    <result column="operation_id" property="operationId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, plat_form_code, sign_type, format, version, serial_no_prefix, rsa_pub_key_dzf, 
+    rsa_pub_key_bec, password, del_status, record_time, entry_user_id, operation_id, 
+    operation_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_dzf_set
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from public.tax_dzf_set
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfSet" >
+    insert into public.tax_dzf_set (id, plat_form_code, sign_type, 
+      format, version, serial_no_prefix, 
+      rsa_pub_key_dzf, rsa_pub_key_bec, password, 
+      del_status, record_time, entry_user_id, 
+      operation_id, operation_time)
+    values (#{id,jdbcType=VARCHAR}, #{platFormCode,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, 
+      #{format,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{serialNoPrefix,jdbcType=VARCHAR}, 
+      #{rsaPubKeyDzf,jdbcType=VARCHAR}, #{rsaPubKeyBec,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, 
+      #{operationId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfSet" >
+    insert into public.tax_dzf_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="platFormCode != null" >
+        plat_form_code,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="format != null" >
+        format,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="serialNoPrefix != null" >
+        serial_no_prefix,
+      </if>
+      <if test="rsaPubKeyDzf != null" >
+        rsa_pub_key_dzf,
+      </if>
+      <if test="rsaPubKeyBec != null" >
+        rsa_pub_key_bec,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="recordTime != null" >
+        record_time,
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="platFormCode != null" >
+        #{platFormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNoPrefix != null" >
+        #{serialNoPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="rsaPubKeyDzf != null" >
+        #{rsaPubKeyDzf,jdbcType=VARCHAR},
+      </if>
+      <if test="rsaPubKeyBec != null" >
+        #{rsaPubKeyBec,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfSet" >
+    update public.tax_dzf_set
+    <set >
+      <if test="platFormCode != null" >
+        plat_form_code = #{platFormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null" >
+        sign_type = #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        format = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNoPrefix != null" >
+        serial_no_prefix = #{serialNoPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="rsaPubKeyDzf != null" >
+        rsa_pub_key_dzf = #{rsaPubKeyDzf,jdbcType=VARCHAR},
+      </if>
+      <if test="rsaPubKeyBec != null" >
+        rsa_pub_key_bec = #{rsaPubKeyBec,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxDzfSet" >
+    update public.tax_dzf_set
+    set plat_form_code = #{platFormCode,jdbcType=VARCHAR},
+      sign_type = #{signType,jdbcType=VARCHAR},
+      format = #{format,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      serial_no_prefix = #{serialNoPrefix,jdbcType=VARCHAR},
+      rsa_pub_key_dzf = #{rsaPubKeyDzf,jdbcType=VARCHAR},
+      rsa_pub_key_bec = #{rsaPubKeyBec,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

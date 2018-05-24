@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bec.cloud.baodanxitong.web.tax.dao.TaxInvDataMapper">
+  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.tax.model.TaxInvData">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="inv_order_id" jdbcType="VARCHAR" property="invOrderId" />
+    <result column="cust_id" jdbcType="BIGINT" property="custId" />
+    <result column="dev_type" jdbcType="CHAR" property="devType" />
+    <result column="inv_type_code" jdbcType="VARCHAR" property="invTypeCode" />
+    <result column="inv_type_special" jdbcType="VARCHAR" property="invTypeSpecial" />
+    <result column="pay_unit" jdbcType="VARCHAR" property="payUnit" />
+    <result column="pay_tax_reg_no" jdbcType="VARCHAR" property="payTaxRegNo" />
+    <result column="pay_mobile" jdbcType="VARCHAR" property="payMobile" />
+    <result column="pay_email" jdbcType="VARCHAR" property="payEmail" />
+    <result column="pay_address" jdbcType="VARCHAR" property="payAddress" />
+    <result column="pay_deposit" jdbcType="VARCHAR" property="payDeposit" />
+    <result column="beneficiary" jdbcType="VARCHAR" property="beneficiary" />
+    <result column="inv_operate" jdbcType="VARCHAR" property="invOperate" />
+    <result column="auditor" jdbcType="VARCHAR" property="auditor" />
+    <result column="make_inv_type" jdbcType="CHAR" property="makeInvType" />
+    <result column="inv_ditail_flag" jdbcType="VARCHAR" property="invDitailFlag" />
+    <result column="return_inv_id" jdbcType="VARCHAR" property="returnInvId" />
+    <result column="ori_inv_code" jdbcType="VARCHAR" property="oriInvCode" />
+    <result column="ori_inv_number" jdbcType="VARCHAR" property="oriInvNumber" />
+    <result column="collect_tax_mode" jdbcType="CHAR" property="collectTaxMode" />
+    <result column="deduct_amount" jdbcType="NUMERIC" property="deductAmount" />
+    <result column="sum_amount" jdbcType="NUMERIC" property="sumAmount" />
+    <result column="sum_tax_amount" jdbcType="NUMERIC" property="sumTaxAmount" />
+    <result column="sum_total" jdbcType="NUMERIC" property="sumTotal" />
+    <result column="backup" jdbcType="VARCHAR" property="backup" />
+    <result column="composite_tax_rate" jdbcType="NUMERIC" property="compositeTaxRate" />
+    <result column="inv_code" jdbcType="VARCHAR" property="invCode" />
+    <result column="inv_number" jdbcType="VARCHAR" property="invNumber" />
+    <result column="inv_date" jdbcType="TIMESTAMP" property="invDate" />
+    <result column="fiscal_code" jdbcType="VARCHAR" property="fiscalCode" />
+    <result column="check_code" jdbcType="VARCHAR" property="checkCode" />
+    <result column="qrcode" jdbcType="VARCHAR" property="qrcode" />
+    <result column="inv_upload_time" jdbcType="TIMESTAMP" property="invUploadTime" />
+    <result column="is_make_inv" jdbcType="CHAR" property="isMakeInv" />
+    <result column="is_overdue" jdbcType="CHAR" property="isOverdue" />
+    <result column="send_type" jdbcType="CHAR" property="sendType" />
+    <result column="send_flag" jdbcType="CHAR" property="sendFlag" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="pdf_address" jdbcType="VARCHAR" property="pdfAddress" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="inv_status" jdbcType="CHAR" property="invStatus" />
+    <result column="inv_fail_cause" jdbcType="VARCHAR" property="invFailCause" />
+    <result column="del_status" jdbcType="INTEGER" property="delStatus" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="entry_user_id" jdbcType="BIGINT" property="entryUserId" />
+    <result column="operation_id" jdbcType="BIGINT" property="operationId" />
+    <result column="operation_time" jdbcType="TIMESTAMP" property="operationTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, inv_order_id, cust_id, dev_type, inv_type_code, inv_type_special, pay_unit, pay_tax_reg_no, 
+    pay_mobile, pay_email, pay_address, pay_deposit, beneficiary, inv_operate, auditor, 
+    make_inv_type, inv_ditail_flag, return_inv_id, ori_inv_code, ori_inv_number, collect_tax_mode, 
+    deduct_amount, sum_amount, sum_tax_amount, sum_total, backup, composite_tax_rate, 
+    inv_code, inv_number, inv_date, fiscal_code, check_code, qrcode, inv_upload_time, 
+    is_make_inv, is_overdue, send_type, send_flag, user_id, pdf_address, order_id, inv_status, 
+    inv_fail_cause, del_status, record_time, entry_user_id, operation_id, operation_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.tax_inv_data
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from public.tax_inv_data
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvData">
+    insert into public.tax_inv_data (id, inv_order_id, cust_id, 
+      dev_type, inv_type_code, inv_type_special, 
+      pay_unit, pay_tax_reg_no, pay_mobile, 
+      pay_email, pay_address, pay_deposit, 
+      beneficiary, inv_operate, auditor, 
+      make_inv_type, inv_ditail_flag, return_inv_id, 
+      ori_inv_code, ori_inv_number, collect_tax_mode, 
+      deduct_amount, sum_amount, sum_tax_amount, 
+      sum_total, backup, composite_tax_rate, 
+      inv_code, inv_number, inv_date, 
+      fiscal_code, check_code, qrcode, 
+      inv_upload_time, is_make_inv, is_overdue, 
+      send_type, send_flag, user_id, 
+      pdf_address, order_id, inv_status, 
+      inv_fail_cause, del_status, record_time, 
+      entry_user_id, operation_id, operation_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{invOrderId,jdbcType=VARCHAR}, #{custId,jdbcType=BIGINT}, 
+      #{devType,jdbcType=CHAR}, #{invTypeCode,jdbcType=VARCHAR}, #{invTypeSpecial,jdbcType=VARCHAR}, 
+      #{payUnit,jdbcType=VARCHAR}, #{payTaxRegNo,jdbcType=VARCHAR}, #{payMobile,jdbcType=VARCHAR}, 
+      #{payEmail,jdbcType=VARCHAR}, #{payAddress,jdbcType=VARCHAR}, #{payDeposit,jdbcType=VARCHAR}, 
+      #{beneficiary,jdbcType=VARCHAR}, #{invOperate,jdbcType=VARCHAR}, #{auditor,jdbcType=VARCHAR}, 
+      #{makeInvType,jdbcType=CHAR}, #{invDitailFlag,jdbcType=VARCHAR}, #{returnInvId,jdbcType=VARCHAR}, 
+      #{oriInvCode,jdbcType=VARCHAR}, #{oriInvNumber,jdbcType=VARCHAR}, #{collectTaxMode,jdbcType=CHAR}, 
+      #{deductAmount,jdbcType=NUMERIC}, #{sumAmount,jdbcType=NUMERIC}, #{sumTaxAmount,jdbcType=NUMERIC}, 
+      #{sumTotal,jdbcType=NUMERIC}, #{backup,jdbcType=VARCHAR}, #{compositeTaxRate,jdbcType=NUMERIC}, 
+      #{invCode,jdbcType=VARCHAR}, #{invNumber,jdbcType=VARCHAR}, #{invDate,jdbcType=TIMESTAMP}, 
+      #{fiscalCode,jdbcType=VARCHAR}, #{checkCode,jdbcType=VARCHAR}, #{qrcode,jdbcType=VARCHAR}, 
+      #{invUploadTime,jdbcType=TIMESTAMP}, #{isMakeInv,jdbcType=CHAR}, #{isOverdue,jdbcType=CHAR}, 
+      #{sendType,jdbcType=CHAR}, #{sendFlag,jdbcType=CHAR}, #{userId,jdbcType=BIGINT}, 
+      #{pdfAddress,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{invStatus,jdbcType=CHAR}, 
+      #{invFailCause,jdbcType=VARCHAR}, #{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{entryUserId,jdbcType=BIGINT}, #{operationId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvData">
+    insert into public.tax_inv_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="invOrderId != null">
+        inv_order_id,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="devType != null">
+        dev_type,
+      </if>
+      <if test="invTypeCode != null">
+        inv_type_code,
+      </if>
+      <if test="invTypeSpecial != null">
+        inv_type_special,
+      </if>
+      <if test="payUnit != null">
+        pay_unit,
+      </if>
+      <if test="payTaxRegNo != null">
+        pay_tax_reg_no,
+      </if>
+      <if test="payMobile != null">
+        pay_mobile,
+      </if>
+      <if test="payEmail != null">
+        pay_email,
+      </if>
+      <if test="payAddress != null">
+        pay_address,
+      </if>
+      <if test="payDeposit != null">
+        pay_deposit,
+      </if>
+      <if test="beneficiary != null">
+        beneficiary,
+      </if>
+      <if test="invOperate != null">
+        inv_operate,
+      </if>
+      <if test="auditor != null">
+        auditor,
+      </if>
+      <if test="makeInvType != null">
+        make_inv_type,
+      </if>
+      <if test="invDitailFlag != null">
+        inv_ditail_flag,
+      </if>
+      <if test="returnInvId != null">
+        return_inv_id,
+      </if>
+      <if test="oriInvCode != null">
+        ori_inv_code,
+      </if>
+      <if test="oriInvNumber != null">
+        ori_inv_number,
+      </if>
+      <if test="collectTaxMode != null">
+        collect_tax_mode,
+      </if>
+      <if test="deductAmount != null">
+        deduct_amount,
+      </if>
+      <if test="sumAmount != null">
+        sum_amount,
+      </if>
+      <if test="sumTaxAmount != null">
+        sum_tax_amount,
+      </if>
+      <if test="sumTotal != null">
+        sum_total,
+      </if>
+      <if test="backup != null">
+        backup,
+      </if>
+      <if test="compositeTaxRate != null">
+        composite_tax_rate,
+      </if>
+      <if test="invCode != null">
+        inv_code,
+      </if>
+      <if test="invNumber != null">
+        inv_number,
+      </if>
+      <if test="invDate != null">
+        inv_date,
+      </if>
+      <if test="fiscalCode != null">
+        fiscal_code,
+      </if>
+      <if test="checkCode != null">
+        check_code,
+      </if>
+      <if test="qrcode != null">
+        qrcode,
+      </if>
+      <if test="invUploadTime != null">
+        inv_upload_time,
+      </if>
+      <if test="isMakeInv != null">
+        is_make_inv,
+      </if>
+      <if test="isOverdue != null">
+        is_overdue,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="sendFlag != null">
+        send_flag,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="pdfAddress != null">
+        pdf_address,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="invStatus != null">
+        inv_status,
+      </if>
+      <if test="invFailCause != null">
+        inv_fail_cause,
+      </if>
+      <if test="delStatus != null">
+        del_status,
+      </if>
+      <if test="recordTime != null">
+        record_time,
+      </if>
+      <if test="entryUserId != null">
+        entry_user_id,
+      </if>
+      <if test="operationId != null">
+        operation_id,
+      </if>
+      <if test="operationTime != null">
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="invOrderId != null">
+        #{invOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="devType != null">
+        #{devType,jdbcType=CHAR},
+      </if>
+      <if test="invTypeCode != null">
+        #{invTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invTypeSpecial != null">
+        #{invTypeSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="payUnit != null">
+        #{payUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payTaxRegNo != null">
+        #{payTaxRegNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payMobile != null">
+        #{payMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="payEmail != null">
+        #{payEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="payAddress != null">
+        #{payAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="payDeposit != null">
+        #{payDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="beneficiary != null">
+        #{beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="invOperate != null">
+        #{invOperate,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null">
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="makeInvType != null">
+        #{makeInvType,jdbcType=CHAR},
+      </if>
+      <if test="invDitailFlag != null">
+        #{invDitailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="returnInvId != null">
+        #{returnInvId,jdbcType=VARCHAR},
+      </if>
+      <if test="oriInvCode != null">
+        #{oriInvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oriInvNumber != null">
+        #{oriInvNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTaxMode != null">
+        #{collectTaxMode,jdbcType=CHAR},
+      </if>
+      <if test="deductAmount != null">
+        #{deductAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="sumAmount != null">
+        #{sumAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="sumTaxAmount != null">
+        #{sumTaxAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="sumTotal != null">
+        #{sumTotal,jdbcType=NUMERIC},
+      </if>
+      <if test="backup != null">
+        #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="compositeTaxRate != null">
+        #{compositeTaxRate,jdbcType=NUMERIC},
+      </if>
+      <if test="invCode != null">
+        #{invCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invNumber != null">
+        #{invNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="invDate != null">
+        #{invDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fiscalCode != null">
+        #{fiscalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCode != null">
+        #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null">
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="invUploadTime != null">
+        #{invUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMakeInv != null">
+        #{isMakeInv,jdbcType=CHAR},
+      </if>
+      <if test="isOverdue != null">
+        #{isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="sendType != null">
+        #{sendType,jdbcType=CHAR},
+      </if>
+      <if test="sendFlag != null">
+        #{sendFlag,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="pdfAddress != null">
+        #{pdfAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="invStatus != null">
+        #{invStatus,jdbcType=CHAR},
+      </if>
+      <if test="invFailCause != null">
+        #{invFailCause,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null">
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null">
+        #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null">
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null">
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvData">
+    update public.tax_inv_data
+    <set>
+      <if test="invOrderId != null">
+        inv_order_id = #{invOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="devType != null">
+        dev_type = #{devType,jdbcType=CHAR},
+      </if>
+      <if test="invTypeCode != null">
+        inv_type_code = #{invTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invTypeSpecial != null">
+        inv_type_special = #{invTypeSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="payUnit != null">
+        pay_unit = #{payUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payTaxRegNo != null">
+        pay_tax_reg_no = #{payTaxRegNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payMobile != null">
+        pay_mobile = #{payMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="payEmail != null">
+        pay_email = #{payEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="payAddress != null">
+        pay_address = #{payAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="payDeposit != null">
+        pay_deposit = #{payDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="beneficiary != null">
+        beneficiary = #{beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="invOperate != null">
+        inv_operate = #{invOperate,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null">
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="makeInvType != null">
+        make_inv_type = #{makeInvType,jdbcType=CHAR},
+      </if>
+      <if test="invDitailFlag != null">
+        inv_ditail_flag = #{invDitailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="returnInvId != null">
+        return_inv_id = #{returnInvId,jdbcType=VARCHAR},
+      </if>
+      <if test="oriInvCode != null">
+        ori_inv_code = #{oriInvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oriInvNumber != null">
+        ori_inv_number = #{oriInvNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTaxMode != null">
+        collect_tax_mode = #{collectTaxMode,jdbcType=CHAR},
+      </if>
+      <if test="deductAmount != null">
+        deduct_amount = #{deductAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="sumAmount != null">
+        sum_amount = #{sumAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="sumTaxAmount != null">
+        sum_tax_amount = #{sumTaxAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="sumTotal != null">
+        sum_total = #{sumTotal,jdbcType=NUMERIC},
+      </if>
+      <if test="backup != null">
+        backup = #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="compositeTaxRate != null">
+        composite_tax_rate = #{compositeTaxRate,jdbcType=NUMERIC},
+      </if>
+      <if test="invCode != null">
+        inv_code = #{invCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invNumber != null">
+        inv_number = #{invNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="invDate != null">
+        inv_date = #{invDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fiscalCode != null">
+        fiscal_code = #{fiscalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCode != null">
+        check_code = #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null">
+        qrcode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="invUploadTime != null">
+        inv_upload_time = #{invUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMakeInv != null">
+        is_make_inv = #{isMakeInv,jdbcType=CHAR},
+      </if>
+      <if test="isOverdue != null">
+        is_overdue = #{isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="sendType != null">
+        send_type = #{sendType,jdbcType=CHAR},
+      </if>
+      <if test="sendFlag != null">
+        send_flag = #{sendFlag,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="pdfAddress != null">
+        pdf_address = #{pdfAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="invStatus != null">
+        inv_status = #{invStatus,jdbcType=CHAR},
+      </if>
+      <if test="invFailCause != null">
+        inv_fail_cause = #{invFailCause,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null">
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null">
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null">
+        entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationId != null">
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null">
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.tax.model.TaxInvData">
+    update public.tax_inv_data
+    set inv_order_id = #{invOrderId,jdbcType=VARCHAR},
+      cust_id = #{custId,jdbcType=BIGINT},
+      dev_type = #{devType,jdbcType=CHAR},
+      inv_type_code = #{invTypeCode,jdbcType=VARCHAR},
+      inv_type_special = #{invTypeSpecial,jdbcType=VARCHAR},
+      pay_unit = #{payUnit,jdbcType=VARCHAR},
+      pay_tax_reg_no = #{payTaxRegNo,jdbcType=VARCHAR},
+      pay_mobile = #{payMobile,jdbcType=VARCHAR},
+      pay_email = #{payEmail,jdbcType=VARCHAR},
+      pay_address = #{payAddress,jdbcType=VARCHAR},
+      pay_deposit = #{payDeposit,jdbcType=VARCHAR},
+      beneficiary = #{beneficiary,jdbcType=VARCHAR},
+      inv_operate = #{invOperate,jdbcType=VARCHAR},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      make_inv_type = #{makeInvType,jdbcType=CHAR},
+      inv_ditail_flag = #{invDitailFlag,jdbcType=VARCHAR},
+      return_inv_id = #{returnInvId,jdbcType=VARCHAR},
+      ori_inv_code = #{oriInvCode,jdbcType=VARCHAR},
+      ori_inv_number = #{oriInvNumber,jdbcType=VARCHAR},
+      collect_tax_mode = #{collectTaxMode,jdbcType=CHAR},
+      deduct_amount = #{deductAmount,jdbcType=NUMERIC},
+      sum_amount = #{sumAmount,jdbcType=NUMERIC},
+      sum_tax_amount = #{sumTaxAmount,jdbcType=NUMERIC},
+      sum_total = #{sumTotal,jdbcType=NUMERIC},
+      backup = #{backup,jdbcType=VARCHAR},
+      composite_tax_rate = #{compositeTaxRate,jdbcType=NUMERIC},
+      inv_code = #{invCode,jdbcType=VARCHAR},
+      inv_number = #{invNumber,jdbcType=VARCHAR},
+      inv_date = #{invDate,jdbcType=TIMESTAMP},
+      fiscal_code = #{fiscalCode,jdbcType=VARCHAR},
+      check_code = #{checkCode,jdbcType=VARCHAR},
+      qrcode = #{qrcode,jdbcType=VARCHAR},
+      inv_upload_time = #{invUploadTime,jdbcType=TIMESTAMP},
+      is_make_inv = #{isMakeInv,jdbcType=CHAR},
+      is_overdue = #{isOverdue,jdbcType=CHAR},
+      send_type = #{sendType,jdbcType=CHAR},
+      send_flag = #{sendFlag,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      pdf_address = #{pdfAddress,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      inv_status = #{invStatus,jdbcType=CHAR},
+      inv_fail_cause = #{invFailCause,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
