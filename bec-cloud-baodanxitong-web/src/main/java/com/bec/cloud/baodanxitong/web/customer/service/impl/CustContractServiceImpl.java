@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,12 @@ public class CustContractServiceImpl implements CustContractService {
 
 	@Override
 	public int updateByPrimaryKey(CustContract record) {
-		return 0;
+		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<CustContract> selectCustContracts(CustContract record) {
+		return mapper.selectCustContracts(record);
 	}
 
 }
