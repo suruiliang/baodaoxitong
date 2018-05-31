@@ -20,13 +20,14 @@
     cc_id, cust_code, channel_id, prod_id, channel_cust_no, audit_status, status, remarks, 
     del_status, record_time, entry_user_id, operation_time, operation_user_id
   </sql>
+  <!-- 查询通道商户信息 -->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from public.channel_cust
     where cc_id = #{ccId,jdbcType=BIGINT} and del_status = 0
   </select>
-  
+  <!-- 查询通道商户信息 -->
   <select id="selectChannelCust" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.channel.model.ChannelCust" >
     select 
     	<include refid="Base_Column_List" />
@@ -92,6 +93,7 @@
       #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}, 
       #{operationUserId,jdbcType=BIGINT})
   </insert>
+  <!-- 新增通道商户信息 -->
   <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.channel.model.ChannelCust" >
     <selectKey resultType="java.lang.Long" keyProperty="ccId" order="BEFORE" >
       select nextval('channel_cust_cc_id_seq')
@@ -176,6 +178,7 @@
       </if>
     </trim>
   </insert>
+  <!-- 更新通道商户信息 -->
   <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.channel.model.ChannelCust" >
     update public.channel_cust
     <set >

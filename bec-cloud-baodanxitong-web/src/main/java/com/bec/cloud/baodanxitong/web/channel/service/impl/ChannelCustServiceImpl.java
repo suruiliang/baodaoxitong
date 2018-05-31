@@ -30,17 +30,17 @@ public class ChannelCustServiceImpl implements ChannelCustService {
 	public int insert(ChannelCust record) {
 		return mapper.insert(record);
 	}
-
+	//新增通道商户信息
 	@Override
 	public int insertSelective(ChannelCust record) {
 		return mapper.insertSelective(record);
 	}
-
+	//查询通道商户信息
 	@Override
 	public ChannelCust selectByPrimaryKey(Long ccId) {
 		return mapper.selectByPrimaryKey(ccId);
 	}
-
+	//更新通道商户信息
 	@Override
 	public int updateByPrimaryKeySelective(ChannelCust record) {
 		return mapper.updateByPrimaryKeySelective(record);
@@ -50,12 +50,12 @@ public class ChannelCustServiceImpl implements ChannelCustService {
 	public int updateByPrimaryKey(ChannelCust record) {
 		return mapper.updateByPrimaryKey(record);
 	}
-
+	//查询通道商户信息
 	@Override
 	public List<ChannelCust> selectChannelCust(ChannelCust record) {
 		return mapper.selectChannelCust(record);
 	}
-
+	//单条删除通道商户信息
 	@Override
 	public int delByChannelCustNo(String channelCustNo,String remarks) {
 		ChannelCust record = new ChannelCust();
@@ -66,11 +66,10 @@ public class ChannelCustServiceImpl implements ChannelCustService {
 		record.setOperationTime(new Date());
 		return mapper.delByChannelCustNo(record);
 	}
-
+	//批量删除通道商户信息
 	@Override
 	public int delByChannelCustNoList(String channelCustNos, String remarks) {
 		ChannelCust record = new ChannelCust();
-		//record.setChannelCustNo(channelCustNo);
 		record.setRemarks(remarks);
 		record.setDelStatus(Constant.DelStatus.DELETED);
 		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
