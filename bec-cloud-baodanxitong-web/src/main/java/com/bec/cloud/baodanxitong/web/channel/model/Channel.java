@@ -1,7 +1,11 @@
 package com.bec.cloud.baodanxitong.web.channel.model;
 
 import java.util.Date;
-
+/**
+ * 上游通道表实例
+ * @author wxb
+ *
+ */
 public class Channel {
 	//通道表id
     private Integer channelId;
@@ -115,10 +119,10 @@ public class Channel {
     }
     @Override
     public String toString(){
-		return "Channel:{channelId:"+channelId+",channelCode:"+channelCode
-				+",channelName:"+channelName+",channelUrl:"+channelUrl+",channelRemark:"+channelRemark
-				+",channelStatus:"+channelStatus+",delStatus:"+delStatus+",recordTime:"+recordTime
-				+",entryUserId:"+entryUserId+",operationTime:"+operationTime+",operationUserId"+operationUserId
-				+"}";
+		return "Channel:{channelId:" + channelId + ",channelCode:" + channelCode
+				+ ",channelName:" + channelName + ",channelUrl:" + channelUrl + ",channelRemark:" + channelRemark
+				+ ",channelStatus:" + channelStatus + ",delStatus:" + delStatus + ",recordTime:" + recordTime
+				+ ",entryUserId:" + entryUserId + ",operationTime:" + operationTime + ",operationUserId" + operationUserId
+				+ "}";
     }
 }

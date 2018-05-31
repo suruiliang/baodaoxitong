@@ -1,7 +1,11 @@
 package com.bec.cloud.baodanxitong.web.channel.model;
 
 import java.util.Date;
-
+/**
+ * 通道商户表实例
+ * @author wxb
+ *
+ */
 public class ChannelCust {
 	//通道商户表id
     private Long ccId;
