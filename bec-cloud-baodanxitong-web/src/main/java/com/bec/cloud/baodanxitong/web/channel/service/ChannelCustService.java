@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.channel.service;
 
+import java.util.List;
+
 import com.bec.cloud.baodanxitong.web.channel.model.ChannelCust;
 
 public interface ChannelCustService {
@@ -14,4 +16,10 @@ public interface ChannelCustService {
     int updateByPrimaryKeySelective(ChannelCust record);
 
     int updateByPrimaryKey(ChannelCust record);
+
+	List<ChannelCust> selectChannelCust(ChannelCust record);
+
+	int delByChannelCustNo(String channelCustNo, String remarks);
+
+	int delByChannelCustNoList(String channelCustNos, String remarks);
 }

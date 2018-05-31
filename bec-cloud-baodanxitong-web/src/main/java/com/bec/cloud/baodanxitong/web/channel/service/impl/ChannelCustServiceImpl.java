@@ -1,17 +1,25 @@
 package com.bec.cloud.baodanxitong.web.channel.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bec.cloud.auth.core.support.Constant;
 import com.bec.cloud.baodanxitong.web.channel.dao.ChannelCustMapper;
 import com.bec.cloud.baodanxitong.web.channel.model.ChannelCust;
 import com.bec.cloud.baodanxitong.web.channel.service.ChannelCustService;
+import com.bec.cloud.service.example.utils.UserInfoUtil;
 
 @Service
 public class ChannelCustServiceImpl implements ChannelCustService {
 	
 	@Autowired
 	private ChannelCustMapper mapper;
+	@Autowired
+	private UserInfoUtil userInfoUtil;
 
 	@Override
 	public int deleteByPrimaryKey(Long ccId) {
@@ -41,6 +49,40 @@ public class ChannelCustServiceImpl implements ChannelCustService {
 	@Override
 	public int updateByPrimaryKey(ChannelCust record) {
 		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<ChannelCust> selectChannelCust(ChannelCust record) {
+		return mapper.selectChannelCust(record);
+	}
+
+	@Override
+	public int delByChannelCustNo(String channelCustNo,String remarks) {
+		ChannelCust record = new ChannelCust();
+		record.setChannelCustNo(channelCustNo);
+		record.setRemarks(remarks);
+		record.setDelStatus(Constant.DelStatus.DELETED);
+		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
+		record.setOperationTime(new Date());
+		return mapper.delByChannelCustNo(record);
+	}
+
+	@Override
+	public int delByChannelCustNoList(String channelCustNos, String remarks) {
+		ChannelCust record = new ChannelCust();
+		//record.setChannelCustNo(channelCustNo);
+		record.setRemarks(remarks);
+		record.setDelStatus(Constant.DelStatus.DELETED);
+		record.setOperationUserId(userInfoUtil.simpleUserInfo().getUserId());
+		record.setOperationTime(new Date());
+		String[] array = StringUtils.split(channelCustNos,",");
+		for (String channelCustNo: array) {
+			if(StringUtils.isNotEmpty(channelCustNo)){
+				record.setChannelCustNo(channelCustNo);
+				mapper.delByChannelCustNo(record);
+			}		
+		}
+		return 0;
 	}
 
 }
