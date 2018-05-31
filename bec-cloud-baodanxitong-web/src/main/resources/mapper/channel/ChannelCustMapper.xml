@@ -24,12 +24,59 @@
     select 
     <include refid="Base_Column_List" />
     from public.channel_cust
-    where cc_id = #{ccId,jdbcType=BIGINT}
+    where cc_id = #{ccId,jdbcType=BIGINT} and del_status = 0
   </select>
+  
+  <select id="selectChannelCust" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.channel.model.ChannelCust" >
+    select 
+    	<include refid="Base_Column_List" />
+    from public.channel_cust
+    <where>
+    	del_status = 0
+      <if test="ccId != null">
+      	and cc_id = #{ccId,jdbcType=BIGINT}
+      </if>
+   	  <if test="custCode != null" >
+        and cust_code = #{custCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        and channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="prodId != null" >
+        and prod_id = #{prodId,jdbcType=INTEGER},
+      </if>
+      <if test="channelCustNo != null" >
+        and channel_cust_no = #{channelCustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        and audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        and remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        and record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        and entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        and operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        and operation_user_id = #{operationUserId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from public.channel_cust
     where cc_id = #{ccId,jdbcType=BIGINT}
   </delete>
+  
   <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.channel.model.ChannelCust" >
     <selectKey resultType="java.lang.Long" keyProperty="ccId" order="BEFORE" >
       select nextval('channel_cust_cc_id_seq')
@@ -186,5 +233,14 @@
       operation_time = #{operationTime,jdbcType=TIMESTAMP},
       operation_user_id = #{operationUserId,jdbcType=BIGINT}
     where cc_id = #{ccId,jdbcType=BIGINT}
+  </update>
+  <!-- 逻辑删除商户 -->
+  <update id="delByChannelCustNo" parameterType="com.bec.cloud.baodanxitong.web.channel.model.ChannelCust">
+  	update channel_cust
+  	set remarks = #{remarks,jdbcType=VARCHAR},
+  	del_status = #{delStatus,jdbcType=INTEGER},
+  	operation_time = #{operationTime,jdbcType=TIMESTAMP},
+  	operation_user_id = #{operationUserId,jdbcType=BIGINT}
+  	where channel_cust_no = #{channelCustNo,jdbcType=VARCHAR}
   </update>
 </mapper>
