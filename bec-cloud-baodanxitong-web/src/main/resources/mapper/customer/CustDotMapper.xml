@@ -296,4 +296,12 @@
       operation_time = #{operationTime,jdbcType=TIMESTAMP}
     where dot_id = #{dotId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectCustDots" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.cust_dot
+    where 1=1
+    <!-- 待确定查询条件 -->
+  </select>
 </mapper>

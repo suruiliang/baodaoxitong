@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.service;
 
+import java.util.List;
+
 import com.bec.cloud.baodanxitong.web.customer.model.CustDot;
 
 public interface CustDotService {
@@ -14,4 +16,6 @@ public interface CustDotService {
     int updateByPrimaryKeySelective(CustDot record);
 
     int updateByPrimaryKey(CustDot record);
+    
+    List<CustDot> selectCustDots(CustDot record);
 }

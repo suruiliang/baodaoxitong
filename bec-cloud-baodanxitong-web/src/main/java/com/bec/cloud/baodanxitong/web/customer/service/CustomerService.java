@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.service;
 
+import java.util.List;
+
 import com.bec.cloud.baodanxitong.web.customer.model.Customer;
 
 public interface CustomerService {
@@ -14,4 +16,6 @@ public interface CustomerService {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+	List<Customer> selectustCustomers(Customer record);
 }

@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.customer.model.CustDotTermHistory;
@@ -17,4 +19,6 @@ public interface CustDotTermHistoryMapper {
     int updateByPrimaryKeySelective(CustDotTermHistory record);
 
     int updateByPrimaryKey(CustDotTermHistory record);
+    
+    List<CustDotTermHistory> selectustCustDotTermHistorys(CustDotTermHistory info);
 }

@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.customer.model.CustDot;
@@ -17,4 +19,6 @@ public interface CustDotMapper {
     int updateByPrimaryKeySelective(CustDot record);
 
     int updateByPrimaryKey(CustDot record);
+    
+    List<CustDot> selectCustDots(CustDot record);
 }

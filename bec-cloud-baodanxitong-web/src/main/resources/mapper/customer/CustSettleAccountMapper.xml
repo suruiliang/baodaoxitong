@@ -270,4 +270,12 @@
       bank_card_back_path = #{bankCardBackPath,jdbcType=VARCHAR}
     where account_id = #{accountId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectustCustSettleAccounts" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.cust_settle_account
+    where 1=1
+    <!-- 条件待定 -->
+  </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,11 @@ public class CustDotServiceImpl implements CustDotService {
 	@Override
 	public int updateByPrimaryKey(CustDot record) {
 		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<CustDot> selectCustDots(CustDot record) {
+		return mapper.selectCustDots(record);
 	}
 
 }

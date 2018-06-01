@@ -1,7 +1,10 @@
 package com.bec.cloud.baodanxitong.web.customer.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
+import com.bec.cloud.baodanxitong.web.customer.model.CustDot;
 import com.bec.cloud.baodanxitong.web.customer.model.CustDotTerm;
 
 @Mapper
@@ -17,4 +20,6 @@ public interface CustDotTermMapper {
     int updateByPrimaryKeySelective(CustDotTerm record);
 
     int updateByPrimaryKey(CustDotTerm record);
+    
+    List<CustDotTerm> selectustDotTerms(CustDot custDot);
 }
