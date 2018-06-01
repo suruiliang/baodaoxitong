@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.dict.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.dict.model.PayProd;
@@ -17,4 +19,6 @@ public interface PayProdMapper {
     int updateByPrimaryKeySelective(PayProd record);
 
     int updateByPrimaryKey(PayProd record);
+    
+    List<PayProd> selectPayProd(PayProd record);
 }

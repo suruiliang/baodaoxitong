@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.dict.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,12 @@ public class BecMccCategoryServiceImpl implements BecMccCategoryService {
 	@Override
 	public int updateByPrimaryKey(BecMccCategory record) {
 		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<BecMccCategory> selectBecMccCategory(BecMccCategory record) {
+		
+		return mapper.selectBecMccCategory(record);
 	}
 
 }

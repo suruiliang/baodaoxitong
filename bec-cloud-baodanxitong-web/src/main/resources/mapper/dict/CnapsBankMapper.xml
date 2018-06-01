@@ -150,4 +150,43 @@
       operation_user_id = #{operationUserId,jdbcType=BIGINT}
     where bankcode = #{bankcode,jdbcType=VARCHAR}
   </update>
+  <select id="selectCnapsBank" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.dict.model.CnapsBank">
+		select
+		<include refid="Base_Column_List" />
+		from public.cnaps_bank
+		<where>
+			<if test="startTime != null">
+				and record_time <![CDATA[>=]]>
+				to_timestamp(#{startTime}/1000)
+			</if>
+			<if test="endTime != null">
+				and record_time <![CDATA[<=]]>
+				to_timestamp(#{endTime}/1000)
+			</if>
+			<if test="searchName != null">
+				and bank_network_name||bank_name||remarks like
+				'%'||#{searchName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="county_code != null">
+				and county_code = #{countyCode,jdbcType=INTEGER}
+			</if>
+			<if test="delStatus != null">
+				and del_status = #{delStatus,jdbcType=INTEGER}
+			</if>
+			<if test="entryUserId != null">
+				and entry_user_id = #{entryUserId,jdbcType=BIGINT}
+			</if>
+			<if test="operationUserId != null">
+				and operation_user_id = #{operationUserId,jdbcType=BIGINT}
+			</if>
+			<if test="bankcode != null and bankcode !=''">
+				and bankcode = #{bankcode,jdbcType=VARCHAR}
+			</if>
+			<if test="operationTime != null">
+				and operation_time = #{operationTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by bankcode desc
+	</select>
 </mapper>

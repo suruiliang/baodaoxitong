@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.dict.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.dict.model.BecMcc;
@@ -17,4 +19,6 @@ public interface BecMccMapper {
     int updateByPrimaryKeySelective(BecMcc record);
 
     int updateByPrimaryKey(BecMcc record);
+    
+    List<BecMcc> selectBecMcc(BecMcc record);
 }

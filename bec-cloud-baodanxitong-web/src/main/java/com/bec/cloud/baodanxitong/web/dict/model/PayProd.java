@@ -2,7 +2,14 @@ package com.bec.cloud.baodanxitong.web.dict.model;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class PayProd {
+	
+	private Long startTime;
+	private Long endTime;
+	private String searchName;
     private Integer prodId;
 
     private String prodCode;

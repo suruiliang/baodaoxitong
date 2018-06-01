@@ -2,7 +2,14 @@ package com.bec.cloud.baodanxitong.web.dict.model;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class BecMccCategory {
+	
+	private Long startTime;
+	private Long endTime;
+	private String searchName;
     private Integer categoryId;
 
     private String categoryName;
@@ -82,4 +89,6 @@ public class BecMccCategory {
     public void setOperationUserId(Long operationUserId) {
         this.operationUserId = operationUserId;
     }
+    
+    
 }

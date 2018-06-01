@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.dict.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionFour;
@@ -17,4 +19,6 @@ public interface CnapsRegionFourMapper {
     int updateByPrimaryKeySelective(CnapsRegionFour record);
 
     int updateByPrimaryKey(CnapsRegionFour record);
+    
+    List<CnapsRegionFour> selectCnapsRegionFour(CnapsRegionFour record);
 }

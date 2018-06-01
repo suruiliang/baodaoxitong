@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.dict.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,11 @@ public class CnapsRegionFourServiceImpl implements CnapsRegionFourService {
 	@Override
 	public int updateByPrimaryKey(CnapsRegionFour record) {
 		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<CnapsRegionFour> selectCnapsRegionFour(CnapsRegionFour record) {
+		return mapper.selectCnapsRegionFour(record);
 	}
 
 }

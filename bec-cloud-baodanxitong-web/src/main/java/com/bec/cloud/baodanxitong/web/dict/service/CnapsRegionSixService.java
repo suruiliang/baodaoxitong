@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.dict.service;
 
+import java.util.List;
+
 import com.bec.cloud.baodanxitong.web.dict.model.CnapsRegionSix;
 
 public interface CnapsRegionSixService {
@@ -14,4 +16,6 @@ public interface CnapsRegionSixService {
     int updateByPrimaryKeySelective(CnapsRegionSix record);
 
     int updateByPrimaryKey(CnapsRegionSix record);
+    
+    List<CnapsRegionSix> selectCnapsRegionSix(CnapsRegionSix record);
 }
