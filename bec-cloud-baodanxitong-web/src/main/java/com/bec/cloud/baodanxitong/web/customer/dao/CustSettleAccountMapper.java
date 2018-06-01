@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccount;
@@ -17,4 +19,6 @@ public interface CustSettleAccountMapper {
     int updateByPrimaryKeySelective(CustSettleAccount record);
 
     int updateByPrimaryKey(CustSettleAccount record);
+    
+    List<CustSettleAccount> selectustCustSettleAccounts(CustSettleAccount info);
 }

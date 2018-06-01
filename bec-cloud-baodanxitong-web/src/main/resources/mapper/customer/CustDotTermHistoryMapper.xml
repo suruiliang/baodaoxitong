@@ -150,4 +150,12 @@
       abno_status = #{abnoStatus,jdbcType=INTEGER}
     where dt_id = #{dtId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectustCustDotTermHistorys" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDotTermHistory">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.cust_dot_term_history
+    where 1=1
+    <!-- 条件待定 -->
+  </select>
 </mapper>

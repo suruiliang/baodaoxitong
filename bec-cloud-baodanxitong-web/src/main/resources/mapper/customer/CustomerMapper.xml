@@ -531,4 +531,12 @@
       cust_lname = #{custLname,jdbcType=VARCHAR}
     where cust_id = #{custId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectustCustomers" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.customer.model.Customer">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.customer
+    where 1=1
+    <!-- 条件待定 -->
+  </select>
 </mapper>

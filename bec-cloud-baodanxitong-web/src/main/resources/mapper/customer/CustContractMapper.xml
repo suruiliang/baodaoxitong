@@ -223,4 +223,12 @@
       operation_time = #{operationTime,jdbcType=DATE}
     where cont_id = #{contId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectCustContracts" resultMap = "BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContract">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.cust_contract
+    where 1=1
+    <!-- 条件待加 -->
+  </select>
 </mapper>

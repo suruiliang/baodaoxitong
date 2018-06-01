@@ -1,9 +1,12 @@
 package com.bec.cloud.baodanxitong.web.customer.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bec.cloud.baodanxitong.web.customer.dao.CustDotTermMapper;
+import com.bec.cloud.baodanxitong.web.customer.model.CustDot;
 import com.bec.cloud.baodanxitong.web.customer.model.CustDotTerm;
 import com.bec.cloud.baodanxitong.web.customer.service.CustDotTermService;
 
@@ -41,6 +44,11 @@ public class CustDotTermServiceImpl implements CustDotTermService {
 	@Override
 	public int updateByPrimaryKey(CustDotTerm record) {
 		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<CustDotTerm> selectustDotTerms(CustDot custDot) {
+		return mapper.selectustDotTerms(custDot);
 	}
 
 }

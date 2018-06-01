@@ -1,5 +1,7 @@
 package com.bec.cloud.baodanxitong.web.customer.service;
 
+import java.util.List;
+
 import com.bec.cloud.baodanxitong.web.customer.model.CustDotTermHistory;
 
 public interface CustDotTermHistoryService {
@@ -14,4 +16,6 @@ public interface CustDotTermHistoryService {
     int updateByPrimaryKeySelective(CustDotTermHistory record);
 
     int updateByPrimaryKey(CustDotTermHistory record);
+
+	List<CustDotTermHistory> selectustCustDotTermHistorys(CustDotTermHistory info);
 }
