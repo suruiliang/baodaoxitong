@@ -1,32 +1,37 @@
 package com.bec.cloud.baodanxitong.web.channel.model;
 
 import java.util.Date;
-
+/**
+ * 通道商户表实例
+ * @author wxb
+ *
+ */
 public class ChannelCust {
+	//通道商户表id
     private Long ccId;
-
+    //商户编号
     private String custCode;
-
+    //通道id
     private Integer channelId;
-
+    //支付方式id
     private Integer prodId;
-
+    //通道商户编号
     private String channelCustNo;
-
+    //上游审核状态/0待提交审核请求/1审核中/2审核通过/3审核不通过
     private Integer auditStatus;
-
+    //通道商户状态/0开通/1关闭
     private Integer status;
-
+    //状态备注
     private String remarks;
-
+    //删除状态/0未删除/1删除
     private Integer delStatus;
-
+    //入库时间
     private Date recordTime;
-
+    //录入人员
     private Long entryUserId;
-
+    //操作时间
     private Date operationTime;
-
+    //操作人
     private Long operationUserId;
 
     public Long getCcId() {
@@ -131,5 +136,14 @@ public class ChannelCust {
 
     public void setOperationUserId(Long operationUserId) {
         this.operationUserId = operationUserId;
+    }
+    @Override
+    public String toString(){
+		return "ChannelCust:{ccId:" + ccId + ",custCode:" + custCode + ",channelId:" + channelId + ",prodId:" +prodId
+				+ ",channelCustNo:" + channelCustNo + ",auditStatus:" + auditStatus + ",status:" + status 
+				+ ",remarks:" +remarks + ",delStatus:" + delStatus + ",recordTime:" + recordTime 
+				+ ",entryUserId:" + entryUserId + ",operationTime:" + operationTime
+				+ ",operationUserId:" + operationUserId + "}"
+				;
     }
 }

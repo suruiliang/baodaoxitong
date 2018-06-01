@@ -14,6 +14,10 @@
     <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
     <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
   </resultMap>
+  <sql id="Base_Column_List">
+  	channel_id,channel_code,channel_name,channel_url,channel_remark,channel_status,del_status,
+  	record_time,entry_user_id,operation_time,operation_user_id
+  </sql>
   <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.channel.model.Channel" >
     <selectKey resultType="java.lang.Integer" keyProperty="channelId" order="BEFORE" >
       select nextval('channel_channel_id_seq')
@@ -34,13 +38,13 @@
     insert into public.channel
     <trim prefix="(" suffix=")" suffixOverrides="," >
       channel_id,
-      <if test="channelCode != null" >
+      <if test="channelCode != null and channelCode != '' " >
         channel_code,
       </if>
-      <if test="channelName != null" >
+      <if test="channelName != null and channelName != '' " >
         channel_name,
       </if>
-      <if test="channelUrl != null" >
+      <if test="channelUrl != null and channelUrl != '' " >
         channel_url,
       </if>
       <if test="channelRemark != null" >
@@ -67,13 +71,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{channelId,jdbcType=INTEGER},
-      <if test="channelCode != null" >
+      <if test="channelCode != null and channelCode != '' " >
         #{channelCode,jdbcType=VARCHAR},
       </if>
-      <if test="channelName != null" >
+      <if test="channelName != null and channelName != '' " >
         #{channelName,jdbcType=VARCHAR},
       </if>
-      <if test="channelUrl != null" >
+      <if test="channelUrl != null and channelUrl != '' " >
         #{channelUrl,jdbcType=VARCHAR},
       </if>
       <if test="channelRemark != null" >
@@ -99,4 +103,79 @@
       </if>
     </trim>
   </insert>
+  <!-- 查询通道信息 -->
+  <select id="selectChannel" parameterType="com.bec.cloud.baodanxitong.web.channel.model.Channel" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"></include>
+  	from channel
+  	<where>
+  		del_status = 0
+  	  <if test="channelCode != null and channelCode != '' " >
+        and channel_code = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null and channelName != '' " >
+        and channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null and channelUrl != '' " >
+        and channel_url = #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRemark != null" >
+        and channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="channelStatus != null" >
+        and channel_status = #{channelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="recordTime != null" >
+        and record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryUserId != null" >
+        and entry_user_id = #{entryUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        and operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        and operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+  	</where>
+  </select>
+  <select id="selectByChannelId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"></include>
+  	from channel
+  	where del_status = 0 and channel_id = #{channelId,jdbcType=INTEGER}
+  </select>
+  <!-- 逻辑删除通道信息 -->
+  <update id="delByChannelId" parameterType="com.bec.cloud.baodanxitong.web.channel.model.Channel">
+  	update channel 
+  	set del_status = 1
+  		and operationUserId = #{operationUserId,jdbcType=BIGINT} 
+  	where channel_id = #{channelId,jdbcType=INTEGER}
+  </update>
+  <!-- 变更通道信息 -->
+  <update id="updateByChannelId" parameterType="com.bec.cloud.baodanxitong.web.channel.model.Channel">
+  	update channel
+  	<set>
+  	  <if test="channelCode != null and channelCode != '' " >
+        and channel_code = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null and channelName != '' " >
+        and channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null and channelUrl != '' " >
+        and channel_url = #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRemark != null" >
+        and channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="channelStatus != null" >
+        and channel_status = #{channelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="operationTime != null" >
+        and operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        and operation_user_id = #{operationUserId,jdbcType=BIGINT},
+      </if>
+  	</set>
+  	where channel_id = #{channelId,jdbcType=INTEGER}
+  </update>
 </mapper>

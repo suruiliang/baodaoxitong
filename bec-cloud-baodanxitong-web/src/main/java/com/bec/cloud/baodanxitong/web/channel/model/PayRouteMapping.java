@@ -1,22 +1,27 @@
 package com.bec.cloud.baodanxitong.web.channel.model;
 
 import java.util.Date;
-
+/**
+ * 路由表实例
+ * @author wxb
+ *
+ */
 public class PayRouteMapping {
+	//商户编号
     private String custCode;
-
+    //通道id(主)
     private Integer channelId1;
-
+    //通道id（备）
     private Integer channelId2;
-
+    //通道id（备）
     private Integer channelId3;
-
+    //入库时间
     private Date recordTime;
-
+    //录入人员
     private Long entryUserId;
-
+    //操作时间
     private Date operationTime;
-
+    //操作人
     private Long operationUserId;
 
     public String getCustCode() {
@@ -81,5 +86,12 @@ public class PayRouteMapping {
 
     public void setOperationUserId(Long operationUserId) {
         this.operationUserId = operationUserId;
+    }
+    @Override
+    public String toString (){
+		return "PayRouteMapping:{custCode:" + custCode + ",channelId1:" + channelId1 + ",channelId2:" + channelId2
+				+ ",channelId3:" + channelId3 + ",recordTime:" + recordTime + ",entryUserId:" + entryUserId
+				+ ",operationTime:" + operationTime + ",operationUserId:" + operationUserId + "}";
+    	
     }
 }
