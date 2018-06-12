@@ -313,7 +313,7 @@
 			<if test="orgName != null">
 				and org_name like '%'||#{orgName,jdbcType=VARCHAR}||'%'
 			</if>
-			<if test="orgStatus != null">
+			<if test="orgStatus != null and orgStatus!=-1">
 				and org_status = #{orgStatus,jdbcType=INTEGER}
 			</if>
 		</where>

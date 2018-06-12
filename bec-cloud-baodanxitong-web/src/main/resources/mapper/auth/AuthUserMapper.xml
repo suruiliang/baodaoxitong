@@ -354,7 +354,7 @@
 		r.role_status=0
 		<where>
 			u.del_status =0
-			<if test="userStatus != null">
+			<if test="userStatus != null and userStatus!=-1">
 				and u.user_status = #{userStatus,jdbcType=INTEGER}
 			</if>
 			<if test="searchName != null and searchName !='' ">

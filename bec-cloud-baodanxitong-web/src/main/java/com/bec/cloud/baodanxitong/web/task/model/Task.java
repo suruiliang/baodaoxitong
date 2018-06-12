@@ -9,6 +9,7 @@ public class Task {
 	private Long startTime;
 	private Long endTime;
 	private Long userId;
+	private String searchName;
 	//================request
     private Long taskId;
 

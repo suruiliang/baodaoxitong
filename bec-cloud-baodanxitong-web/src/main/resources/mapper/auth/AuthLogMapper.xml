@@ -262,7 +262,7 @@
 				and record_time <![CDATA[<=]]>
 				to_timestamp(#{endTime}/1000)
 			</if>
-			<if test="visitModule != null">
+			<if test="visitModule != null and visitModule!=''">
 				and visit_module = #{visitModule,jdbcType=VARCHAR}
 			</if>
 			<if test="searchName != null">

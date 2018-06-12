@@ -267,9 +267,9 @@
 		<where>
 			del_status = 0
 			<if test="taskName != null">
-				and task_name = #{taskName,jdbcType=VARCHAR}
+				and task_name like '%'||#{taskName,jdbcType=VARCHAR}||'%'
 			</if>
-			<if test="taskStatus != null">
+			<if test="taskStatus != null and taskStatus!=-1">
 				and task_status = #{taskStatus,jdbcType=INTEGER}
 			</if>
 			<if test="startTime != null">
@@ -282,6 +282,9 @@
 			</if>
 			<if test="userId != null">
 				and (entry_user_id=#{userId,jdbcType=BIGINT} or operation_user_id=#{userId,jdbcType=BIGINT})
+			</if>
+			<if test="searchName != null">
+				and legal_phone||cust_name like '%'||#{searchName,jdbcType=VARCHAR}||'%'
 			</if>
 			
 			
