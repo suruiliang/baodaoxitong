@@ -12,8 +12,35 @@ public class Task {
 	private String searchName;
 	//================request
     private Long taskId;
+    public Task() {
+    	
+    }
 
-    private Long launchId;
+    public Task(Long launchId, String launchModule, String legalPhone, String custName, String custCode, String orgCode,
+			String taskName, String taskType, String taskSubType, Integer finishStatus, Integer taskStatus,
+			Integer delStatus, Date recordTime, Long entryUserId, Long operationUserId, Date operationTime,
+			String fullClassName) {
+		super();
+		this.launchId = launchId;
+		this.launchModule = launchModule;
+		this.legalPhone = legalPhone;
+		this.custName = custName;
+		this.custCode = custCode;
+		this.orgCode = orgCode;
+		this.taskName = taskName;
+		this.taskType = taskType;
+		this.taskSubType = taskSubType;
+		this.finishStatus = finishStatus;
+		this.taskStatus = taskStatus;
+		this.delStatus = delStatus;
+		this.recordTime = recordTime;
+		this.entryUserId = entryUserId;
+		this.operationUserId = operationUserId;
+		this.operationTime = operationTime;
+		this.fullClassName = fullClassName;
+	}
+
+	private Long launchId;
 
     private String launchModule;
 
@@ -48,5 +75,6 @@ public class Task {
     private Date operationTime;
 
     private String fullClassName;
+    
 
 }

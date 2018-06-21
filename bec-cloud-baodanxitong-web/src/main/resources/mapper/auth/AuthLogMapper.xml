@@ -20,13 +20,14 @@
 		<result column="operation_time" property="operationTime"
 			jdbcType="TIMESTAMP" />
 		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="cust_phone" property="custPhone" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		log_id, login_ip, login_time, user_id, cust_code, org_code,
 		version, mac,
 		soft_type,
 		visit_module, user_name, cust_name, org_name,
-		record_time, operation_time,real_name
+		record_time, operation_time,real_name,cust_phone
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
@@ -51,7 +52,7 @@
 		version, mac, soft_type,
 		visit_module, user_name,
 		cust_name,
-		org_name, record_time, operation_time,real_name
+		org_name, record_time, operation_time,real_name,cust_phone
 		)
 		values
 		(#{logId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR},
@@ -63,7 +64,7 @@
 		#{visitModule,jdbcType=VARCHAR},
 		#{userName,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR},
 		#{orgName,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP},
-		#{operationTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}
+		#{operationTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}, #{custPhone,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.auth.model.AuthLog">
@@ -119,6 +120,9 @@
 			<if test="realName != null">
 				real_name,
 			</if>
+			<if test="custPhone != null">
+				cust_phone,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{logId,jdbcType=BIGINT},
@@ -166,6 +170,9 @@
 			</if>
 			<if test="realName != null">
 				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="custPhone != null">
+				#{custPhone,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -217,6 +224,9 @@
 			<if test="realName != null">
 				real_name = #{realName,jdbcType=VARCHAR},
 			</if>
+			<if test="custPhone != null">
+				cust_phone = #{custPhone,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where log_id = #{logId,jdbcType=BIGINT}
 	</update>
@@ -244,7 +254,9 @@
 		operation_time =
 		#{operationTime,jdbcType=TIMESTAMP},
 		real_name =
-		#{realName,jdbcType=VARCHAR}
+		#{realName,jdbcType=VARCHAR},
+		cust_phone =
+		#{custPhone,jdbcType=VARCHAR}		
 		where log_id = #{logId,jdbcType=BIGINT}
 	</update>
 

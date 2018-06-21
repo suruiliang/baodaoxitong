@@ -283,7 +283,7 @@
 			<if test="userId != null">
 				and (entry_user_id=#{userId,jdbcType=BIGINT} or operation_user_id=#{userId,jdbcType=BIGINT})
 			</if>
-			<if test="searchName != null">
+			<if test="searchName != null and searchName!=''">
 				and legal_phone||cust_name like '%'||#{searchName,jdbcType=VARCHAR}||'%'
 			</if>
 			

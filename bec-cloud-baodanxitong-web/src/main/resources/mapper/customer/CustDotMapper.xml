@@ -1,307 +1,475 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustDotMapper" >
-  <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.customer.model.CustDot" >
-    <id column="dot_id" property="dotId" jdbcType="BIGINT" />
-    <result column="cust_id" property="custId" jdbcType="BIGINT" />
-    <result column="dot_code" property="dotCode" jdbcType="VARCHAR" />
-    <result column="dot_level" property="dotLevel" jdbcType="INTEGER" />
-    <result column="dot_name" property="dotName" jdbcType="VARCHAR" />
-    <result column="dot_oper_county_code" property="dotOperCountyCode" jdbcType="INTEGER" />
-    <result column="dot_oper_detail_addr" property="dotOperDetailAddr" jdbcType="VARCHAR" />
-    <result column="dot_contacts" property="dotContacts" jdbcType="VARCHAR" />
-    <result column="dot_contacts_pho" property="dotContactsPho" jdbcType="VARCHAR" />
-    <result column="dot_head_photo_path" property="dotHeadPhotoPath" jdbcType="VARCHAR" />
-    <result column="dot_in_photo_path" property="dotInPhotoPath" jdbcType="VARCHAR" />
-    <result column="dot_cash_photo_path" property="dotCashPhotoPath" jdbcType="VARCHAR" />
-    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="del_status" property="delStatus" jdbcType="INTEGER" />
-    <result column="dot_Emergency_contact" property="dotEmergencyContact" jdbcType="VARCHAR" />
-    <result column="dot_Emergency_contact_phone" property="dotEmergencyContactPhone" jdbcType="VARCHAR" />
-    <result column="dot_Affiliation_to_customer" property="dotAffiliationToCustomer" jdbcType="VARCHAR" />
-    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
-    <result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
-    <result column="operation_user_id" property="operationUserId" jdbcType="BIGINT" />
-    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    dot_id, cust_id, dot_code, dot_level, dot_name, dot_oper_county_code, dot_oper_detail_addr, 
-    dot_contacts, dot_contacts_pho, dot_head_photo_path, dot_in_photo_path, dot_cash_photo_path, 
-    audit_status, remark, del_status, dot_Emergency_contact, dot_Emergency_contact_phone, 
-    dot_Affiliation_to_customer, record_time, entry_user_id, operation_user_id, operation_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from public.cust_dot
-    where dot_id = #{dotId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from public.cust_dot
-    where dot_id = #{dotId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot" >
-    <selectKey resultType="java.lang.Long" keyProperty="dotId" order="BEFORE" >
-      select nextval('cust_dot_dot_id_seq')
-    </selectKey>
-    insert into public.cust_dot (dot_id, cust_id, dot_code, 
-      dot_level, dot_name, dot_oper_county_code, 
-      dot_oper_detail_addr, dot_contacts, dot_contacts_pho, 
-      dot_head_photo_path, dot_in_photo_path, dot_cash_photo_path, 
-      audit_status, remark, del_status, 
-      dot_Emergency_contact, dot_Emergency_contact_phone, 
-      dot_Affiliation_to_customer, record_time, 
-      entry_user_id, operation_user_id, operation_time
-      )
-    values (#{dotId,jdbcType=BIGINT}, #{custId,jdbcType=BIGINT}, #{dotCode,jdbcType=VARCHAR}, 
-      #{dotLevel,jdbcType=INTEGER}, #{dotName,jdbcType=VARCHAR}, #{dotOperCountyCode,jdbcType=INTEGER}, 
-      #{dotOperDetailAddr,jdbcType=VARCHAR}, #{dotContacts,jdbcType=VARCHAR}, #{dotContactsPho,jdbcType=VARCHAR}, 
-      #{dotHeadPhotoPath,jdbcType=VARCHAR}, #{dotInPhotoPath,jdbcType=VARCHAR}, #{dotCashPhotoPath,jdbcType=VARCHAR}, 
-      #{auditStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{delStatus,jdbcType=INTEGER}, 
-      #{dotEmergencyContact,jdbcType=VARCHAR}, #{dotEmergencyContactPhone,jdbcType=VARCHAR}, 
-      #{dotAffiliationToCustomer,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, 
-      #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot" >
-    <selectKey resultType="java.lang.Long" keyProperty="dotId" order="BEFORE" >
-      select nextval('cust_dot_dot_id_seq')
-    </selectKey>
-    insert into public.cust_dot
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      dot_id,
-      <if test="custId != null" >
-        cust_id,
-      </if>
-      <if test="dotCode != null" >
-        dot_code,
-      </if>
-      <if test="dotLevel != null" >
-        dot_level,
-      </if>
-      <if test="dotName != null" >
-        dot_name,
-      </if>
-      <if test="dotOperCountyCode != null" >
-        dot_oper_county_code,
-      </if>
-      <if test="dotOperDetailAddr != null" >
-        dot_oper_detail_addr,
-      </if>
-      <if test="dotContacts != null" >
-        dot_contacts,
-      </if>
-      <if test="dotContactsPho != null" >
-        dot_contacts_pho,
-      </if>
-      <if test="dotHeadPhotoPath != null" >
-        dot_head_photo_path,
-      </if>
-      <if test="dotInPhotoPath != null" >
-        dot_in_photo_path,
-      </if>
-      <if test="dotCashPhotoPath != null" >
-        dot_cash_photo_path,
-      </if>
-      <if test="auditStatus != null" >
-        audit_status,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="delStatus != null" >
-        del_status,
-      </if>
-      <if test="dotEmergencyContact != null" >
-        dot_Emergency_contact,
-      </if>
-      <if test="dotEmergencyContactPhone != null" >
-        dot_Emergency_contact_phone,
-      </if>
-      <if test="dotAffiliationToCustomer != null" >
-        dot_Affiliation_to_customer,
-      </if>
-      <if test="recordTime != null" >
-        record_time,
-      </if>
-      <if test="entryUserId != null" >
-        entry_user_id,
-      </if>
-      <if test="operationUserId != null" >
-        operation_user_id,
-      </if>
-      <if test="operationTime != null" >
-        operation_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{dotId,jdbcType=BIGINT},
-      <if test="custId != null" >
-        #{custId,jdbcType=BIGINT},
-      </if>
-      <if test="dotCode != null" >
-        #{dotCode,jdbcType=VARCHAR},
-      </if>
-      <if test="dotLevel != null" >
-        #{dotLevel,jdbcType=INTEGER},
-      </if>
-      <if test="dotName != null" >
-        #{dotName,jdbcType=VARCHAR},
-      </if>
-      <if test="dotOperCountyCode != null" >
-        #{dotOperCountyCode,jdbcType=INTEGER},
-      </if>
-      <if test="dotOperDetailAddr != null" >
-        #{dotOperDetailAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="dotContacts != null" >
-        #{dotContacts,jdbcType=VARCHAR},
-      </if>
-      <if test="dotContactsPho != null" >
-        #{dotContactsPho,jdbcType=VARCHAR},
-      </if>
-      <if test="dotHeadPhotoPath != null" >
-        #{dotHeadPhotoPath,jdbcType=VARCHAR},
-      </if>
-      <if test="dotInPhotoPath != null" >
-        #{dotInPhotoPath,jdbcType=VARCHAR},
-      </if>
-      <if test="dotCashPhotoPath != null" >
-        #{dotCashPhotoPath,jdbcType=VARCHAR},
-      </if>
-      <if test="auditStatus != null" >
-        #{auditStatus,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="delStatus != null" >
-        #{delStatus,jdbcType=INTEGER},
-      </if>
-      <if test="dotEmergencyContact != null" >
-        #{dotEmergencyContact,jdbcType=VARCHAR},
-      </if>
-      <if test="dotEmergencyContactPhone != null" >
-        #{dotEmergencyContactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="dotAffiliationToCustomer != null" >
-        #{dotAffiliationToCustomer,jdbcType=VARCHAR},
-      </if>
-      <if test="recordTime != null" >
-        #{recordTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="entryUserId != null" >
-        #{entryUserId,jdbcType=BIGINT},
-      </if>
-      <if test="operationUserId != null" >
-        #{operationUserId,jdbcType=BIGINT},
-      </if>
-      <if test="operationTime != null" >
-        #{operationTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot" >
-    update public.cust_dot
-    <set >
-      <if test="custId != null" >
-        cust_id = #{custId,jdbcType=BIGINT},
-      </if>
-      <if test="dotCode != null" >
-        dot_code = #{dotCode,jdbcType=VARCHAR},
-      </if>
-      <if test="dotLevel != null" >
-        dot_level = #{dotLevel,jdbcType=INTEGER},
-      </if>
-      <if test="dotName != null" >
-        dot_name = #{dotName,jdbcType=VARCHAR},
-      </if>
-      <if test="dotOperCountyCode != null" >
-        dot_oper_county_code = #{dotOperCountyCode,jdbcType=INTEGER},
-      </if>
-      <if test="dotOperDetailAddr != null" >
-        dot_oper_detail_addr = #{dotOperDetailAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="dotContacts != null" >
-        dot_contacts = #{dotContacts,jdbcType=VARCHAR},
-      </if>
-      <if test="dotContactsPho != null" >
-        dot_contacts_pho = #{dotContactsPho,jdbcType=VARCHAR},
-      </if>
-      <if test="dotHeadPhotoPath != null" >
-        dot_head_photo_path = #{dotHeadPhotoPath,jdbcType=VARCHAR},
-      </if>
-      <if test="dotInPhotoPath != null" >
-        dot_in_photo_path = #{dotInPhotoPath,jdbcType=VARCHAR},
-      </if>
-      <if test="dotCashPhotoPath != null" >
-        dot_cash_photo_path = #{dotCashPhotoPath,jdbcType=VARCHAR},
-      </if>
-      <if test="auditStatus != null" >
-        audit_status = #{auditStatus,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="delStatus != null" >
-        del_status = #{delStatus,jdbcType=INTEGER},
-      </if>
-      <if test="dotEmergencyContact != null" >
-        dot_Emergency_contact = #{dotEmergencyContact,jdbcType=VARCHAR},
-      </if>
-      <if test="dotEmergencyContactPhone != null" >
-        dot_Emergency_contact_phone = #{dotEmergencyContactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="dotAffiliationToCustomer != null" >
-        dot_Affiliation_to_customer = #{dotAffiliationToCustomer,jdbcType=VARCHAR},
-      </if>
-      <if test="recordTime != null" >
-        record_time = #{recordTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="entryUserId != null" >
-        entry_user_id = #{entryUserId,jdbcType=BIGINT},
-      </if>
-      <if test="operationUserId != null" >
-        operation_user_id = #{operationUserId,jdbcType=BIGINT},
-      </if>
-      <if test="operationTime != null" >
-        operation_time = #{operationTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where dot_id = #{dotId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot" >
-    update public.cust_dot
-    set cust_id = #{custId,jdbcType=BIGINT},
-      dot_code = #{dotCode,jdbcType=VARCHAR},
-      dot_level = #{dotLevel,jdbcType=INTEGER},
-      dot_name = #{dotName,jdbcType=VARCHAR},
-      dot_oper_county_code = #{dotOperCountyCode,jdbcType=INTEGER},
-      dot_oper_detail_addr = #{dotOperDetailAddr,jdbcType=VARCHAR},
-      dot_contacts = #{dotContacts,jdbcType=VARCHAR},
-      dot_contacts_pho = #{dotContactsPho,jdbcType=VARCHAR},
-      dot_head_photo_path = #{dotHeadPhotoPath,jdbcType=VARCHAR},
-      dot_in_photo_path = #{dotInPhotoPath,jdbcType=VARCHAR},
-      dot_cash_photo_path = #{dotCashPhotoPath,jdbcType=VARCHAR},
-      audit_status = #{auditStatus,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR},
-      del_status = #{delStatus,jdbcType=INTEGER},
-      dot_Emergency_contact = #{dotEmergencyContact,jdbcType=VARCHAR},
-      dot_Emergency_contact_phone = #{dotEmergencyContactPhone,jdbcType=VARCHAR},
-      dot_Affiliation_to_customer = #{dotAffiliationToCustomer,jdbcType=VARCHAR},
-      record_time = #{recordTime,jdbcType=TIMESTAMP},
-      entry_user_id = #{entryUserId,jdbcType=BIGINT},
-      operation_user_id = #{operationUserId,jdbcType=BIGINT},
-      operation_time = #{operationTime,jdbcType=TIMESTAMP}
-    where dot_id = #{dotId,jdbcType=BIGINT}
-  </update>
-  
-  <select id="selectCustDots" resultMap="BaseResultMap" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
-  	select 
-    <include refid="Base_Column_List" />
-    from public.cust_dot
-    where 1=1
-    <!-- 待确定查询条件 -->
-  </select>
+<mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustDotMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
+		<id column="dot_id" property="dotId" jdbcType="BIGINT" />
+		<result column="cust_id" property="custId" jdbcType="BIGINT" />
+		<result column="dot_code" property="dotCode" jdbcType="VARCHAR" />
+		<result column="dot_level" property="dotLevel" jdbcType="INTEGER" />
+		<result column="dot_name" property="dotName" jdbcType="VARCHAR" />
+		<result column="dot_oper_county_code" property="dotOperCountyCode"
+			jdbcType="INTEGER" />
+		<result column="dot_oper_detail_addr" property="dotOperDetailAddr"
+			jdbcType="VARCHAR" />
+		<result column="dot_contacts" property="dotContacts" jdbcType="VARCHAR" />
+		<result column="dot_contacts_pho" property="dotContactsPho"
+			jdbcType="VARCHAR" />
+		<result column="dot_head_photo_path" property="dotHeadPhotoPath"
+			jdbcType="VARCHAR" />
+		<result column="dot_in_photo_path" property="dotInPhotoPath"
+			jdbcType="VARCHAR" />
+		<result column="dot_cash_photo_path" property="dotCashPhotoPath"
+			jdbcType="VARCHAR" />
+		<result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="del_status" property="delStatus" jdbcType="INTEGER" />
+		<result column="dot_Emergency_contact" property="dotEmergencyContact"
+			jdbcType="VARCHAR" />
+		<result column="dot_Emergency_contact_phone" property="dotEmergencyContactPhone"
+			jdbcType="VARCHAR" />
+		<result column="dot_Affiliation_to_customer" property="dotAffiliationToCustomer"
+			jdbcType="VARCHAR" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+		<result column="operation_time" property="operationTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		dot_id, cust_id, dot_code, dot_level, dot_name,
+		dot_oper_county_code,
+		dot_oper_detail_addr,
+		dot_contacts,
+		dot_contacts_pho, dot_head_photo_path, dot_in_photo_path,
+		dot_cash_photo_path,
+		audit_status, remark, del_status,
+		dot_Emergency_contact,
+		dot_Emergency_contact_phone,
+		dot_Affiliation_to_customer, record_time, entry_user_id,
+		operation_user_id, operation_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.cust_dot
+		where dot_id = #{dotId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		public.cust_dot
+		where dot_id = #{dotId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
+		<selectKey resultType="java.lang.Long" keyProperty="dotId"
+			order="BEFORE">
+			select nextval('cust_dot_dot_id_seq')
+		</selectKey>
+		insert into public.cust_dot (dot_id, cust_id, dot_code,
+		dot_level,
+		dot_name, dot_oper_county_code,
+		dot_oper_detail_addr, dot_contacts,
+		dot_contacts_pho,
+		dot_head_photo_path, dot_in_photo_path,
+		dot_cash_photo_path,
+		audit_status, remark, del_status,
+		dot_Emergency_contact, dot_Emergency_contact_phone,
+		dot_Affiliation_to_customer, record_time,
+		entry_user_id,
+		operation_user_id, operation_time
+		)
+		values (#{dotId,jdbcType=BIGINT},
+		#{custId,jdbcType=BIGINT},
+		#{dotCode,jdbcType=VARCHAR},
+		#{dotLevel,jdbcType=INTEGER}, #{dotName,jdbcType=VARCHAR},
+		#{dotOperCountyCode,jdbcType=INTEGER},
+		#{dotOperDetailAddr,jdbcType=VARCHAR},
+		#{dotContacts,jdbcType=VARCHAR}, #{dotContactsPho,jdbcType=VARCHAR},
+		#{dotHeadPhotoPath,jdbcType=VARCHAR},
+		#{dotInPhotoPath,jdbcType=VARCHAR},
+		#{dotCashPhotoPath,jdbcType=VARCHAR},
+		#{auditStatus,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{delStatus,jdbcType=INTEGER},
+		#{dotEmergencyContact,jdbcType=VARCHAR},
+		#{dotEmergencyContactPhone,jdbcType=VARCHAR},
+		#{dotAffiliationToCustomer,jdbcType=VARCHAR},
+		#{recordTime,jdbcType=TIMESTAMP},
+		#{entryUserId,jdbcType=BIGINT},
+		#{operationUserId,jdbcType=BIGINT},
+		#{operationTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot"
+		keyProperty="dotId">
+		<selectKey resultType="java.lang.Long" keyProperty="dotId"
+			order="BEFORE">
+			select nextval('cust_dot_dot_id_seq')
+		</selectKey>
+		insert into public.cust_dot
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			dot_id,
+			<if test="custId != null">
+				cust_id,
+			</if>
+			<if test="dotCode != null">
+				dot_code,
+			</if>
+			<if test="dotLevel != null">
+				dot_level,
+			</if>
+			<if test="dotName != null">
+				dot_name,
+			</if>
+			<if test="dotOperCountyCode != null">
+				dot_oper_county_code,
+			</if>
+			<if test="dotOperDetailAddr != null">
+				dot_oper_detail_addr,
+			</if>
+			<if test="dotContacts != null">
+				dot_contacts,
+			</if>
+			<if test="dotContactsPho != null">
+				dot_contacts_pho,
+			</if>
+			<if test="dotHeadPhotoPath != null">
+				dot_head_photo_path,
+			</if>
+			<if test="dotInPhotoPath != null">
+				dot_in_photo_path,
+			</if>
+			<if test="dotCashPhotoPath != null">
+				dot_cash_photo_path,
+			</if>
+			<if test="auditStatus != null">
+				audit_status,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
+			<if test="dotEmergencyContact != null">
+				dot_Emergency_contact,
+			</if>
+			<if test="dotEmergencyContactPhone != null">
+				dot_Emergency_contact_phone,
+			</if>
+			<if test="dotAffiliationToCustomer != null">
+				dot_Affiliation_to_customer,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+			<if test="operationTime != null">
+				operation_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{dotId,jdbcType=BIGINT},
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="dotCode != null">
+				#{dotCode,jdbcType=VARCHAR},
+			</if>
+			<if test="dotLevel != null">
+				#{dotLevel,jdbcType=INTEGER},
+			</if>
+			<if test="dotName != null">
+				#{dotName,jdbcType=VARCHAR},
+			</if>
+			<if test="dotOperCountyCode != null">
+				#{dotOperCountyCode,jdbcType=INTEGER},
+			</if>
+			<if test="dotOperDetailAddr != null">
+				#{dotOperDetailAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="dotContacts != null">
+				#{dotContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="dotContactsPho != null">
+				#{dotContactsPho,jdbcType=VARCHAR},
+			</if>
+			<if test="dotHeadPhotoPath != null">
+				#{dotHeadPhotoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="dotInPhotoPath != null">
+				#{dotInPhotoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="dotCashPhotoPath != null">
+				#{dotCashPhotoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="delStatus != null">
+				#{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="dotEmergencyContact != null">
+				#{dotEmergencyContact,jdbcType=VARCHAR},
+			</if>
+			<if test="dotEmergencyContactPhone != null">
+				#{dotEmergencyContactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="dotAffiliationToCustomer != null">
+				#{dotAffiliationToCustomer,jdbcType=VARCHAR},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
+		update public.cust_dot
+		<set>
+			<if test="custId != null">
+				cust_id = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="dotCode != null">
+				dot_code = #{dotCode,jdbcType=VARCHAR},
+			</if>
+			<if test="dotLevel != null">
+				dot_level = #{dotLevel,jdbcType=INTEGER},
+			</if>
+			<if test="dotName != null">
+				dot_name = #{dotName,jdbcType=VARCHAR},
+			</if>
+			<if test="dotOperCountyCode != null">
+				dot_oper_county_code =
+				#{dotOperCountyCode,jdbcType=INTEGER},
+			</if>
+			<if test="dotOperDetailAddr != null">
+				dot_oper_detail_addr =
+				#{dotOperDetailAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="dotContacts != null">
+				dot_contacts = #{dotContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="dotContactsPho != null">
+				dot_contacts_pho = #{dotContactsPho,jdbcType=VARCHAR},
+			</if>
+			<if test="dotHeadPhotoPath != null">
+				dot_head_photo_path =
+				#{dotHeadPhotoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="dotInPhotoPath != null">
+				dot_in_photo_path = #{dotInPhotoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="dotCashPhotoPath != null">
+				dot_cash_photo_path =
+				#{dotCashPhotoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				audit_status = #{auditStatus,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="delStatus != null">
+				del_status = #{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="dotEmergencyContact != null">
+				dot_Emergency_contact =
+				#{dotEmergencyContact,jdbcType=VARCHAR},
+			</if>
+			<if test="dotEmergencyContactPhone != null">
+				dot_Emergency_contact_phone =
+				#{dotEmergencyContactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="dotAffiliationToCustomer != null">
+				dot_Affiliation_to_customer =
+				#{dotAffiliationToCustomer,jdbcType=VARCHAR},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where dot_id = #{dotId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
+		update public.cust_dot
+		set cust_id =
+		#{custId,jdbcType=BIGINT},
+		dot_code = #{dotCode,jdbcType=VARCHAR},
+		dot_level = #{dotLevel,jdbcType=INTEGER},
+		dot_name =
+		#{dotName,jdbcType=VARCHAR},
+		dot_oper_county_code =
+		#{dotOperCountyCode,jdbcType=INTEGER},
+		dot_oper_detail_addr =
+		#{dotOperDetailAddr,jdbcType=VARCHAR},
+		dot_contacts =
+		#{dotContacts,jdbcType=VARCHAR},
+		dot_contacts_pho =
+		#{dotContactsPho,jdbcType=VARCHAR},
+		dot_head_photo_path =
+		#{dotHeadPhotoPath,jdbcType=VARCHAR},
+		dot_in_photo_path =
+		#{dotInPhotoPath,jdbcType=VARCHAR},
+		dot_cash_photo_path =
+		#{dotCashPhotoPath,jdbcType=VARCHAR},
+		audit_status =
+		#{auditStatus,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		del_status = #{delStatus,jdbcType=INTEGER},
+		dot_Emergency_contact =
+		#{dotEmergencyContact,jdbcType=VARCHAR},
+		dot_Emergency_contact_phone =
+		#{dotEmergencyContactPhone,jdbcType=VARCHAR},
+		dot_Affiliation_to_customer =
+		#{dotAffiliationToCustomer,jdbcType=VARCHAR},
+		record_time =
+		#{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id =
+		#{entryUserId,jdbcType=BIGINT},
+		operation_user_id =
+		#{operationUserId,jdbcType=BIGINT},
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP}
+		where dot_id =
+		#{dotId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectCustDots" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDot">
+		select
+		<include refid="Base_Column_List" />
+		from public.cust_dot
+		where 1=1
+		<!-- 待确定查询条件 -->
+	</select>
+	<select id="selectCustDeptSimpleResp"
+		resultType="com.bec.cloud.baodanxitong.web.customer.model.resp.CustDeptSimpleResp"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.resp.CustDeptSimpleResp">
+		SELECT
+		cd.cust_id custId,
+		cu.cust_phone custPhone,
+		cu.cust_code custCode,
+		cu.cust_name custName,
+		cu.cust_status custStatus,
+		cu.modify_status
+		modifyStatus,
+		cd.dot_id dotId,
+		cd.dot_name dotName,
+		cd.dot_contacts
+		dotContacts,
+		cd.dot_contacts_pho dotContactsPho
+		FROM
+		PUBLIC.cust_dot cd
+		INNER JOIN PUBLIC.customer cu ON cd.cust_id =
+		cu.cust_id
+		AND
+		cu.del_status = 0
+		<where>
+			cd.del_status = 0
+			<if test="custPhone != null and custPhone!=''">
+				and cu.cust_phone = #{custPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="custCode != null and custCode!=''">
+				and cu.cust_code = #{custCode,jdbcType=VARCHAR}
+			</if>
+			<if test="custName != null and custName!=''">
+				and cu.cust_name like
+				'%'||#{custName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="custStatus != null and custStatus!=-1">
+				and cu.cust_status = #{custStatus,jdbcType=INTEGER}
+			</if>
+			<if test="modifyStatus != null and modifyStatus!=-1">
+				and cu.modify_status = #{modifyStatus,jdbcType=INTEGER}
+			</if>
+		</where>
+		order by cd.dot_id desc
+	</select>
+	<resultMap id="CustDeptDetailRespMap"
+		type="com.bec.cloud.baodanxitong.web.customer.model.resp.CustDeptDetailResp">
+		<id column="dot_id" property="dotId" jdbcType="BIGINT" />
+		<result column="cust_id" property="custId" jdbcType="BIGINT" />
+		<result column="cust_phone" property="custPhone" jdbcType="VARCHAR" />
+		<result column="cust_code" property="custCode" jdbcType="VARCHAR" />
+		<result column="cust_name" property="custName" jdbcType="VARCHAR" />
+		<result column="cust_status" property="custStatus" jdbcType="INTEGER" />
+		<result column="modify_status" property="modifyStatus"
+			jdbcType="INTEGER" />
+
+		<result column="dot_code" property="dotCode" jdbcType="VARCHAR" />
+		<result column="dot_name" property="dotName" jdbcType="VARCHAR" />
+		<result column="dot_oper_county_code" property="dotOperCountyCode"
+			jdbcType="INTEGER" />
+		<result column="dot_oper_detail_addr" property="dotOperDetailAddr"
+			jdbcType="VARCHAR" />
+		<result column="dot_contacts" property="dotContacts" jdbcType="VARCHAR" />
+		<result column="dot_contacts_pho" property="dotContactsPho"
+			jdbcType="VARCHAR" />
+		<result column="dot_head_photo_path" property="dotHeadPhotoPath"
+			jdbcType="VARCHAR" />
+		<result column="dot_in_photo_path" property="dotInPhotoPath"
+			jdbcType="VARCHAR" />
+		<result column="dot_cash_photo_path" property="dotCashPhotoPath"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectCustDeptDetailRespByPrimaryKey" resultMap="CustDeptDetailRespMap"
+		parameterType="java.lang.Long">
+		SELECT
+		cd.cust_id ,
+		cu.cust_phone,
+		cu.cust_code,
+		cu.cust_name,
+		cu.cust_status,
+		cu.modify_status,
+		cd.dot_id,
+		cd.dot_code,
+		cd.dot_name,
+		cd.dot_oper_county_code,
+		cd.dot_oper_detail_addr,
+		cd.dot_contacts,
+		cd.dot_contacts_pho,
+		cd.dot_head_photo_path,
+		cd.dot_in_photo_path,
+		cd.dot_cash_photo_path
+		FROM
+		PUBLIC.cust_dot cd
+		INNER JOIN PUBLIC.customer
+		cu ON cd.cust_id =
+		cu.cust_id
+		AND
+		cu.del_status = 0
+		where dot_id =
+		#{dotId,jdbcType=BIGINT} and cd.del_status = 0
+	</select>
 </mapper>

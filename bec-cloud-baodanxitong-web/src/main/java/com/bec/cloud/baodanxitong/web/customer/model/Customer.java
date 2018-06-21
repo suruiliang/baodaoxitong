@@ -3,7 +3,26 @@ package com.bec.cloud.baodanxitong.web.customer.model;
 import java.util.Date;
 
 public class Customer {
-    private Long custId;
+	private Long salerId;
+	private Integer categoryId;
+	
+    public Long getSalerId() {
+		return salerId;
+	}
+
+	public void setSalerId(Long salerId) {
+		this.salerId = salerId;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	private Long custId;
 
     private Long custPid;
 
@@ -86,6 +105,8 @@ public class Customer {
     private String operAddrType;
 
     private String custLname;
+
+    private Integer custType;
 
     public Long getCustId() {
         return custId;
@@ -421,5 +442,13 @@ public class Customer {
 
     public void setCustLname(String custLname) {
         this.custLname = custLname == null ? null : custLname.trim();
+    }
+
+    public Integer getCustType() {
+        return custType;
+    }
+
+    public void setCustType(Integer custType) {
+        this.custType = custType;
     }
 }

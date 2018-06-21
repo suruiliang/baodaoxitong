@@ -3,7 +3,7 @@
 <mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustContractModifyMapper" >
   <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
     <id column="cont_id" property="contId" jdbcType="BIGINT" />
-    <result column="cust_code" property="custCode" jdbcType="BIGINT" />
+    <result column="cust_id" property="custId" jdbcType="BIGINT" />
     <result column="cont_name" property="contName" jdbcType="VARCHAR" />
     <result column="cont_code" property="contCode" jdbcType="VARCHAR" />
     <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
@@ -21,7 +21,7 @@
     <result column="operation_time" property="operationTime" jdbcType="DATE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    cont_id, cust_code, cont_name, cont_code, audit_status, remark, del_status, change_status, 
+    cont_id, cust_id, cont_name, cont_code, audit_status, remark, del_status, change_status, 
     cont_photo1, cont_photo2, cont_photo3, cont_photo4, cont_photo5, record_time, entry_user_id, 
     operation_user_id, operation_time
   </sql>
@@ -36,13 +36,13 @@
     where cont_id = #{contId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
-    insert into public.cust_contract_modify (cont_id, cust_code, cont_name, 
+    insert into public.cust_contract_modify (cont_id, cust_id, cont_name, 
       cont_code, audit_status, remark, 
       del_status, change_status, cont_photo1, 
       cont_photo2, cont_photo3, cont_photo4, 
       cont_photo5, record_time, entry_user_id, 
       operation_user_id, operation_time)
-    values (#{contId,jdbcType=BIGINT}, #{custCode,jdbcType=BIGINT}, #{contName,jdbcType=VARCHAR}, 
+    values (#{contId,jdbcType=BIGINT}, #{custId,jdbcType=BIGINT}, #{contName,jdbcType=VARCHAR}, 
       #{contCode,jdbcType=VARCHAR}, #{auditStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{delStatus,jdbcType=VARCHAR}, #{changeStatus,jdbcType=INTEGER}, #{contPhoto1,jdbcType=VARCHAR}, 
       #{contPhoto2,jdbcType=VARCHAR}, #{contPhoto3,jdbcType=VARCHAR}, #{contPhoto4,jdbcType=VARCHAR}, 
@@ -55,8 +55,8 @@
       <if test="contId != null" >
         cont_id,
       </if>
-      <if test="custCode != null" >
-        cust_code,
+      <if test="custId != null" >
+        cust_id,
       </if>
       <if test="contName != null" >
         cont_name,
@@ -108,8 +108,8 @@
       <if test="contId != null" >
         #{contId,jdbcType=BIGINT},
       </if>
-      <if test="custCode != null" >
-        #{custCode,jdbcType=BIGINT},
+      <if test="custId != null" >
+        #{custId,jdbcType=BIGINT},
       </if>
       <if test="contName != null" >
         #{contName,jdbcType=VARCHAR},
@@ -161,8 +161,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
     update public.cust_contract_modify
     <set >
-      <if test="custCode != null" >
-        cust_code = #{custCode,jdbcType=BIGINT},
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=BIGINT},
       </if>
       <if test="contName != null" >
         cont_name = #{contName,jdbcType=VARCHAR},
@@ -214,7 +214,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustContractModify" >
     update public.cust_contract_modify
-    set cust_code = #{custCode,jdbcType=BIGINT},
+    set cust_id = #{custId,jdbcType=BIGINT},
       cont_name = #{contName,jdbcType=VARCHAR},
       cont_code = #{contCode,jdbcType=VARCHAR},
       audit_status = #{auditStatus,jdbcType=INTEGER},

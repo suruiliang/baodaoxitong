@@ -5,7 +5,7 @@ import java.util.Date;
 public class CustContractModify {
     private Long contId;
 
-    private Long custCode;
+    private Long custId;
 
     private String contName;
 
@@ -45,12 +45,12 @@ public class CustContractModify {
         this.contId = contId;
     }
 
-    public Long getCustCode() {
-        return custCode;
+    public Long getCustId() {
+        return custId;
     }
 
-    public void setCustCode(Long custCode) {
-        this.custCode = custCode;
+    public void setCustId(Long custId) {
+        this.custId = custId;
     }
 
     public String getContName() {

@@ -19,6 +19,6 @@ public interface CustSettleAccountMapper {
     int updateByPrimaryKeySelective(CustSettleAccount record);
 
     int updateByPrimaryKey(CustSettleAccount record);
-    
-    List<CustSettleAccount> selectustCustSettleAccounts(CustSettleAccount info);
+
+	List<CustSettleAccount> selectCustSettleAccounts(CustSettleAccount info);
 }

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustBusiLicenseMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.customer.model.CustBusiLicense">
+		<id column="cbl_id" property="cblId" jdbcType="BIGINT" />
+		<result column="cust_id" property="custId" jdbcType="BIGINT" />
+		<result column="cbl_type" property="cblType" jdbcType="INTEGER" />
+		<result column="cbl_code" property="cblCode" jdbcType="VARCHAR" />
+		<result column="cbl_date" property="cblDate" jdbcType="VARCHAR" />
+		<result column="cbl_scope" property="cblScope" jdbcType="VARCHAR" />
+		<result column="cbl_face_path" property="cblFacePath" jdbcType="VARCHAR" />
+		<result column="cbl_back_path" property="cblBackPath" jdbcType="VARCHAR" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="del_status" property="delStatus" jdbcType="INTEGER" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+		<result column="operation_ time" property="operationTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		cbl_id, cust_id, cbl_type, cbl_code, cbl_date, cbl_scope, cbl_face_path,
+		cbl_back_path,
+		remarks, del_status, record_time, entry_user_id, operation_user_id,
+		"operation_ time"
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.cust_busi_license
+		where cbl_id = #{cblId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from public.cust_busi_license
+		where cbl_id = #{cblId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustBusiLicense">
+		<selectKey resultType="java.lang.Long" keyProperty="cblId"
+			order="BEFORE">
+			select nextval('cust_busi_license_cbl_id_seq')
+		</selectKey>
+		insert into public.cust_busi_license (cbl_id, cust_id, cbl_type,
+		cbl_code, cbl_date, cbl_scope,
+		cbl_face_path, cbl_back_path, remarks,
+		del_status, record_time, entry_user_id,
+		operation_user_id, "operation_ time")
+		values (#{cblId,jdbcType=BIGINT}, #{custId,jdbcType=BIGINT},
+		#{cblType,jdbcType=INTEGER},
+		#{cblCode,jdbcType=VARCHAR}, #{cblDate,jdbcType=VARCHAR}, #{cblScope,jdbcType=VARCHAR},
+		#{cblFacePath,jdbcType=VARCHAR}, #{cblBackPath,jdbcType=VARCHAR},
+		#{remarks,jdbcType=VARCHAR},
+		#{delStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT},
+		#{operationUserId,jdbcType=BIGINT},
+		#{operationTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustBusiLicense">
+		<selectKey resultType="java.lang.Long" keyProperty="cblId"
+			order="BEFORE">
+			select nextval('cust_busi_license_cbl_id_seq')
+		</selectKey>
+		insert into public.cust_busi_license
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			cbl_id,
+			<if test="custId != null">
+				cust_id,
+			</if>
+			<if test="cblType != null">
+				cbl_type,
+			</if>
+			<if test="cblCode != null">
+				cbl_code,
+			</if>
+			<if test="cblDate != null">
+				cbl_date,
+			</if>
+			<if test="cblScope != null">
+				cbl_scope,
+			</if>
+			<if test="cblFacePath != null">
+				cbl_face_path,
+			</if>
+			<if test="cblBackPath != null">
+				cbl_back_path,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+			<if test="operationTime != null">
+				"operation_ time",
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{cblId,jdbcType=BIGINT},
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="cblType != null">
+				#{cblType,jdbcType=INTEGER},
+			</if>
+			<if test="cblCode != null">
+				#{cblCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cblDate != null">
+				#{cblDate,jdbcType=VARCHAR},
+			</if>
+			<if test="cblScope != null">
+				#{cblScope,jdbcType=VARCHAR},
+			</if>
+			<if test="cblFacePath != null">
+				#{cblFacePath,jdbcType=VARCHAR},
+			</if>
+			<if test="cblBackPath != null">
+				#{cblBackPath,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delStatus != null">
+				#{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustBusiLicense">
+		update public.cust_busi_license
+		<set>
+			<if test="custId != null">
+				cust_id = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="cblType != null">
+				cbl_type = #{cblType,jdbcType=INTEGER},
+			</if>
+			<if test="cblCode != null">
+				cbl_code = #{cblCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cblDate != null">
+				cbl_date = #{cblDate,jdbcType=VARCHAR},
+			</if>
+			<if test="cblScope != null">
+				cbl_scope = #{cblScope,jdbcType=VARCHAR},
+			</if>
+			<if test="cblFacePath != null">
+				cbl_face_path = #{cblFacePath,jdbcType=VARCHAR},
+			</if>
+			<if test="cblBackPath != null">
+				cbl_back_path = #{cblBackPath,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delStatus != null">
+				del_status = #{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationTime != null">
+				"operation_ time" = #{operationTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where cbl_id = #{cblId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustBusiLicense">
+		update public.cust_busi_license
+		set cust_id = #{custId,jdbcType=BIGINT},
+		cbl_type = #{cblType,jdbcType=INTEGER},
+		cbl_code = #{cblCode,jdbcType=VARCHAR},
+		cbl_date = #{cblDate,jdbcType=VARCHAR},
+		cbl_scope = #{cblScope,jdbcType=VARCHAR},
+		cbl_face_path = #{cblFacePath,jdbcType=VARCHAR},
+		cbl_back_path = #{cblBackPath,jdbcType=VARCHAR},
+		remarks = #{remarks,jdbcType=VARCHAR},
+		del_status = #{delStatus,jdbcType=INTEGER},
+		record_time = #{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id = #{entryUserId,jdbcType=BIGINT},
+		operation_user_id = #{operationUserId,jdbcType=BIGINT},
+		"operation_ time" = #{operationTime,jdbcType=TIMESTAMP}
+		where cbl_id = #{cblId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectCustBusiLicenses" resultMap="BaseResultMap"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustBusiLicense">
+		select
+		<include refid="Base_Column_List" />
+		from public.cust_busi_license
+		<where>
+			del_status=0
+		</where>
+	</select>
+</mapper>

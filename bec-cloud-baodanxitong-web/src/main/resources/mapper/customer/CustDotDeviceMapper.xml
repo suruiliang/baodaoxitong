@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustDotDeviceMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bec.cloud.baodanxitong.web.customer.model.CustDotDevice">
+		<id column="dd_id" property="ddId" jdbcType="BIGINT" />
+		<result column="dot_id" property="dotId" jdbcType="BIGINT" />
+		<result column="cust_id" property="custId" jdbcType="BIGINT" />
+		<result column="use_type" property="useType" jdbcType="INTEGER" />
+		<result column="cashier_type" property="cashierType" jdbcType="VARCHAR" />
+		<result column="cashier_no" property="cashierNo" jdbcType="VARCHAR" />
+		<result column="cashier_status" property="cashierStatus"
+			jdbcType="INTEGER" />
+		<result column="cashier_install_addr" property="cashierInstallAddr"
+			jdbcType="VARCHAR" />
+		<result column="cashier_binding_status" property="cashierBindingStatus"
+			jdbcType="INTEGER" />
+		<result column="cashier_abnormal_status" property="cashierAbnormalStatus"
+			jdbcType="INTEGER" />
+		<result column="cashier_remark" property="cashierRemark"
+			jdbcType="VARCHAR" />
+		<result column="pos_type" property="posType" jdbcType="VARCHAR" />
+		<result column="pos_sn" property="posSn" jdbcType="VARCHAR" />
+		<result column="pos_channel_no" property="posChannelNo"
+			jdbcType="VARCHAR" />
+		<result column="pos_status" property="posStatus" jdbcType="INTEGER" />
+		<result column="pos_abnormal_status" property="posAbnormalStatus"
+			jdbcType="INTEGER" />
+		<result column="pos_remark" property="posRemark" jdbcType="VARCHAR" />
+		<result column="del_status" property="delStatus" jdbcType="INTEGER" />
+		<result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+		<result column="entry_user_id" property="entryUserId" jdbcType="BIGINT" />
+		<result column="operation_user_id" property="operationUserId"
+			jdbcType="BIGINT" />
+		<result column="operation_time" property="operationTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		dd_id, dot_id, cust_id, use_type, cashier_type, cashier_no,
+		cashier_status,
+		cashier_install_addr,
+		cashier_binding_status,
+		cashier_abnormal_status, cashier_remark, pos_type, pos_sn,
+		pos_channel_no, pos_status, pos_abnormal_status, pos_remark,
+		del_status, record_time,
+		entry_user_id, operation_user_id,
+		operation_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from public.cust_dot_device
+		where dd_id = #{ddId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		public.cust_dot_device
+		where dd_id = #{ddId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDotDevice">
+		<selectKey resultType="java.lang.Long" keyProperty="ddId"
+			order="BEFORE">
+			select nextval('cust_dot_device_dd_id_seq')
+		</selectKey>
+		insert into public.cust_dot_device (dd_id, dot_id, cust_id,
+		use_type,
+		cashier_type, cashier_no,
+		cashier_status, cashier_install_addr,
+		cashier_binding_status,
+		cashier_abnormal_status, cashier_remark,
+		pos_type,
+		pos_sn, pos_channel_no, pos_status,
+		pos_abnormal_status,
+		pos_remark, del_status,
+		record_time, entry_user_id, operation_user_id,
+		operation_time)
+		values (#{ddId,jdbcType=BIGINT},
+		#{dotId,jdbcType=BIGINT},
+		#{custId,jdbcType=BIGINT},
+		#{useType,jdbcType=INTEGER}, #{cashierType,jdbcType=VARCHAR},
+		#{cashierNo,jdbcType=VARCHAR},
+		#{cashierStatus,jdbcType=INTEGER},
+		#{cashierInstallAddr,jdbcType=VARCHAR},
+		#{cashierBindingStatus,jdbcType=INTEGER},
+		#{cashierAbnormalStatus,jdbcType=INTEGER},
+		#{cashierRemark,jdbcType=VARCHAR}, #{posType,jdbcType=VARCHAR},
+		#{posSn,jdbcType=VARCHAR}, #{posChannelNo,jdbcType=VARCHAR},
+		#{posStatus,jdbcType=INTEGER},
+		#{posAbnormalStatus,jdbcType=INTEGER},
+		#{posRemark,jdbcType=VARCHAR}, #{delStatus,jdbcType=INTEGER},
+		#{recordTime,jdbcType=TIMESTAMP}, #{entryUserId,jdbcType=BIGINT},
+		#{operationUserId,jdbcType=BIGINT},
+		#{operationTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDotDevice">
+		<selectKey resultType="java.lang.Long" keyProperty="ddId"
+			order="BEFORE">
+			select nextval('cust_dot_device_dd_id_seq')
+		</selectKey>
+		insert into public.cust_dot_device
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			dd_id,
+			<if test="dotId != null">
+				dot_id,
+			</if>
+			<if test="custId != null">
+				cust_id,
+			</if>
+			<if test="useType != null">
+				use_type,
+			</if>
+			<if test="cashierType != null">
+				cashier_type,
+			</if>
+			<if test="cashierNo != null">
+				cashier_no,
+			</if>
+			<if test="cashierStatus != null">
+				cashier_status,
+			</if>
+			<if test="cashierInstallAddr != null">
+				cashier_install_addr,
+			</if>
+			<if test="cashierBindingStatus != null">
+				cashier_binding_status,
+			</if>
+			<if test="cashierAbnormalStatus != null">
+				cashier_abnormal_status,
+			</if>
+			<if test="cashierRemark != null">
+				cashier_remark,
+			</if>
+			<if test="posType != null">
+				pos_type,
+			</if>
+			<if test="posSn != null">
+				pos_sn,
+			</if>
+			<if test="posChannelNo != null">
+				pos_channel_no,
+			</if>
+			<if test="posStatus != null">
+				pos_status,
+			</if>
+			<if test="posAbnormalStatus != null">
+				pos_abnormal_status,
+			</if>
+			<if test="posRemark != null">
+				pos_remark,
+			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
+			<if test="recordTime != null">
+				record_time,
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id,
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id,
+			</if>
+			<if test="operationTime != null">
+				operation_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{ddId,jdbcType=BIGINT},
+			<if test="dotId != null">
+				#{dotId,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="useType != null">
+				#{useType,jdbcType=INTEGER},
+			</if>
+			<if test="cashierType != null">
+				#{cashierType,jdbcType=VARCHAR},
+			</if>
+			<if test="cashierNo != null">
+				#{cashierNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cashierStatus != null">
+				#{cashierStatus,jdbcType=INTEGER},
+			</if>
+			<if test="cashierInstallAddr != null">
+				#{cashierInstallAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="cashierBindingStatus != null">
+				#{cashierBindingStatus,jdbcType=INTEGER},
+			</if>
+			<if test="cashierAbnormalStatus != null">
+				#{cashierAbnormalStatus,jdbcType=INTEGER},
+			</if>
+			<if test="cashierRemark != null">
+				#{cashierRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="posType != null">
+				#{posType,jdbcType=VARCHAR},
+			</if>
+			<if test="posSn != null">
+				#{posSn,jdbcType=VARCHAR},
+			</if>
+			<if test="posChannelNo != null">
+				#{posChannelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="posStatus != null">
+				#{posStatus,jdbcType=INTEGER},
+			</if>
+			<if test="posAbnormalStatus != null">
+				#{posAbnormalStatus,jdbcType=INTEGER},
+			</if>
+			<if test="posRemark != null">
+				#{posRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="delStatus != null">
+				#{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				#{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				#{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				#{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationTime != null">
+				#{operationTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDotDevice">
+		update public.cust_dot_device
+		<set>
+			<if test="dotId != null">
+				dot_id = #{dotId,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				cust_id = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="useType != null">
+				use_type = #{useType,jdbcType=INTEGER},
+			</if>
+			<if test="cashierType != null">
+				cashier_type = #{cashierType,jdbcType=VARCHAR},
+			</if>
+			<if test="cashierNo != null">
+				cashier_no = #{cashierNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cashierStatus != null">
+				cashier_status = #{cashierStatus,jdbcType=INTEGER},
+			</if>
+			<if test="cashierInstallAddr != null">
+				cashier_install_addr =
+				#{cashierInstallAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="cashierBindingStatus != null">
+				cashier_binding_status =
+				#{cashierBindingStatus,jdbcType=INTEGER},
+			</if>
+			<if test="cashierAbnormalStatus != null">
+				cashier_abnormal_status =
+				#{cashierAbnormalStatus,jdbcType=INTEGER},
+			</if>
+			<if test="cashierRemark != null">
+				cashier_remark = #{cashierRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="posType != null">
+				pos_type = #{posType,jdbcType=VARCHAR},
+			</if>
+			<if test="posSn != null">
+				pos_sn = #{posSn,jdbcType=VARCHAR},
+			</if>
+			<if test="posChannelNo != null">
+				pos_channel_no = #{posChannelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="posStatus != null">
+				pos_status = #{posStatus,jdbcType=INTEGER},
+			</if>
+			<if test="posAbnormalStatus != null">
+				pos_abnormal_status =
+				#{posAbnormalStatus,jdbcType=INTEGER},
+			</if>
+			<if test="posRemark != null">
+				pos_remark = #{posRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="delStatus != null">
+				del_status = #{delStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recordTime != null">
+				record_time = #{recordTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryUserId != null">
+				entry_user_id = #{entryUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationUserId != null">
+				operation_user_id = #{operationUserId,jdbcType=BIGINT},
+			</if>
+			<if test="operationTime != null">
+				operation_time = #{operationTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where dd_id = #{ddId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustDotDevice">
+		update public.cust_dot_device
+		set dot_id =
+		#{dotId,jdbcType=BIGINT},
+		cust_id = #{custId,jdbcType=BIGINT},
+		use_type
+		= #{useType,jdbcType=INTEGER},
+		cashier_type =
+		#{cashierType,jdbcType=VARCHAR},
+		cashier_no =
+		#{cashierNo,jdbcType=VARCHAR},
+		cashier_status =
+		#{cashierStatus,jdbcType=INTEGER},
+		cashier_install_addr =
+		#{cashierInstallAddr,jdbcType=VARCHAR},
+		cashier_binding_status =
+		#{cashierBindingStatus,jdbcType=INTEGER},
+		cashier_abnormal_status =
+		#{cashierAbnormalStatus,jdbcType=INTEGER},
+		cashier_remark =
+		#{cashierRemark,jdbcType=VARCHAR},
+		pos_type =
+		#{posType,jdbcType=VARCHAR},
+		pos_sn = #{posSn,jdbcType=VARCHAR},
+		pos_channel_no = #{posChannelNo,jdbcType=VARCHAR},
+		pos_status =
+		#{posStatus,jdbcType=INTEGER},
+		pos_abnormal_status =
+		#{posAbnormalStatus,jdbcType=INTEGER},
+		pos_remark =
+		#{posRemark,jdbcType=VARCHAR},
+		del_status =
+		#{delStatus,jdbcType=INTEGER},
+		record_time =
+		#{recordTime,jdbcType=TIMESTAMP},
+		entry_user_id =
+		#{entryUserId,jdbcType=BIGINT},
+		operation_user_id =
+		#{operationUserId,jdbcType=BIGINT},
+		operation_time =
+		#{operationTime,jdbcType=TIMESTAMP}
+		where dd_id =
+		#{ddId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectCustDeviceSimpleResp"
+		resultType="com.bec.cloud.baodanxitong.web.customer.model.resp.CustDeviceSimpleResp"
+		parameterType="com.bec.cloud.baodanxitong.web.customer.model.resp.CustDeviceSimpleResp">
+		SELECT
+		cd.cust_id custId,
+		cu.cust_phone custPhone,
+		cu.cust_code custCode,
+		cu.cust_name custName,
+		cu.cust_status custStatus,
+		cu.modify_status
+		modifyStatus,
+		dd.dd_id ddId,
+		cd.dot_id dotId,
+		dd.cashier_no cashierNo,
+		dd.cashier_status cashierStatus,
+		dd.cashier_abnormal_status
+		cashierAbnormalStatus
+		FROM
+		PUBLIC .cust_dot_device dd
+		INNER JOIN PUBLIC
+		.cust_dot cd ON dd.dot_id = cd.dot_id
+		AND cd.del_status = 0
+		INNER JOIN
+		PUBLIC.customer cu ON dd.cust_id = cu.cust_id
+		AND cu.del_status = 0
+		<where>
+			dd.del_status = 0
+			<if test="custPhone != null and custPhone!=''">
+				and cu.cust_phone = #{custPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="custCode != null and custCode!=''">
+				and cu.cust_code = #{custCode,jdbcType=VARCHAR}
+			</if>
+			<if test="custName != null and custName!=''">
+				and cu.cust_name like
+				'%'||#{custName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="custStatus != null and custStatus!=-1">
+				and cu.cust_status = #{custStatus,jdbcType=INTEGER}
+			</if>
+			<if test="modifyStatus != null and modifyStatus!=-1">
+				and cu.modify_status = #{modifyStatus,jdbcType=INTEGER}
+			</if>
+			<if test="cashierStatus != null and cashierStatus!=-1">
+				and dd.cashier_status = #{cashierStatus,jdbcType=INTEGER}
+			</if>
+		</where>
+		order by dd.dd_id desc
+	</select>
+	<resultMap id="CustDeviceDetailRespMap"
+		type="com.bec.cloud.baodanxitong.web.customer.model.resp.CustDeviceDetailResp">
+		<id column="dd_id" property="ddId" jdbcType="BIGINT" />
+		<result column="dot_id" property="dotId" jdbcType="BIGINT" />
+		<result column="dot_code" property="dotCode" jdbcType="VARCHAR" />
+		<result column="cust_id" property="custId" jdbcType="BIGINT" />
+		<result column="cust_phone" property="custPhone" jdbcType="VARCHAR" />
+		<result column="cust_code" property="custCode" jdbcType="VARCHAR" />
+		<result column="cust_name" property="custName" jdbcType="VARCHAR" />
+		<result column="use_type" property="useType" jdbcType="INTEGER" />
+		<result column="cashier_status" property="cashierStatus"
+			jdbcType="INTEGER" />
+		<result column="cashier_type" property="cashierType" jdbcType="VARCHAR" />
+		<result column="cashier_no" property="cashierNo" jdbcType="VARCHAR" />
+		<result column="cashier_install_addr" property="cashierInstallAddr"
+			jdbcType="VARCHAR" />
+		<result column="cashier_binding_status" property="cashierBindingStatus"
+			jdbcType="INTEGER" />
+		<result column="pos_type" property="posType" jdbcType="VARCHAR" />
+		<result column="pos_sn" property="posSn" jdbcType="VARCHAR" />
+		<result column="pos_channel_no" property="posChannelNo"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectCustDeviceDetailRespByPrimaryKey" resultMap="CustDeviceDetailRespMap"
+		parameterType="java.lang.Long">
+		SELECT
+		dd.dd_id,
+		dd.dot_id,
+		cd.dot_code,
+		cu.cust_id,
+		cu.cust_phone,
+		cu.cust_code,
+		cu.cust_name,
+		dd.use_type,
+		dd.cashier_status,
+		dd.cashier_type,
+		dd.cashier_no,
+		dd.cashier_install_addr,
+		dd.cashier_binding_status,
+		dd.pos_type,
+		dd.pos_sn,
+		dd.pos_channel_no
+		FROM
+		PUBLIC .cust_dot_device dd
+		INNER JOIN PUBLIC .cust_dot cd ON dd.dot_id
+		= cd.dot_id
+		AND cd.del_status = 0
+		INNER JOIN PUBLIC .customer cu ON
+		dd.cust_id = cu.cust_id
+		AND cu.del_status = 0
+		WHERE
+		dd.del_status = 0
+		and
+		dd.dd_id = #{ddId,jdbcType=BIGINT}
+	</select>
+</mapper>

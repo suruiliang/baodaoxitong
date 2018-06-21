@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bec.cloud.baodanxitong.web.customer.model.Customer;
+import com.bec.cloud.baodanxitong.web.customer.model.resp.CustBaseDetailResp;
+import com.bec.cloud.baodanxitong.web.customer.model.resp.CustBaseSimpleResp;
 
 @Mapper
 public interface CustomerMapper {
@@ -19,6 +21,11 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
-    
-    List<Customer> selectustCustomers(Customer record);
+
+	List<Customer> selectCustCustomers(Customer record);
+
+	List<CustBaseSimpleResp> selectCustBaseResp(CustBaseSimpleResp record);
+
+	CustBaseDetailResp selectCustBaseDetailRespByPrimaryKey(Long custId);
+
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.bec.cloud.baodanxitong.web.customer.dao.CustSettleAccountModifyMapper" >
   <resultMap id="BaseResultMap" type="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccountModify" >
     <id column="account_id" property="accountId" jdbcType="BIGINT" />
-    <result column="cust_code" property="custCode" jdbcType="BIGINT" />
+    <result column="cust_id" property="custId" jdbcType="BIGINT" />
     <result column="account_type" property="accountType" jdbcType="INTEGER" />
     <result column="g_openbank_id" property="gOpenbankId" jdbcType="VARCHAR" />
     <result column="g_account_name" property="gAccountName" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <result column="s_openbank_id" property="sOpenbankId" jdbcType="VARCHAR" />
     <result column="s_account_name" property="sAccountName" jdbcType="VARCHAR" />
     <result column="s_account_no" property="sAccountNo" jdbcType="VARCHAR" />
-    <result column="audit_status" property="auditStatus" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="del_status" property="delStatus" jdbcType="INTEGER" />
     <result column="change_status" property="changeStatus" jdbcType="INTEGER" />
@@ -22,12 +22,14 @@
     <result column="operation_time" property="operationTime" jdbcType="DATE" />
     <result column="bank_card_face_path" property="bankCardFacePath" jdbcType="VARCHAR" />
     <result column="bank_card_back_path" property="bankCardBackPath" jdbcType="VARCHAR" />
+    <result column="g_openbank" property="gOpenbank" jdbcType="VARCHAR" />
+    <result column="s_openbank" property="sOpenbank" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    account_id, cust_code, account_type, g_openbank_id, g_account_name, g_account_no, 
+    account_id, cust_id, account_type, g_openbank_id, g_account_name, g_account_no, 
     account_open_permit_path, s_openbank_id, s_account_name, s_account_no, audit_status, 
     remark, del_status, change_status, record_time, entry_user_id, operation_user_id, 
-    operation_time, bank_card_face_path, bank_card_back_path
+    operation_time, bank_card_face_path, bank_card_back_path, g_openbank, s_openbank
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -40,29 +42,35 @@
     where account_id = #{accountId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccountModify" >
-    insert into public.cust_settle_account_modify (account_id, cust_code, account_type, 
+    <selectKey resultType="java.lang.Long" keyProperty="accountId" order="BEFORE" >
+      select nextval('cust_settle_account_account_id_seq')
+    </selectKey>
+    insert into public.cust_settle_account_modify (account_id, cust_id, account_type, 
       g_openbank_id, g_account_name, g_account_no, 
       account_open_permit_path, s_openbank_id, s_account_name, 
       s_account_no, audit_status, remark, 
       del_status, change_status, record_time, 
       entry_user_id, operation_user_id, operation_time, 
-      bank_card_face_path, bank_card_back_path)
-    values (#{accountId,jdbcType=BIGINT}, #{custCode,jdbcType=BIGINT}, #{accountType,jdbcType=INTEGER}, 
+      bank_card_face_path, bank_card_back_path, g_openbank, 
+      s_openbank)
+    values (#{accountId,jdbcType=BIGINT}, #{custId,jdbcType=BIGINT}, #{accountType,jdbcType=INTEGER}, 
       #{gOpenbankId,jdbcType=VARCHAR}, #{gAccountName,jdbcType=VARCHAR}, #{gAccountNo,jdbcType=VARCHAR}, 
       #{accountOpenPermitPath,jdbcType=VARCHAR}, #{sOpenbankId,jdbcType=VARCHAR}, #{sAccountName,jdbcType=VARCHAR}, 
-      #{sAccountNo,jdbcType=VARCHAR}, #{auditStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{sAccountNo,jdbcType=VARCHAR}, #{auditStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{delStatus,jdbcType=INTEGER}, #{changeStatus,jdbcType=INTEGER}, #{recordTime,jdbcType=DATE}, 
       #{entryUserId,jdbcType=BIGINT}, #{operationUserId,jdbcType=BIGINT}, #{operationTime,jdbcType=DATE}, 
-      #{bankCardFacePath,jdbcType=VARCHAR}, #{bankCardBackPath,jdbcType=VARCHAR})
+      #{bankCardFacePath,jdbcType=VARCHAR}, #{bankCardBackPath,jdbcType=VARCHAR}, #{gOpenbank,jdbcType=VARCHAR}, 
+      #{sOpenbank,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccountModify" >
+    <selectKey resultType="java.lang.Long" keyProperty="accountId" order="BEFORE" >
+      select nextval('cust_settle_account_account_id_seq')
+    </selectKey>
     insert into public.cust_settle_account_modify
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="accountId != null" >
-        account_id,
-      </if>
-      <if test="custCode != null" >
-        cust_code,
+      account_id,
+      <if test="custId != null" >
+        cust_id,
       </if>
       <if test="accountType != null" >
         account_type,
@@ -118,13 +126,17 @@
       <if test="bankCardBackPath != null" >
         bank_card_back_path,
       </if>
+      <if test="gOpenbank != null" >
+        g_openbank,
+      </if>
+      <if test="sOpenbank != null" >
+        s_openbank,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="accountId != null" >
-        #{accountId,jdbcType=BIGINT},
-      </if>
-      <if test="custCode != null" >
-        #{custCode,jdbcType=BIGINT},
+      #{accountId,jdbcType=BIGINT},
+      <if test="custId != null" >
+        #{custId,jdbcType=BIGINT},
       </if>
       <if test="accountType != null" >
         #{accountType,jdbcType=INTEGER},
@@ -151,7 +163,7 @@
         #{sAccountNo,jdbcType=VARCHAR},
       </if>
       <if test="auditStatus != null" >
-        #{auditStatus,jdbcType=VARCHAR},
+        #{auditStatus,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -180,13 +192,19 @@
       <if test="bankCardBackPath != null" >
         #{bankCardBackPath,jdbcType=VARCHAR},
       </if>
+      <if test="gOpenbank != null" >
+        #{gOpenbank,jdbcType=VARCHAR},
+      </if>
+      <if test="sOpenbank != null" >
+        #{sOpenbank,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccountModify" >
     update public.cust_settle_account_modify
     <set >
-      <if test="custCode != null" >
-        cust_code = #{custCode,jdbcType=BIGINT},
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=BIGINT},
       </if>
       <if test="accountType != null" >
         account_type = #{accountType,jdbcType=INTEGER},
@@ -213,7 +231,7 @@
         s_account_no = #{sAccountNo,jdbcType=VARCHAR},
       </if>
       <if test="auditStatus != null" >
-        audit_status = #{auditStatus,jdbcType=VARCHAR},
+        audit_status = #{auditStatus,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -242,12 +260,18 @@
       <if test="bankCardBackPath != null" >
         bank_card_back_path = #{bankCardBackPath,jdbcType=VARCHAR},
       </if>
+      <if test="gOpenbank != null" >
+        g_openbank = #{gOpenbank,jdbcType=VARCHAR},
+      </if>
+      <if test="sOpenbank != null" >
+        s_openbank = #{sOpenbank,jdbcType=VARCHAR},
+      </if>
     </set>
     where account_id = #{accountId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bec.cloud.baodanxitong.web.customer.model.CustSettleAccountModify" >
     update public.cust_settle_account_modify
-    set cust_code = #{custCode,jdbcType=BIGINT},
+    set cust_id = #{custId,jdbcType=BIGINT},
       account_type = #{accountType,jdbcType=INTEGER},
       g_openbank_id = #{gOpenbankId,jdbcType=VARCHAR},
       g_account_name = #{gAccountName,jdbcType=VARCHAR},
@@ -256,7 +280,7 @@
       s_openbank_id = #{sOpenbankId,jdbcType=VARCHAR},
       s_account_name = #{sAccountName,jdbcType=VARCHAR},
       s_account_no = #{sAccountNo,jdbcType=VARCHAR},
-      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       del_status = #{delStatus,jdbcType=INTEGER},
       change_status = #{changeStatus,jdbcType=INTEGER},
@@ -265,7 +289,9 @@
       operation_user_id = #{operationUserId,jdbcType=BIGINT},
       operation_time = #{operationTime,jdbcType=DATE},
       bank_card_face_path = #{bankCardFacePath,jdbcType=VARCHAR},
-      bank_card_back_path = #{bankCardBackPath,jdbcType=VARCHAR}
+      bank_card_back_path = #{bankCardBackPath,jdbcType=VARCHAR},
+      g_openbank = #{gOpenbank,jdbcType=VARCHAR},
+      s_openbank = #{sOpenbank,jdbcType=VARCHAR}
     where account_id = #{accountId,jdbcType=BIGINT}
   </update>
 </mapper>

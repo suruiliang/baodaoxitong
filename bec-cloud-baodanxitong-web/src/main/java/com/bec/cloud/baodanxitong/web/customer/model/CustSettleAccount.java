@@ -5,25 +5,25 @@ import java.util.Date;
 public class CustSettleAccount {
     private Long accountId;
 
-    private Long custCode;
+    private Long custId;
 
     private Integer accountType;
 
-    private String gOpenbankId;
+    private String gopenbankId;
 
-    private String gAccountName;
+    private String gaccountName;
 
-    private String gAccountNo;
+    private String gaccountNo;
 
     private String accountOpenPermitPath;
 
-    private String sOpenbankId;
+    private String sopenbankId;
 
-    private String sAccountName;
+    private String saccountName;
 
-    private String sAccountNo;
+    private String saccountNo;
 
-    private String auditStatus;
+    private Integer auditStatus;
 
     private String remark;
 
@@ -43,6 +43,10 @@ public class CustSettleAccount {
 
     private String bankCardBackPath;
 
+    private String gopenbank;
+
+    private String sopenbank;
+
     public Long getAccountId() {
         return accountId;
     }
@@ -51,12 +55,12 @@ public class CustSettleAccount {
         this.accountId = accountId;
     }
 
-    public Long getCustCode() {
-        return custCode;
+    public Long getCustId() {
+        return custId;
     }
 
-    public void setCustCode(Long custCode) {
-        this.custCode = custCode;
+    public void setCustId(Long custId) {
+        this.custId = custId;
     }
 
     public Integer getAccountType() {
@@ -67,30 +71,7 @@ public class CustSettleAccount {
         this.accountType = accountType;
     }
 
-    public String getgOpenbankId() {
-        return gOpenbankId;
-    }
-
-    public void setgOpenbankId(String gOpenbankId) {
-        this.gOpenbankId = gOpenbankId == null ? null : gOpenbankId.trim();
-    }
-
-    public String getgAccountName() {
-        return gAccountName;
-    }
-
-    public void setgAccountName(String gAccountName) {
-        this.gAccountName = gAccountName == null ? null : gAccountName.trim();
-    }
-
-    public String getgAccountNo() {
-        return gAccountNo;
-    }
-
-    public void setgAccountNo(String gAccountNo) {
-        this.gAccountNo = gAccountNo == null ? null : gAccountNo.trim();
-    }
-
+    
     public String getAccountOpenPermitPath() {
         return accountOpenPermitPath;
     }
@@ -99,36 +80,15 @@ public class CustSettleAccount {
         this.accountOpenPermitPath = accountOpenPermitPath == null ? null : accountOpenPermitPath.trim();
     }
 
-    public String getsOpenbankId() {
-        return sOpenbankId;
-    }
+    
 
-    public void setsOpenbankId(String sOpenbankId) {
-        this.sOpenbankId = sOpenbankId == null ? null : sOpenbankId.trim();
-    }
 
-    public String getsAccountName() {
-        return sAccountName;
-    }
-
-    public void setsAccountName(String sAccountName) {
-        this.sAccountName = sAccountName == null ? null : sAccountName.trim();
-    }
-
-    public String getsAccountNo() {
-        return sAccountNo;
-    }
-
-    public void setsAccountNo(String sAccountNo) {
-        this.sAccountNo = sAccountNo == null ? null : sAccountNo.trim();
-    }
-
-    public String getAuditStatus() {
+    public Integer getAuditStatus() {
         return auditStatus;
     }
 
-    public void setAuditStatus(String auditStatus) {
-        this.auditStatus = auditStatus == null ? null : auditStatus.trim();
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
     }
 
     public String getRemark() {
@@ -202,4 +162,69 @@ public class CustSettleAccount {
     public void setBankCardBackPath(String bankCardBackPath) {
         this.bankCardBackPath = bankCardBackPath == null ? null : bankCardBackPath.trim();
     }
+
+	public String getGopenbankId() {
+		return gopenbankId;
+	}
+
+	public void setGopenbankId(String gopenbankId) {
+		this.gopenbankId = gopenbankId;
+	}
+
+	public String getGaccountName() {
+		return gaccountName;
+	}
+
+	public void setGaccountName(String gaccountName) {
+		this.gaccountName = gaccountName;
+	}
+
+	public String getGaccountNo() {
+		return gaccountNo;
+	}
+
+	public void setGaccountNo(String gaccountNo) {
+		this.gaccountNo = gaccountNo;
+	}
+
+	public String getSopenbankId() {
+		return sopenbankId;
+	}
+
+	public void setSopenbankId(String sopenbankId) {
+		this.sopenbankId = sopenbankId;
+	}
+
+	public String getSaccountName() {
+		return saccountName;
+	}
+
+	public void setSaccountName(String saccountName) {
+		this.saccountName = saccountName;
+	}
+
+	public String getSaccountNo() {
+		return saccountNo;
+	}
+
+	public void setSaccountNo(String saccountNo) {
+		this.saccountNo = saccountNo;
+	}
+
+	public String getGopenbank() {
+		return gopenbank;
+	}
+
+	public void setGopenbank(String gopenbank) {
+		this.gopenbank = gopenbank;
+	}
+
+	public String getSopenbank() {
+		return sopenbank;
+	}
+
+	public void setSopenbank(String sopenbank) {
+		this.sopenbank = sopenbank;
+	}
+
 }

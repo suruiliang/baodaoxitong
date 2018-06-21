@@ -41,5 +41,7 @@ public class AuthLog {
     private Date recordTime;
 
     private Date operationTime;
+    
+    private String custPhone;
 
 }

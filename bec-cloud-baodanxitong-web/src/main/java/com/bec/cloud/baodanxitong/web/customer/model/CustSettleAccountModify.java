@@ -5,7 +5,7 @@ import java.util.Date;
 public class CustSettleAccountModify {
     private Long accountId;
 
-    private Long custCode;
+    private Long custId;
 
     private Integer accountType;
 
@@ -43,6 +43,10 @@ public class CustSettleAccountModify {
 
     private String bankCardBackPath;
 
+    private String gOpenbank;
+
+    private String sOpenbank;
+
     public Long getAccountId() {
         return accountId;
     }
@@ -51,12 +55,12 @@ public class CustSettleAccountModify {
         this.accountId = accountId;
     }
 
-    public Long getCustCode() {
-        return custCode;
+    public Long getCustId() {
+        return custId;
     }
 
-    public void setCustCode(Long custCode) {
-        this.custCode = custCode;
+    public void setCustId(Long custId) {
+        this.custId = custId;
     }
 
     public Integer getAccountType() {
@@ -201,5 +205,21 @@ public class CustSettleAccountModify {
 
     public void setBankCardBackPath(String bankCardBackPath) {
         this.bankCardBackPath = bankCardBackPath == null ? null : bankCardBackPath.trim();
+    }
+
+    public String getgOpenbank() {
+        return gOpenbank;
+    }
+
+    public void setgOpenbank(String gOpenbank) {
+        this.gOpenbank = gOpenbank == null ? null : gOpenbank.trim();
+    }
+
+    public String getsOpenbank() {
+        return sOpenbank;
+    }
+
+    public void setsOpenbank(String sOpenbank) {
+        this.sOpenbank = sOpenbank == null ? null : sOpenbank.trim();
     }
 }
