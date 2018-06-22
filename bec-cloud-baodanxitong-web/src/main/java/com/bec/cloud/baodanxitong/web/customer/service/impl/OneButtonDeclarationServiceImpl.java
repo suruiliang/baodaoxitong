@@ -124,7 +124,7 @@ public class OneButtonDeclarationServiceImpl implements OneButtonDeclarationServ
 				custDot.setOperationUserId(userInfo.getUserId());
 				custDot.setRecordTime(new Date());
 				custDotMapper.insertSelective(custDot);
-				//6.cust_dot_term
+				//6.cust_dot_device
 				List<CustDeviceReq> custDeviceInfos=custDeptInfo.getCustDeviceInfos();
 				if (custDeviceInfos!=null&&custDeviceInfos.size()>0) {
 					for (CustDeviceReq custDeviceInfo : custDeviceInfos) {
